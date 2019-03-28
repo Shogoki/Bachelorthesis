@@ -6,8 +6,9 @@ INPUTDIR=$(BASEDIR)/source
 OUTPUTDIR=$(BASEDIR)/output
 TEMPLATEDIR=$(INPUTDIR)/templates
 STYLEDIR=$(BASEDIR)/style
-
+EXPOSEINPUTDIR=$(BASEDIR)/expose_src
 BIBFILE=$(INPUTDIR)/references.bib
+E_BIBFILE=$(EXPOSEINPUTDIR)/references.bib
 
 help:
 	@echo ' 																	  '
@@ -38,6 +39,21 @@ pdf:
 	-N \
 	--pdf-engine=xelatex \
 	--verbose
+
+expose:
+	pandoc "$(EXPOSEINPUTDIR)"/*.md \
+		-o "$(OUTPUTDIR)/expose.pdf" \
+		-H "$(STYLEDIR)/preamble.tex" \
+		--template="$(STYLEDIR)/template.tex" \
+		--bibliography="$(E_BIBFILE)" 2>pandoc.log \
+		--csl="$(STYLEDIR)/ref_format.csl" \
+		--highlight-style pygments \
+		-V fontsize=12pt \
+		-V papersize=a4paper \
+		-V documentclass=article \
+		-N \
+		--pdf-engine=xelatex \
+		--verbose
 
 tex:
 	pandoc "$(INPUTDIR)"/*.md \
