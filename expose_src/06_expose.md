@@ -36,3 +36,7 @@ Die folgenden Teile werden zwar in der Thesis kurz erwähnt können jedoch aufgr
 # Bedeutung
 
 Die Bedeutung der Arbeit liegt primär in der Bereitstellung eines passenden Models, der benötigten Datenaufbereitung und Klassifizierung dieser. Das neuronale Netz soll genügend divers trainiert werden um die entsprechenden Emotionen bei verschiedenen Menschen mit einer hohen Trefferquote richtig zu erkennen.
+
+# Methoden
+
+# Zeitplan

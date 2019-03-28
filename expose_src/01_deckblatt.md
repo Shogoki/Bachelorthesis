@@ -27,7 +27,7 @@ and add the centred logo
 
         Exposé zur Bachelor-Thesis\\
         \vspace{0.8cm}
-        Emotionserkennung anhand Videodaten mithilfe von künstlichen neuronalen Netzen\\
+        Emotionserkennung anhand von Videodaten mithilfe von künstlichen neuronalen Netzen\\
         \vspace{0.8cm}
         \normalsize
         vorgelegt von:\\
