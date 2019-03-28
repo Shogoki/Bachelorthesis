@@ -25,9 +25,9 @@ and add the centred logo
 
         \vspace{1.5cm}
 
-        Exposé zur Bachelor-Thesis\
+        Exposé zur Bachelor-Thesis\\
         \vspace{0.8cm}
-        Emotionserkennung anhand Videodaten mithilfe von künstlichen neuronalen Netzen
+        Emotionserkennung anhand Videodaten mithilfe von künstlichen neuronalen Netzen\\
         \vspace{0.8cm}
         \normalsize
         vorgelegt von:\\
@@ -38,7 +38,7 @@ and add the centred logo
         
         \vspace{0.8cm}
         
-        Betreuer: Herr Lachezar Krumov
+        Betreuer: Herr Lachezar Krumov\\
         \vspace{0.8cm}
         Datum 01.04.2019\\
         \vfill

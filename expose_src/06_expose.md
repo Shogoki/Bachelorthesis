@@ -14,7 +14,9 @@ Eine solche Anforderung besteht für die Auswertung der Emotionen von Testern w�
 ## Zielsetzung
 
 Das Ziel dieser Arbeit ist es einen Webservice zu entwickeln, welcher die Videodaten der Produkttests und/oder Interviews entgegen nimmt und eine Zeitleiste mit den anhand der Mimik erkannten Emotionen zurück gibt. Der Service soll als Prototyp entwickelt werden, um im Nachhinein von der operativen Evonik-IT weiterentwickelnt und betrieben zu werden.
+
 Zur Realisierung eines solchen Service soll eine Antwort auf folgende Fragen liefern:
+
 * Wie kann man menschliche Emotionen sinnvoll klassifizeren?
 * Welche bereits verfügbaren Modelle können für diesen Anwendungsfall genutzt und entsprechend spezialiseirt werden?
 * Woher bekommt man genug entsprechend gelabelte Trainingsdaten?
@@ -27,6 +29,7 @@ Die primäre Zielgruppe für den Webservice ist die anfordernde Marketing Abteil
 ## Abgrenzung
 
 Die folgenden Teile werden zwar in der Thesis kurz erwähnt können jedoch aufgrund der zur Verfügung stehenden Zeit nicht vollständig behandelt werden:
+
 * Emotionserkennung aus anderen verfügbaren Daten als der Mimik, wie z.B. gesprochener Text & die verwndete entsprechende Tonlage
 * Design und vollständige Implementierung eines Frontends für den Webservice
 
