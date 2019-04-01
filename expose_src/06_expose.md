@@ -44,7 +44,7 @@ Anschließend sollen die erworbenen Erkenntnisse mittels Prototyping bei einer e
 
 # vorläufiger Zeitplan
 
-* Plaungsphase
+* Planungsphase
 	* 01.04.2019 - Abgabe des Exposé´s
 	* 03.04.2019 - Besprechung und ggf. Anpassung des Exposé´s
 	* bis 14.04.2019: Anmeldung der Bachelor-Thesis
