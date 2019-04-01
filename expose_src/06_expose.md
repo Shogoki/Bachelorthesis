@@ -37,6 +37,32 @@ Die folgenden Teile werden zwar in der Thesis kurz erwähnt können jedoch aufgr
 
 Die Bedeutung der Arbeit liegt primär in der Bereitstellung eines passenden Models, der benötigten Datenaufbereitung und Klassifizierung dieser. Das neuronale Netz soll genügend divers trainiert werden um die entsprechenden Emotionen bei verschiedenen Menschen mit einer hohen Trefferquote richtig zu erkennen.
 
-# Methoden
+# Methodik
 
-# Zeitplan
+Im theoretischen Teil, welcher als Basis für die Implementierung des Prototypen dient soll auf der Grundlage von einschlägiger Fachliteratur die sinnvolle Klassifizierung von Emotionen und der entsprechende Aufbau eines passenden neuronalen Netzwerkes herausgearbeitet werden.
+Anschließend sollen die erworbenen Erkenntnisse mittels Prototyping bei einer ersten Implementierung & Evaluierung eines Emotionserkennungs-Service weiter vertieft werden.
+
+
+# vorläufiger Zeitplan
+
+# vorläufige GLiederung
+
+
+I Abbildungsverzeichnis
+II Abkürzungsverzeichnis
+III Glossar
+1. Einleitung
+1.1 Eingrenzung (1)
+1.2 Ziel der Untersuchung (1)
+1.3 Stand der Forschung (2)
+1.4 Fragestellung und Hypothese (1,5)
+2. Forschungsmethode
+2.1 Konzeption (3)
+2.2 Versuchsaufbau (4,5)
+2.3 Datenerhebung (3)
+2.4 Auswertung (2)
+3. Ergebnisse (3)
+4. Fazit
+4.1 Methodisches Fazit (1)
+4.2 Interpretation der Ergebnisse (2)
+4.3 Abschließendes Fazit (1)
