@@ -71,15 +71,12 @@ Anschließend sollen die erworbenen Erkenntnisse mittels Prototyping bei einer e
 # Vorläufige Gliederung
 
 
-* Abbildungsverzeichnis
-* Abkürzungsverzeichnis
-* Glossar
 1. Einführung
 	1. Eingrenzung 
 	2. Ziel der Untersuchung 
 	3. Stand der Forschung 
 	4. Fragestellung
-2. Theoretischer Teil
+2. Stand der Forschung 
 	1. Einordnung der Daten
 		1. Beschaffenheit der Daten
 		2. Vorbereitung der Daten
@@ -93,7 +90,7 @@ Anschließend sollen die erworbenen Erkenntnisse mittels Prototyping bei einer e
 		4. Trainingsmethoden
 		5. Gesichtserkennung
 	3. aktuell bewährte Modelle 
-3. Methodik
+3. Umsetzung & Evaluierung
 	1. Prototyping
 		1. Aufbau verschiedener neuronaler Netze
 		2. Trainieren der Modelle
@@ -101,6 +98,9 @@ Anschließend sollen die erworbenen Erkenntnisse mittels Prototyping bei einer e
 	2. Experiment
 		1. Verifizieren mit Testdaten
 		2. Untersuchung der Genauigkeit
-4. Ergebnisse
+	3. Ergebnisse
 5. Fazit
 * Literaturverzeichnis
+* Abbildungsverzeichnis
+* Abkürzungsverzeichnis
+* Glossar
