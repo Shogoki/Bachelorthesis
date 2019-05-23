@@ -13,7 +13,7 @@
 
 branch="master"
 words=0
-skipFirst=0 #number of the first commits you want to skip
+skipFirst=10 #number of the first commits you want to skip
 
 if [ -f log_wordcount.txt ] ; then
 	rm log_wordcount.txt

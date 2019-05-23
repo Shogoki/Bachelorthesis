@@ -5,15 +5,15 @@ import pandas as pd
 
 print('plotting wordcount from log_wordcount.txt...')
 goal = 60000
-start = '2018-01-01'
-draft = '2018-06-01'
-final = '2018-08-01'
-deadline = '2018-09-01'
+start = '2019-04-01'
+draft = '2019-06-01'
+final = '2019-07-01'
+deadline = '2019-08-02'
 
 data = pd.read_csv('log_wordcount.txt',delim_whitespace=True,header=None, usecols=[0,1,3],
 	names=['date','time','words'],parse_dates=[['date','time']],index_col=[0])
 
-estimate = pd.DataFrame(data=[0,goal],index=[pd.Timestamp('2018-02-01'),pd.Timestamp('2018-06-01')])
+estimate = pd.DataFrame(data=[0,goal],index=[pd.Timestamp('2019-04-01'),pd.Timestamp('2019-08-02')])
 
 plt.close('all')
 fig, ax = plt.subplots(nrows=1,ncols=1,figsize=(8,5))
