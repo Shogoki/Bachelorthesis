@@ -60,3 +60,5 @@ target/
 node_modules/
 
 output/thesis.pdf
+log_wordcount.txt
+plot_wordcount.png
