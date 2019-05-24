@@ -15,7 +15,16 @@ Die automatisierte Erkennung von Emotionen aus Bildern ist kein grundlegend neue
 
 ## Ziel der Untersuchung
 
-Z
+Das Ziel der Arbeit ist es, eine neuronales Netzwerk zu entwerfen und zu trainieren, welches Emotionen von Testern anhand der Mimik "erkennen" kann. Dieses soll von einem Webservice genutzt werden, welcher Videodaten von Probanden entgegen nimmt und eine Zeitleiste mit Emotionen zurück gibt. Der Service soll als Prototyp entwickelt werden.
+
+Zur Realisierung eines solchen Service soll diese Arbeit eine Antwort auf folgende Fragen liefern:
+
+* Wie kann man menschliche Emotionen sinnvoll klassifizieren?
+* Welche Modelle können für diesen Anwendungsfall genutzt und entsprechend spezialisiert werden?
+* Woher bekommt man entsprechende Trainingsdaten
+
 ## Stand der Forschung
+
+
 
 ## Fragestellung
