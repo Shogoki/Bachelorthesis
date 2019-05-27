@@ -1,7 +1,7 @@
 # Einführung
 
 Mithilfe überwachter Produkttests können zwar schon Heute wertvolle Informationen über den zu erwartenden Erfolg eines Produktes getroffen werden, jedoch werden die zur Verfügung gestellten Informationen nur ineffizient genutzt. Eine Erfassung der Emotionen, welche der Tester während des Interviews empfindet, könnte hier wichtige Erkenntnisse liefern. Dieser Ansatz ist nicht neu, in der Regel werden diese bereits vom Interviewer erfasst. Dieser ordnet subjektiv, aufgrund seiner Erfahrung und empathischen Fähigkeiten, das Verhalten seines Gegenübers bestimmten Emotionen zu. Im Sinne der Vergleichbarkeit, sowie der Effizienz ist es jedoch wünschenswert diese Analysen automatisiert durchzuführen. 
-Die Idee des empathischen Computers fasziniert viele Forscher. Die Arbeiten auf diesem Gebiet erschließen das noch realtiv junge Gebiet des **Affective Computings**, welches sich mit der Erkennung von Benutzergefühlen und anderen Stimuli, sowie adäquaten Reaktionen auf diese beschäftigt.[@Schuller2006]
+Die Idee des empathischen Computers fasziniert viele Forscher. Die Arbeiten auf diesem Gebiet erschließen das noch relativ junge Gebiet des **Affective Computings**, welches sich mit der Erkennung von Benutzergefühlen und anderen Stimuli, sowie adäquaten Reaktionen auf diese beschäftigt.[@Schuller2006]
 Die machinelle Erkennung von Emotionen ist jedoch aufgrund der Komplexität und der Individualität des menschlichen Verhaltens nicht wirklich trivial, da die Körpersprache bei vielen Menschen zum Beispiel auch kulturell bedingt unterschiedlich ausfallen kann. Aber auch innerhalb eines Kulturkreises erweist sich eine solide Klassifizierung von Emotionen als schwierig. 
 Um überhaupt eine solche Klassifizierung zu ermöglichen, müssen Emotionen zunächst einmal in Klassen eingeteilt werden und entsprechende Merkmale gefunden werden. Im Bereich der Bilderkennung, bzw. Klassifizierung haben sich in den letzten Jahren künstliche neuronale Netze als führende Technologie durchgesetzt. Diese Arbeit untersucht das Problem der Emotionserkennung mithilfe dieser, genauer gesagt **gefalteten neuronalen Netze** (engl.: convolutional neural network).
 
@@ -27,4 +27,8 @@ Zur Realisierung eines solchen Service soll diese Arbeit eine Antwort auf folgen
 
 ## Aufbau der Arbeit
 
+Die Arbeit gliedert sich in drei Teilbereiche. Zuerst werden die, im Rahmen einer Literatur-Recherche gewonnenen, theoretischen Grundlagen zur Kategorisierung von Emotionen, sowie künstlichen neuronalen Netzen und der Klassifizierung mit deren Hilfe erläutert.
 
+Im darauf Folgenden Teil wird auf Basis der Erkenntnisse des ersten Teils der Entwurf des künstlichen neuronalen Netzes, sowie die Schritte zur Datenbeschaffung und Vermehrung beschrieben. Ferner wird auch auf die gewählte Trainingsmethode, sowie die Implementierung des Webservice eingegangen.
+
+Der dritte Teil befasst sich mit der Evaluierung des entworfenen Klassifizierers anhand einer tiefer gehenden Analyse (empirisch?). Ein Test des Webservices mit Videodaten von verschiedenen Personen wird durchgeführt um die ausreichende Generalisierung des neuronalen Netzes zu überprüfen. 
