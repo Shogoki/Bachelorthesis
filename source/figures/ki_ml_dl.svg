@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="800px" height="540px" viewBox="0 0 800 540">
+  <title>Einordnung KI-ML-DL</title>
+  <desc>Einordnung von Machine Learning und Deep-Learning in die künstliche Intelligenz</desc>
+  <defs></defs>
+  <g id="ki_ml_dl" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+       <ellipse id="ai" fill="#CDCCE2" cx="291" cy="270" rx="205.824607" ry="206">TEST</ellipse>
+    <ellipse id="ml" fill-opacity="0.5" fill="#A3A1D1" cx="291" cy="310" rx="168.077225" ry="165.2"></ellipse>
+  <ellipse id="nn" fill="#F0B9F0" style="mix-blend-mode: multiply;" cx="291" cy="355" rx="120.077225" ry="120"></ellipse>
+    <ellipse id="dl" fill="#D36BD3" cx="291" cy="378" rx="82.3298429" ry="82.4"></ellipse>
+  
+    <text x="225" y="120" fill="#ffffff" >Künstliche Intelligenz</text>
+    <text x="230" y="210" fill="#ffffff" >Maschinelles Lernen</text>
+    <text x="240" y="280" fill="#ffffff" >Neuronale Netze</text>
+    <text x="250" y="380" fill="#ffffff" >Tiefes Lernen</text>
+  </g>
+</svg>
