@@ -30,7 +30,7 @@ pdf:
 	-o "$(OUTPUTDIR)/thesis.pdf" \
 	-H "$(STYLEDIR)/preamble.tex" \
 	--template="$(STYLEDIR)/template.tex" \
-	--bibliography="$(BIBFILE)" 2>pandoc.log \
+	--bibliography="$(BIBFILE)" \
 	--csl="$(STYLEDIR)/ref_format.csl" \
 	--highlight-style pygments \
 	-V fontsize=12pt \
@@ -38,7 +38,7 @@ pdf:
 	-V documentclass=article \
 	-N \
 	--pdf-engine=xelatex \
-	--verbose
+	--verbose  2>pandoc.log
 
 expose:
 	pandoc "$(EXPOSEINPUTDIR)"/*.md \
@@ -55,11 +55,27 @@ expose:
 		--pdf-engine=xelatex \
 		--verbose
 
+tex2:
+	pandoc "$(INPUTDIR)"/*.md \
+		-o "$(OUTPUTDIR)/thesis.tex" \
+		-H "$(STYLEDIR)/preamble.tex" \
+		--template="$(STYLEDIR)/template.tex" \
+		--bibliography="$(BIBFILE)" \
+		--csl="$(STYLEDIR)/ref_format.csl" \
+		--highlight-style pygments \
+		-V fontsize=12pt \
+		-V papersize=a4paper \
+		-V documentclass=article \
+		-N \
+		--pdf-engine=xelatex \
+		--verbose  
+
 tex:
 	pandoc "$(INPUTDIR)"/*.md \
 	-o "$(OUTPUTDIR)/thesis.tex" \
 	-H "$(STYLEDIR)/preamble.tex" \
 	--bibliography="$(BIBFILE)" \
+	--template="$(STYLEDIR)/template.tex" \
 	-V fontsize=12pt \
 	-V papersize=a4paper \
 	-V documentclass=article \
