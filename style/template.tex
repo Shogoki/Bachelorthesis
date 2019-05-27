@@ -10,7 +10,7 @@ $endif$
 \let\origfigure=\figure
 \let\endorigfigure=\endfigure
 \renewenvironment{figure}[1][]{%
-\origfigure[b]
+\origfigure[H]
 }{%
 \endorigfigure
 }
@@ -34,7 +34,7 @@ $endif$
 \usepackage{fixltx2e} % provides \textsubscript
 \ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
   \usepackage[T1]{fontenc}
-  \usepackage[utf8]{inputenc}
+%%  \usepackage[utf8]{inputenc}
 $if(euro)$
   \usepackage{eurosym}
 $endif$
