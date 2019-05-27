@@ -23,8 +23,8 @@ Zur Realisierung eines solchen Service soll diese Arbeit eine Antwort auf folgen
 * Welche Modelle können für diesen Anwendungsfall genutzt und entsprechend spezialisiert werden?
 * Woher bekommt man entsprechende Trainingsdaten
 
-## Stand der Forschung
+<!--## Stand der Forschung -->
+
+## Aufbau der Arbeit
 
 
-
-## Fragestellung
