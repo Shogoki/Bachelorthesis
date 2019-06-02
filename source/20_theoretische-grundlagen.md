@@ -6,7 +6,7 @@ Dieser Teil der Arbeit behandelt die notwendigen theoretischen Grundlagen, welch
 
 ## künstliche neuronale Netze
 
-Künstlische neuronale Netze, auch kurz einfach **neuronale Netze** genannt, bezeichnen einen Ansatz zur Modellierung, welcher im Bereich der künstlichen Intelligenz, genauer im Bereich des maschinellen Lernens seinen Einsatz findet. Das Forschungsgebiet des maschinellen Lernens beschäftigt sich mit einer Klasse von Algorithmen, die anhand von Beispielfällen ein Modell erstellen, welches Inputdaten in Sätze aus Attributen und Eigenschaften kategorisiert[@News2018]. Ein weiteres Teilgebiet unterhalb des maschinellen Lernens stellt das tiefe Lernen, engl.: *Deep Learning*, dar. Abbildung \ref{ki_ml_dl} zeigt die Einordnung von neuronalen Netzen und *Deep Learning* in das Gebiet der künstlichen Intelligenz.
+Künstlische neuronale Netze (KNN), auch kurz einfach **neuronale Netze** genannt, bezeichnen einen Ansatz zur Modellierung, welcher im Bereich der künstlichen Intelligenz, genauer im Bereich des maschinellen Lernens seinen Einsatz findet. Das Forschungsgebiet des maschinellen Lernens beschäftigt sich mit einer Klasse von Algorithmen, die anhand von Beispielfällen ein Modell erstellen, welches Inputdaten in Sätze aus Attributen und Eigenschaften kategorisiert[@News2018]. Ein weiteres Teilgebiet unterhalb des maschinellen Lernens stellt das tiefe Lernen, engl.: *Deep Learning*, dar. Abbildung \ref{ki_ml_dl} zeigt die Einordnung von neuronalen Netzen und *Deep Learning* in das Gebiet der künstlichen Intelligenz.
 
 ![Einordnung neuronaler Netze in die künstliche Intelligenz. *Quelle: Angelehnt an [@News2018]* \label{ki_ml_dl}](source/figures/ki_ml_dl.pdf){ width=100% }
 
@@ -20,6 +20,40 @@ Der strukturelle Aufbau, sowie die Arbeitsweise von neuronalen Netzen ist der St
 Ein stark vereinfachtes Modell eines **Neurons** ist in Abbildung \ref{bio_neuron} zu sehen.
 
 ![Darstellung eines biologischen Neurons. *Quelle: [@Kruse2015]* \label{bio_neuron}](source/figures/neuron.png){ width=100% }
+
+Hier sieht man den Zellkörper, auch Soma genannt. Von ihm aus gehen mehrere Dendriten, sowie das Axon ab. Der Zellkörper sit in der Lage eine interne elektrische Spannung zu speichern. Dabei laden elektrische Signale, die über die Dendriten zum Soma transportiert werden, diesen auf. Ab einem gewissen Schwellwert jedoch entlädt dieser sich wieder über das Axon, welches mit Dendriten von anderen Neuronen über die Synapsen verbunden ist und läd diese dadurch auf. So entsteht ein größeres Netzwerk aus Neuronen. 
+Die Verbindung zwischen Synapsen und Dendriten ist jedoch nicht perfekt leitend, da es einen "kleinen Spalt" zwischen ihnen gibt, welchen die Elektronen nicht ohne Weiteres überwinden können. Dieser ist mit chemischen Substanzen, den sogenannten Neurotransmittern, gefüllt. Diese können durch eine anliegende Spannung ionisiert werden, sodass Sie dann eine Ladung über den Spalt transportieren. [@HeinsohnBoerschSocher2012] [@News2018]
+
+Die Synapsen spielen also in diesem neuronalen Netz eine sehr wichtige Rolle. Sie können Ihre Leitfähigkeit verändern wodurch ein neuronales Netz mithilfe der Anpassung der Leitfähigkeit (der Gewichte) der einzelnen Verbindungen (Synapsen) zwischen den Neuronen lernfähig wird. Denn abhängig von der Leitfähigkeit der einzelnen Synapsen verändert sich die Reaktion des Netzwerkes auf bestimmte Eingabeinformationen.
+
+### Formalisiertes Model
+
+Aufgrund dieser vereinfacht beschriebenen Funktionsweise lag es zunächst nahe ein Neuron, formal als *Schwellenwertelement* zu modellieren. Bereits 1943 untersuchten McCulloch und Pitts ein solches Model, weshalb man *Schwellenwertelemente* auch *McCullock-Pitts-Neuronen* nennt. Oft werden *Schwellenwertelemente* auch als *Perzeptron* bezeichnet, obwohl dieses von Rosenblatt entworfene Model eigentlich noch etwas komplexer ist.
+Der Aufbau eines solchen künstlichen Neurons wird in \ref{kuenst_neuron} gezeigt. [@Kruse2015]
+
+![Darstellung eines biologischen Neurons. *Angelehnt anTODO: * \label{bio_neuron}](source/figures/perzeptron.png){ width=100% }
+
+Der Ausgabewert *a* eines Neurons erhält man durch Anwendung der Aktivierungsfunktiion *fact TODO: MATH?*  auf die interne Ladung des Neurons. Bei klassichen *Schwellenwertelementen* ist die Aktivierungsfunktion typischerweise die *Sprungfunktion*. 
+
+TODO: Formel - fact(e, o?) = 1 wenn e >= o; 0 sonst
+
+ Die interne Ladung *e* erhält man indem man eine gewichtete Summe der Eingabeparameter berechnet. Also das Skalarprodukt eines Eingabevektors *x TODO: MATH* mit den Eingabewerten x1, .., xn und dem Gewichtsvektor w mit den jeweiligen Gewichten w1, ..., wn. Zu diesem wird vor Anwendung der Aktivierungsfunktion noch ein sogenannter Bias *b* addiert.
+
+TODO: Formel
+
+Der berechnete Ausgabewert *a* dient wiederum als ein Eingabewert *xi* für eines oder mehrere weitere Neuronen im künstlichen neuronalen Netzwerk.
+
+### Aktivierungsfunktionen
+
+Die Wahl der Aktivierungsfunktion spielt eine wichtige Rolle bei der Modellierung eines KNN´s, denn sie bringt die Eingabewerte in Relation mit dem späteren Ausgabewert des Neurons.
+Die Aktivierungsfunktion soll eine nicht-lineare Komponente in das neuronale Netzwerk bringen, da es ansonsten ausschließlich möglich wäre linear lösbare Probleme zu lösen. [@Gupta2013]
+Einige Beispiele für im Umfeld von machinellen Lernen häufig verwendete Aktivierungsfunktionen sind in \ref{aktfunktionen} zu sehen.
+
+TODO: Abbildung Aktivierungsfunktionen
+
+### Aufbau
+
+
 
 
 ### Deep Learning
