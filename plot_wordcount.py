@@ -7,13 +7,13 @@ print('plotting wordcount from log_wordcount.txt...')
 goal = 11000#60000
 start = '2019-04-01'
 draft = '2019-06-01'
-final = '2019-07-01'
+final = '2019-07-06'
 deadline = '2019-08-02'
 
 data = pd.read_csv('log_wordcount.txt',delim_whitespace=True,header=None, usecols=[0,1,3],
 	names=['date','time','words'],parse_dates=[['date','time']],index_col=[0])
 
-estimate = pd.DataFrame(data=[0,goal],index=[pd.Timestamp('2019-04-01'),pd.Timestamp('2019-08-02')])
+estimate = pd.DataFrame(data=[0,goal],index=[pd.Timestamp('2019-04-01'),pd.Timestamp('2019-07-06')])
 
 plt.close('all')
 fig, ax = plt.subplots(nrows=1,ncols=1,figsize=(8,5))
