@@ -51,9 +51,40 @@ Einige Beispiele für im Umfeld von machinellen Lernen häufig verwendete Aktivi
 
 TODO: Abbildung Aktivierungsfunktionen
 
-### Aufbau
+### Aufbau und Funktionsweise
+
+Bei der Betrachtung neuronaler Netze werden diese typischerweise als gerichtete Graphen dargestellt. 
+Ein Graph besteht im Allgemeinen aus einem oder mehreren Knoten und Kanten. Die kanten verbinden die einzelnen Knoten. Die Kanten eines Graphen können können ungerichtet oder gerichtet sein. Bei einer ungerichteten Kante existiert eine Verbindung zwischen den Knoten in beide Richtungen. Man spricht auch von einem gerichteten oder ungerichteten Graphen wenn dieser nur gerichtete oder ungerichtete Kanten enthält. [@Goodfellow-et-al-2016]
+
+Bei der Darstellung eines neuronalen Netzes symbolisieren die Knoten die einzelnen Neuronen und die gerichteten Kanten die Synapsen bzw. die Verbindungen. 
+Ein neuronales Netz wird in der Regel aufgeteilt in eine Eingabe-, sowie eine Ausgabeschicht (engl.: *Input-/Output-Layer*) und optional eine oder mehrere versteckte Schichten (engl.: *hidden Layer*). Jede dieser Schichten (engl.: *Layer*) kann ein oder mehrere Neuronen enthalten. Man bezeichnet die Anzahl der Schichten als die *Tiefe*  des Netzwekes mit *TODO: Formel* *L*, wobei die Eingabeschicht nicht berücksichtigt wird.
+Abbildung \ref{simple_nn} zeigt ein einfaches neuronales Netz mit 3 Eingängen, einem *hidden Layer* und einem *Output Layer*.
+
+TODO: Abbildung simple_nn
+
+Anhand des Beispiels eines neuronalen Netzes zur Klassifizierung von Hundebildern soll im Folgenden die grundsätzliche Funktionsweise der einzelnen Schichten beschrieben werden.
+Zunächst nimmt die Eingabeschicht die benötigten Informationen von au0en entgegen, zum Beispiel die numerische dargestellten Pixel eines Hundebildes. Die Eingabedaten werden durch die versteckten Schichten geleitet und entsprechend verändert bis Sie zur Ausgabeschicht gelangen, welche nun ein Ergebnis anhand der Eingabewerte liefert. In unserem einfachen Beispiel, zur Feststellung ob es sich um ein Hundebild handelt oder nicht (binäre Klassifikation), würde eine Zahl zwischen 0 und 1 ausgegeben, welche der Wahrscheinlichkeit entspricht, dass das eingegebene Bild einen hund darstellt.
+Bei einer Klassifizierung mit mehr als 2 Klassen (z.B. Hund, Katze oder keines von beidem) entspricht das Ergebnis einem Ausgabevektor aus Wahrscheinlichkeiten für jede Klasse. Die Summe der ausgegebenen Wahrscheinlichkeiten entspricht stets 1. Letztetes Beispiel ist in  \ref{hunde_klassifizierer} vereinfacht dargestellt. 
+
+TODO: Abbildung CAT/DOG clsassifier (based on) [@Kirste2018 S.30]
 
 
+### Training
+
+Eine Grundlegende Eigenschaft eines KNN ist, dass man es trainieren kann. Während derTrainingsphase *lernt* das neuronale Netz anhand von Eingabedaten passende Ausgabedaten zu liefern. 
+
+Das Wort *lernen* ist ein starker Begriff, da man leicht auf die Idee kommen könnte, die Maschine (der das KNN) würde analog zum Menschen eine neue Fertigkeit, wie zum Beispiel Zeichnen oder das Verstehen einer fremden Sprache, erlenen. 
+Bei der herkömmlichen Entwicklung von Programmen ist der Großteil des Programmverhaltens durch den Programmierer klar vorgegeben. Das bedeutet der Entwickler setzt klare Regeln für die Lösung eines entsprechndes Problems.
+Beim machinellen Lernen dagegen verwendet man bestimmte Regeln zur Anpassung von Parametern anhand gegebener Daten. [@Gupta2013]
+
+Genauer bedeutet das, dass je nach Art der verfügbaren Daten innerhalb eines Trainingsprozesses die einzelnen Gewichte und Biase des neuronalen Netzes anhand von bestimmten Regeln angepasst werden. 
+Man unterscheidet im Allgemeinen zwischen den folgenden Trainings- bzw. Lernverfahren.
+
+- **Überwachtes Lernen** (*supervised learning*): 
+
+- **unüberwachtes Lernen** (*unsupervised learning*):
+
+- **Reinforcement learning**:
 
 
 ### Deep Learning

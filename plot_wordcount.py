@@ -4,7 +4,7 @@ import matplotlib.dates as mdates
 import pandas as pd
 
 print('plotting wordcount from log_wordcount.txt...')
-goal = 60000
+goal = 11000#60000
 start = '2019-04-01'
 draft = '2019-06-01'
 final = '2019-07-01'
