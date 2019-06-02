@@ -95,6 +95,15 @@ Beispiele für Probleme des unüberwachten Lernens sind die Erkennung von Ausrei
 Beim Reinfocement learning wird dem neuronalen Netz, ähnlich wie beim überwachten Lernen, während des Lernprozesses ein Feedback gegeben. Die Ausgabe eines Reinforcement learning Models wird als *action* bezeichnet. Das Label (Zielwert beim überwachten Lernen) für einen Eingabewert wird als *reward* bezeichnet. Das Netz erhält also vereinfacht gesagt für jede Eingabe eine Belohnung oder eine Bestrafung. Ein *reward* muss sich nicht immer direkt auf eine Eingabe beziehen, sondern kann sich auch auf mehrere Eingaben, oder eine Eingabe der Vergangenheit beziehen.
 Typische Anwendungsfelder sind zum Beispiel das spielen eines Spiels (z.B. Go) oder auch die Steuerung von Robotern, bei denen es kein *richtiges* Ergebnis im eigentlichen Sinne gibt, sondern nur Konsequenzen welche geringfügig smit bestimmten Aktionen in Verbindung stehen. [@Gupta2013]
 
+Im weiteren Verlauf wird zunehmend auf überwachtes Lernen eingegangen, da dieses auch in diese Methode auch in dieser Arbeit verwendet wird.
+Nach der Trainingsphase ist das neuronale Netzwerk im Idealfall in der Lage anhand von *ungesehenen*, das heißt Eingaben welche nicht im Trainingsdatensatz vorhanden waren, den richtigen AUsgabewert zu ermitteln. Man nennt das die Generalisierungsfähigkeit des Netzes. Es kann passieren, dass während des Trainings eine Überanpassung (engl.: overfitting) an die Daten aus dem Trainingsdatensatz stattgefunden hat. Das bedeutet das Netzwerk kennt die Daten so gut, dass es diese perfekt zuordnen kann, kann jedoch keine brauchbaren Ergebnisse für neue Daten liefern. 
+Daher ist es ein weiteres Ziel der Trainingsphase auch ein *overfitting* zu verhindern und somit eine gute Generalisierungsfähigkeit zu erhalten. [@Kruse2015] <!--TODO: ?? -->
+
+Nach jeder Epoche des Trainings werden die Gewichte anhand einer sogenannten Lernregel angepasst.
+Im folgenden werde Ich kurz auf die hier angewendeten Regeln eingehen:
+
+
+
 ### Deep Learning
 
 ### Convolutional Neural Network
