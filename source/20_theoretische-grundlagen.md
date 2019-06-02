@@ -82,10 +82,18 @@ Man unterscheidet im Allgemeinen zwischen den folgenden Trainings- bzw. Lernverf
 
 - **Überwachtes Lernen** (*supervised learning*): 
 
+Das überwachte Lernen ist die einfachste Trainingsmethode für neuronale Netze. Hierzu benötigt man einen Datensatz in welchem sich sowohl die Eingangsdaten, sowie auch die dazu passende Ausgabe befindet. Hierbei werden in mehreren Durchläufen (Epochen) die Eingabewerte dem neuronalen Netzwerk präsentiert und der *Netzwerfehler* berechnet. Der Trainingsprozess hat das Ziel den *Netzwerkfehler* mit jeder Epoche zu veringern und diesen dadurch zu minimieren.
+Der *Netzwerkfehler* kann mithilfe von unterschiedlichen Kosten-Funktionen berechnet werden. 
+Typische Beispiele für Probleme, welche mit *supervised learning* gelöst werden, sind Probleme der Regression oder Klassifizierung.
+
 - **unüberwachtes Lernen** (*unsupervised learning*):
+Das Gegenstück zum *supervised learning* ist das *unsupervised learning*.
+Hierbei werden dem Netzwerk in jedem Schritt Trainingsdaten gezeigt, ohne jedoch den Zielausgabewert zu kennen. Das Netz *lernt* in diesen Daten bestimmte Strukturen oder Muster zu erkennen. 
+Beispiele für Probleme des unüberwachten Lernens sind die Erkennung von Ausreißern oder generative Modelle, welche neue Daten nach Art der Trainingsdaten generieren.
 
 - **Reinforcement learning**:
-
+Beim Reinfocement learning wird dem neuronalen Netz, ähnlich wie beim überwachten Lernen, während des Lernprozesses ein Feedback gegeben. Die Ausgabe eines Reinforcement learning Models wird als *action* bezeichnet. Das Label (Zielwert beim überwachten Lernen) für einen Eingabewert wird als *reward* bezeichnet. Das Netz erhält also vereinfacht gesagt für jede Eingabe eine Belohnung oder eine Bestrafung. Ein *reward* muss sich nicht immer direkt auf eine Eingabe beziehen, sondern kann sich auch auf mehrere Eingaben, oder eine Eingabe der Vergangenheit beziehen.
+Typische Anwendungsfelder sind zum Beispiel das spielen eines Spiels (z.B. Go) oder auch die Steuerung von Robotern, bei denen es kein *richtiges* Ergebnis im eigentlichen Sinne gibt, sondern nur Konsequenzen welche geringfügig smit bestimmten Aktionen in Verbindung stehen. [@Gupta2013]
 
 ### Deep Learning
 
