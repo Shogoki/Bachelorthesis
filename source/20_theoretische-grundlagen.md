@@ -33,13 +33,17 @@ Der Aufbau eines solchen künstlichen Neurons wird in \ref{kuenst_neuron} gezeig
 
 ![Darstellung eines biologischen Neurons. *Angelehnt anTODO: * \label{bio_neuron}](source/figures/perzeptron.png){ width=100% }
 
-Der Ausgabewert *a* eines Neurons erhält man durch Anwendung der Aktivierungsfunktiion *fact TODO: MATH?*  auf die interne Ladung des Neurons. Bei klassichen *Schwellenwertelementen* ist die Aktivierungsfunktion typischerweise die *Sprungfunktion*. 
+Der Ausgabewert *a* eines Neurons erhält man durch Anwendung der Aktivierungsfunktion $f_\mathrm{act}$ auf die interne Ladung des Neurons. Bei klassischen *Schwellenwertelementen* ist die Aktivierungsfunktion typischerweise die *Sprungfunktion*.
 
-TODO: Formel - fact(e, o?) = 1 wenn e >= o; 0 sonst
+ $$
+	  f_\mathrm{act}(\epsilon,\theta) = \Bigg\{ \begin{tabular}{ll} $1,$ wenn $\epsilon\geq\theta,$ \\$0,$ sonst. \end{tabular}
+ $$
 
- Die interne Ladung *e* erhält man indem man eine gewichtete Summe der Eingabeparameter berechnet. Also das Skalarprodukt eines Eingabevektors *x TODO: MATH* mit den Eingabewerten x1, .., xn und dem Gewichtsvektor w mit den jeweiligen Gewichten w1, ..., wn. Zu diesem wird vor Anwendung der Aktivierungsfunktion noch ein sogenannter Bias *b* addiert.
+ Die interne Ladung $\epsilon$ erhält man indem man eine gewichtete Summe der Eingabeparameter berechnet. Also das Skalarprodukt eines Eingabevektors $\vec{x}$ mit den Eingabewerten $x_1, .., x_n$ und dem Gewichtsvektor $\vec{w}$ mit den jeweiligen Gewichten $w_1, ..., w_n$. Zu diesem wird vor Anwendung der Aktivierungsfunktion noch ein sogenannter Bias $b$ addiert.
 
-TODO: Formel
+$$
+	\epsilon = \sum_{i=1}^nw_ix_i + b
+$$
 
 Der berechnete Ausgabewert *a* dient wiederum als ein Eingabewert *xi* für eines oder mehrere weitere Neuronen im künstlichen neuronalen Netzwerk.
 
@@ -57,7 +61,7 @@ Bei der Betrachtung neuronaler Netze werden diese typischerweise als gerichtete 
 Ein Graph besteht im Allgemeinen aus einem oder mehreren Knoten und Kanten. Die kanten verbinden die einzelnen Knoten. Die Kanten eines Graphen können können ungerichtet oder gerichtet sein. Bei einer ungerichteten Kante existiert eine Verbindung zwischen den Knoten in beide Richtungen. Man spricht auch von einem gerichteten oder ungerichteten Graphen wenn dieser nur gerichtete oder ungerichtete Kanten enthält. [@Goodfellow-et-al-2016]
 
 Bei der Darstellung eines neuronalen Netzes symbolisieren die Knoten die einzelnen Neuronen und die gerichteten Kanten die Synapsen bzw. die Verbindungen. 
-Ein neuronales Netz wird in der Regel aufgeteilt in eine Eingabe-, sowie eine Ausgabeschicht (engl.: *Input-/Output-Layer*) und optional eine oder mehrere versteckte Schichten (engl.: *hidden Layer*). Jede dieser Schichten (engl.: *Layer*) kann ein oder mehrere Neuronen enthalten. Man bezeichnet die Anzahl der Schichten als die *Tiefe*  des Netzwekes mit *TODO: Formel* *L*, wobei die Eingabeschicht nicht berücksichtigt wird.
+Ein neuronales Netz wird in der Regel aufgeteilt in eine Eingabe-, sowie eine Ausgabeschicht (engl.: *Input-/Output-Layer*) und optional eine oder mehrere versteckte Schichten (engl.: *hidden Layer*). Jede dieser Schichten (engl.: *Layer*) kann ein oder mehrere Neuronen enthalten. Man bezeichnet die Anzahl der Schichten als die *Tiefe*  des Netzwekes mit $L$, wobei die Eingabeschicht nicht berücksichtigt wird.
 Abbildung \ref{simple_nn} zeigt ein einfaches neuronales Netz mit 3 Eingängen, einem *hidden Layer* und einem *Output Layer*.
 
 TODO: Abbildung simple_nn
@@ -100,8 +104,27 @@ Nach der Trainingsphase ist das neuronale Netzwerk im Idealfall in der Lage anha
 Daher ist es ein weiteres Ziel der Trainingsphase auch ein *overfitting* zu verhindern und somit eine gute Generalisierungsfähigkeit zu erhalten. [@Kruse2015] <!--TODO: ?? -->
 
 Nach jeder Epoche des Trainings werden die Gewichte anhand einer sogenannten Lernregel angepasst.
-Im folgenden werde Ich kurz auf die hier angewendeten Regeln eingehen:
+Im folgenden werde Ich auf einige bekannte Lernregeln kurz eingehen:
 
+#### Hebb Regel
+
+Die Hebb Regel stellt eine der einfachsten Lernregeln dar. Sie weißt eine große biologische Plausibilität auf und wurde 1949 vom Psychologen Donald Olding Hebb aufgestellt. 
+Auf das Thema der neuronalen Netze bezogen lässt sich die Regel wie folgt formulieren:
+
+*Das Gewicht zwischen zwei Knoten wird dann verändert, wenn beide Knoten gleichzeitig aktiv sind.* [@NeuronalesNetz-de-Hebb]
+
+Als Formel lässt Sie sich wie folgt beschreiben:
+$$
+	\Delta w_{ij} = \alpha a_i a_j
+$$
+
+$\Delta w_{ij}$ beschreibt die Größe der Gewichtsanpassung zwischen den beiden Knoten $n_i$ und $n_j$. Die Lernrate $\alpha$ stellt einen sogenannten *Hyperparameter* dar, der bereits vor dem Trainingprozess definiert wird und die gesamt Trainingsphase unverändert bleibt. Sie hat einen direkten Einfluss darauf, wie startk die Gewichte nach jeder Epoche angepasst werden. $a_i$ und $a_j$ stehen für das Aktivitätsniveau des empfangenden und des sendenden Knotens.
+
+#### Delta Regel
+
+
+
+#### Back propgation
 
 
 ### Deep Learning
