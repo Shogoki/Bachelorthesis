@@ -106,9 +106,9 @@ Daher ist es ein weiteres Ziel der Trainingsphase auch ein *overfitting* zu verh
 Nach jeder Epoche des Trainings werden die Gewichte anhand einer sogenannten Lernregel angepasst.
 Im folgenden werde Ich auf einige bekannte Lernregeln kurz eingehen:
 
-#### Hebb Regel
+#### Hebb-Regel
 
-Die Hebb Regel stellt eine der einfachsten Lernregeln dar. Sie weißt eine große biologische Plausibilität auf und wurde 1949 vom Psychologen Donald Olding Hebb aufgestellt. 
+Die Hebb-Regel stellt eine der einfachsten Lernregeln dar. Sie weißt eine große biologische Plausibilität auf und wurde 1949 vom Psychologen Donald Olding Hebb aufgestellt. 
 Auf das Thema der neuronalen Netze bezogen lässt sich die Regel wie folgt formulieren:
 
 *Das Gewicht zwischen zwei Knoten wird dann verändert, wenn beide Knoten gleichzeitig aktiv sind.* [@NeuronalesNetz-de-Hebb]
@@ -118,11 +118,21 @@ $$
 	\Delta w_{ij} = \alpha a_i a_j
 $$
 
-$\Delta w_{ij}$ beschreibt die Größe der Gewichtsanpassung zwischen den beiden Knoten $n_i$ und $n_j$. Die Lernrate $\alpha$ stellt einen sogenannten *Hyperparameter* dar, der bereits vor dem Trainingprozess definiert wird und die gesamt Trainingsphase unverändert bleibt. Sie hat einen direkten Einfluss darauf, wie startk die Gewichte nach jeder Epoche angepasst werden. $a_i$ und $a_j$ stehen für das Aktivitätsniveau des empfangenden und des sendenden Knotens.
+$\Delta w_{ij}$ beschreibt die Größe der Gewichtsanpassung zwischen den beiden Knoten $n_i$ und $n_j$. Die Lernrate $\alpha$ stellt einen sogenannten *Hyperparameter* dar, der bereits vor dem Trainingprozess definiert wird und die gesamt Trainingsphase unverändert bleibt. Sie hat einen direkten Einfluss darauf, wie stark die Gewichte nach jeder Epoche angepasst werden. $a_i$ und $a_j$ stehen für das Aktivitätsniveau des empfangenden und des sendenden Knotens.
 
-#### Delta Regel
+#### Delta-Regel
 
+Die Delta Regel, auch *Windroff-Hoff-Regel* genannt, basiert auf dem Vergleich einer zu erwartenden und der tatsächlichen Ausgabe eines Knotens. Folgende Formel beschreibt die Funktionsweise der Delta-Regel.
+$$
+	\Delta w_{ij} = \alpha \delta_i a_j
+$$
 
+Die Bedeutung von $\Delta w_{ij}$, $\alpha$ sowie $a_j$ in dieser Formel ist indentisch zur *Hebb-Regel*. $\delta_i$ bezeichnet hier die Differenz zwischen dem erwartetem und dem tatsächlichen Aktivitätsniveau des sendenden Knotens $n_i$. Die folgende Formel veranschaulicht die Berechnung von $\delta_i$.
+
+$\delta_i = a_i \small (erwartet) - a_i(tatsächlich)$
+
+Wie man sieht ist für die Ermittlung von $\delta_i$, und somit für die Anwendung der *Delta-Regel, die Kenntnis des zu erwartenden (korrekten) Ausgabewertes des Knotens $n_i$ erforderlich. 
+Beim *supervised learning* liegt der korrekte Ausgabewert des gesamten Netzwerks vor. Das bedeutet die *Delta-Regel* ist ausschlieslich für einschichtige neuronale Netze, also Netze ohne versteckte Schichten , einsetzbar, dar nur hier die Ausgabe des Netzes direkt auf die Ausgabe der einzelnen Knoten zurückzuführen ist.
 
 #### Back propgation
 
