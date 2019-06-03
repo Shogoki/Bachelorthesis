@@ -128,10 +128,11 @@ $$
 $$
 
 Die Bedeutung von $\Delta w_{ij}$, $\alpha$ sowie $a_j$ in dieser Formel ist indentisch zur *Hebb-Regel*. $\delta_i$ bezeichnet hier die Differenz zwischen dem erwartetem und dem tatsächlichen Aktivitätsniveau des sendenden Knotens $n_i$. Die folgende Formel veranschaulicht die Berechnung von $\delta_i$.
+$$
+\delta_i = a_i \small (erwartet) - a_i(tats"achlich)
+$$
 
-$\delta_i = a_i \small (erwartet) - a_i(tatsächlich)$
-
-Wie man sieht ist für die Ermittlung von $\delta_i$, und somit für die Anwendung der *Delta-Regel, die Kenntnis des zu erwartenden (korrekten) Ausgabewertes des Knotens $n_i$ erforderlich. 
+Wie man sieht ist für die Ermittlung von $\delta_i$, und somit für die Anwendung der *Delta-Regel*, die Kenntnis des zu erwartenden (korrekten) Ausgabewertes des Knotens $n_i$ erforderlich. 
 Beim *supervised learning* liegt der korrekte Ausgabewert des gesamten Netzwerks vor. Das bedeutet die *Delta-Regel* ist ausschlieslich für einschichtige neuronale Netze, also Netze ohne versteckte Schichten , einsetzbar, dar nur hier die Ausgabe des Netzes direkt auf die Ausgabe der einzelnen Knoten zurückzuführen ist.
 
 #### Back propgation
