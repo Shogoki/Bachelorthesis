@@ -10,8 +10,6 @@ Künstlische neuronale Netze (KNN), auch kurz einfach **neuronale Netze** genann
 
 ![Einordnung neuronaler Netze in die künstliche Intelligenz. *Quelle: Angelehnt an [@News2018]* \label{ki_ml_dl}](source/figures/ki_ml_dl.pdf){ width=100% }
 
-
-
 ### Biologisches Vorbild
 
 Der strukturelle Aufbau, sowie die Arbeitsweise von neuronalen Netzen ist der Struktur und Funktionsweise eines Nervensystems, genauer gesagt des menschlichen Gehirns nachempfunden. Daher skizzieren wir im Folgenden kurz die Funktionsweise eines biologischen neuronalen Netzwerkes, wie es zum Beispiel in unserem Gehirn zu finden ist.
@@ -148,13 +146,25 @@ Der Backpropagation Algorithmus soll dieses Problem lösen, sodass man die Grund
 Auf eine genaue Beschreibung und mathematische Definition des Gradientenabstiegsverfahrens soll aufgrund der Komplexität in dieser Arbeit verzichtet werden. 
 Typischerweise greifen Heutige neuronale Netze auf den Backpropagation Algorithmus zurück [@NeuronalesNetz-backProp]
 
-### Deep Learning
+### Faltende Neuronale Netze 
 
-### Convolutional Neural Network
+Bei faltenden neuronale Netzen (CNN, convolutional neural networks) handelt es sich um eine Sonderform von KNN, welche vor allem bei Daten verwendet werden, welche eine Raster-artige Struktur aufweisen. Beispiele dafür sind zum Beispiel Bilder, welche man sich als ein zweidimensionales Raster von Pixel-Werten vorstellen kann.
+Ein typisches CNN besteht aus einer oder mehreren *convolutional* Schichten gefolgt von einer oder mehreren *fully-connected* Schichten, wie wir Sie bereits aus den klassischen neuronalen Netzen kennen. 
+Eine *convolutional* Schicht besteht aus einem oder mehreren Filtern gleicher Größe. Man kann diesen Filter als eine Art Fenster vorstellen, welches über die Daten "geschoben werden". Dabei entstehen aus den meist größeren Rastern der Eingabedaten, neue Raster mit kleineren Dimensionen (siehe \ref{CNN}). Gibt es mehrere Filter, werden die entstehenden Ausgabeschichten aufeinander gestapelt.
 
-### Trainingsmethoden??
+TODO: Abbildung CNN
+
+Jede dieser *convolutional* Schichten hat mehrere (Hyper-)Paramenter, welche Beeinflussen welche Dimensionen das nachfolgende Daten-Raster erhält. Diese wären zum Beispiel die *Filtergröße*, sowie die Anzahl der Filter. Daneben ist die *Schrittweite* ein weitere Parameter, welche beeinflusst, wie groß die Sprünge sind, in welchen der Filter über die Daten "geschoben" wird. Als letzter Parameter wäre noch ein mögliches *padding* (Füllung) zu nennen. Hierbei wird eine definierte Anzahl an zusätzlichen Zeilen an jeder Seite des Rasters mit Nullen aufgefüllt. Diese Methode dient dazu, dass der Filter auch die äußeren Werte mit einer Ähnlichen Gewichtung berücksichtigen kann.
+
+
+## Gesichtserkennung
+
+
+## Emotionserkennung
 
 ### Gesichtserkennung
+
+### Einteilung von Emotionen
 
 
 <!-- expose Ordnung -->
