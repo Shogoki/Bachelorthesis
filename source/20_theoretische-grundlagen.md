@@ -150,7 +150,7 @@ Typischerweise greifen Heutige neuronale Netze auf den Backpropagation Algorithm
 
 Bei faltenden neuronale Netzen (CNN, convolutional neural networks) handelt es sich um eine Sonderform von KNN, welche vor allem bei Daten verwendet werden, welche eine Raster-artige Struktur aufweisen. Beispiele dafür sind zum Beispiel Bilder, welche man sich als ein zweidimensionales Raster von Pixel-Werten vorstellen kann.
 Ein typisches CNN besteht aus einer oder mehreren *convolutional* Schichten gefolgt von einer oder mehreren *fully-connected* Schichten, wie wir Sie bereits aus den klassischen neuronalen Netzen kennen. 
-Eine *convolutional* Schicht besteht aus einem oder mehreren Filtern gleicher Größe. Man kann diesen Filter als eine Art Fenster vorstellen, welches über die Daten "geschoben werden". Dabei entstehen aus den meist größeren Rastern der Eingabedaten, neue Raster mit kleineren Dimensionen (siehe \ref{CNN}). Gibt es mehrere Filter, werden die entstehenden Ausgabeschichten aufeinander gestapelt.
+Eine *convolutional* Schicht besteht aus einem oder mehreren Filtern gleicher Größe. Man kann diesen Filter als eine Art Fenster vorstellen, welches über die Daten "geschoben werden". Dabei entstehen aus den meist größeren Rastern der Eingabedaten, neue Raster mit kleineren Dimensionen (siehe \ref{CNN}). Gibt es mehrere Filter, werden die entstehenden Ausgabeschichten aufeinander gestapelt [@Goodfellow-et-al-2016].
 
 TODO: Abbildung CNN
 
