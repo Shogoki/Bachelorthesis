@@ -27,10 +27,10 @@ Die Synapsen spielen also in diesem neuronalen Netz eine sehr wichtige Rolle. Si
 ### Formalisiertes Model
 
 Aufgrund dieser vereinfacht beschriebenen Funktionsweise lag es zunächst nahe, ein Neuron formal als *Schwellenwertelement* zu modellieren. Bereits 1943 untersuchten McCulloch und Pitts ein solches Model, weshalb man *Schwellenwertelemente* auch *McCullock-Pitts-Neuronen* nennt. Oft werden *Schwellenwertelemente* auch als *Perzeptron* bezeichnet, obwohl dieses von Rosenblatt entworfene Model eigentlich noch etwas komplexer ist.
-Der Aufbau eines solchen künstlichen Neurons wird in \ref{kuenst_neuron} gezeigt. [@Kruse2015]
+Der Aufbau eines solchen künstlichen Neurons wird in \ref{kuenst_neuron} gezeigt[@Kruse2015].
 
-![Darstellung eines biologischen Neurons. *Angelehnt anTODO: * \label{bio_neuron}](source/figures/perzeptron.png){ width=100% }
-
+![Darstellung eines Perzeptrons  *Angelehnt anTODO: * \label{perzeptorn}](source/figures/perzeptron.png){ width=100% }
+TODO: Abbildung perzeptron
 Den Ausgabewert *a* eines Neurons erhält man durch Anwendung der Aktivierungsfunktion $f_\mathrm{act}$ auf die interne Ladung des Neurons. Bei klassischen *Schwellenwertelementen* ist die Aktivierungsfunktion typischerweise die *Sprungfunktion*.
 
  $$
@@ -48,7 +48,7 @@ Der berechnete Ausgabewert *a* dient wiederum als ein Eingabewert *xi* für eine
 ### Aktivierungsfunktionen
 
 Die Wahl der Aktivierungsfunktion spielt eine wichtige Rolle bei der Modellierung eines KNN´s, denn sie bringt die Eingabewerte in Relation mit dem späteren Ausgabewert des Neurons.
-Die Aktivierungsfunktion soll eine nicht-lineare Komponente in das neuronale Netzwerk bringen, da es ansonsten ausschließlich möglich wäre, linear lösbare Probleme zu lösen. [@Gupta2013]
+Die Aktivierungsfunktion soll eine nicht-lineare Komponente in das neuronale Netzwerk bringen, da es ansonsten ausschließlich möglich wäre, linear lösbare Probleme zu lösen[@Gupta2013].
 Einige Beispiele für im Umfeld von machinellen Lernen häufig verwendete Aktivierungsfunktionen sind in \ref{aktfunktionen} zu sehen.
 
 TODO: Abbildung Aktivierungsfunktionen
@@ -77,7 +77,7 @@ Eine grundlegende Eigenschaft eines KNN ist, dass man es trainieren kann. Währe
 
 Das Wort *lernen* ist ein starker Begriff, da man leicht auf die Idee kommen könnte, die Maschine (oder das KNN) würde analog zum Menschen eine neue Fertigkeit, wie zum Beispiel Zeichnen oder das Verstehen einer fremden Sprache, erlernen. 
 Bei der herkömmlichen Entwicklung von Programmen ist der Großteil des Programmverhaltens durch den Programmierer klar vorgegeben. Das bedeutet, der Entwickler setzt klare Regeln für die Lösung eines entsprechenden Problems.
-Beim machinellen Lernen dagegen verwendet man bestimmte Regeln zur Anpassung von Parametern anhand gegebener Daten [@Gupta2013].
+Beim machinellen Lernen dagegen verwendet man bestimmte Regeln zur Anpassung von Parametern anhand gegebener Daten[@Gupta2013].
 
 Genauer bedeutet das, dass je nach Art der verfügbaren Daten innerhalb eines Trainingsprozesses die einzelnen Gewichte und Biase des neuronalen Netzes anhand von bestimmten Regeln angepasst werden. 
 Man unterscheidet im Allgemeinen zwischen den folgenden Trainings- bzw. Lernverfahren.
@@ -95,11 +95,11 @@ Beispiele für Probleme des unüberwachten Lernens sind die Erkennung von Ausrei
 
 - **Reinforcement learning**:
 Beim *reinforcement learning* wird dem neuronalen Netz, ähnlich wie beim überwachten Lernen, während des Lernprozesses ein Feedback gegeben. Die Ausgabe eines Reinforcement learning Models wird als *action* bezeichnet. Das Label (Zielwert beim überwachten Lernen) für einen Eingabewert wird als *reward* bezeichnet. Das Netz erhält also vereinfacht gesagt für jede Eingabe eine Belohnung oder eine Bestrafung. Ein *reward* muss sich nicht immer direkt auf eine Eingabe beziehen, sondern kann sich auch auf mehrere Eingaben, oder eine Eingabe der Vergangenheit beziehen.
-Typische Anwendungsfelder sind zum Beispiel das Spielen eines Spiels (z.B. Go) oder auch die Steuerung von Robotern, bei denen es kein *richtiges* Ergebnis im eigentlichen Sinne gibt, sondern nur Konsequenzen welche geringfügig mit bestimmten Aktionen in Verbindung stehen [@Gupta2013].
+Typische Anwendungsfelder sind zum Beispiel das Spielen eines Spiels (z.B. Go) oder auch die Steuerung von Robotern, bei denen es kein *richtiges* Ergebnis im eigentlichen Sinne gibt, sondern nur Konsequenzen welche geringfügig mit bestimmten Aktionen in Verbindung stehen[@Gupta2013].
 
 Im weiteren Verlauf wird zunehmend auf überwachtes Lernen eingegangen, da die Methode auch in dieser Arbeit verwendet wird.
 Nach der Trainingsphase ist das neuronale Netzwerk im Idealfall in der Lage, anhand von *ungesehenen* Eingaben, das heißt solchen, welche nicht im Trainingsdatensatz vorhanden waren, den richtigen AUsgabewert zu ermitteln. Man nennt das die Generalisierungsfähigkeit des Netzes. Es kann passieren, dass während des Trainings eine Überanpassung (engl.: overfitting) an die Daten aus dem Trainingsdatensatz stattgefunden hat. Das bedeutet das Netzwerk kennt die Daten so gut, dass es diese perfekt zuordnen kann, kann jedoch keine brauchbaren Ergebnisse für neue Daten liefern. 
-Daher ist es ein weiteres Ziel der Trainingsphase auch ein *overfitting* zu verhindern und somit eine gute Generalisierungsfähigkeit zu erhalten [@Kruse2015]. <!--TODO: ?? -->
+Daher ist es ein weiteres Ziel der Trainingsphase auch ein *overfitting* zu verhindern und somit eine gute Generalisierungsfähigkeit zu erhalten[@Kruse2015]. <!--TODO: ?? -->
 
 Nach jeder Epoche des Trainings werden die Gewichte anhand einer sogenannten Lernregel angepasst.
 Im folgenden werde ich auf einige bekannte Lernregeln kurz eingehen:
@@ -109,7 +109,7 @@ Im folgenden werde ich auf einige bekannte Lernregeln kurz eingehen:
 Die Hebb-Regel stellt eine der einfachsten Lernregeln dar. Sie weißt eine große biologische Plausibilität auf und wurde 1949 vom Psychologen Donald Olding Hebb aufgestellt. 
 Auf das Thema der neuronalen Netze bezogen, lässt sich die Regel wie folgt formulieren:
 
-*Das Gewicht zwischen zwei Knoten wird dann verändert, wenn beide Knoten gleichzeitig aktiv sind.* [@NeuronalesNetz-de-Hebb]
+*Das Gewicht zwischen zwei Knoten wird dann verändert, wenn beide Knoten gleichzeitig aktiv sind*[@NeuronalesNetz-de-Hebb]. 
 
 Als Formel lässt sie sich wie folgt beschreiben:
 $$
@@ -144,28 +144,32 @@ Der Backpropagation Algorithmus soll dieses Problem lösen, sodass man die Grund
 3. **Backward pass** Dieser Schritt, stellt die innovative Neuerung des Algorithmus dar. Die zuvor ermittelten Fehler breiten sich jetzt von der Ausgabeschicht, bis hin zur Eingabeschicht rückwärts aus und die Gewichte der einzelnen Knoten werden entsprechend angepasst. Zur Bestimmung der Gewichtsanpassung kommt das Gradientenabstiegsverfahren zum Einsatz. Nach der Anpassung der Gewichte startet der Algorithmus mit der nächsten Trainingsepoche erneut mit dem *Forward pass*.
 
 Auf eine genaue Beschreibung und mathematische Definition des Gradientenabstiegsverfahrens soll aufgrund der Komplexität in dieser Arbeit verzichtet werden. 
-Typischerweise greifen Heutige neuronale Netze auf den Backpropagation Algorithmus zurück [@NeuronalesNetz-backProp]
+Typischerweise greifen Heutige neuronale Netze auf den Backpropagation Algorithmus zurück[@NeuronalesNetz-backProp]
 
 ### Faltende Neuronale Netze 
 
 Bei faltenden neuronale Netzen (CNN, convolutional neural networks) handelt es sich um eine Sonderform von KNN, welche vor allem bei Daten verwendet werden, welche eine Raster-artige Struktur aufweisen. Beispiele dafür sind zum Beispiel Bilder, welche man sich als ein zweidimensionales Raster von Pixel-Werten vorstellen kann.
 Ein typisches CNN besteht aus einer oder mehreren *convolutional* Schichten gefolgt von einer oder mehreren *fully-connected* Schichten, wie wir Sie bereits aus den klassischen neuronalen Netzen kennen. 
-Eine *convolutional* Schicht besteht aus einem oder mehreren Filtern gleicher Größe. Man kann diesen Filter als eine Art Fenster vorstellen, welches über die Daten "geschoben werden". Dabei entstehen aus den meist größeren Rastern der Eingabedaten, neue Raster mit kleineren Dimensionen (siehe \ref{CNN}). Gibt es mehrere Filter, werden die entstehenden Ausgabeschichten aufeinander gestapelt [@Goodfellow-et-al-2016].
+Eine *convolutional* Schicht besteht aus einem oder mehreren Filtern gleicher Größe. Man kann diesen Filter als eine Art Fenster vorstellen, welches über die Daten "geschoben werden". Dabei entstehen aus den meist größeren Rastern der Eingabedaten, neue Raster mit kleineren Dimensionen (siehe \ref{CNN}). Gibt es mehrere Filter, werden die entstehenden Ausgabeschichten aufeinander gestapelt[@Goodfellow-et-al-2016].
 
 TODO: Abbildung CNN
 
 Jede dieser *convolutional* Schichten hat mehrere (Hyper-)Paramenter, welche Beeinflussen welche Dimensionen das nachfolgende Daten-Raster erhält. Diese wären zum Beispiel die *Filtergröße*, sowie die Anzahl der Filter. Daneben ist die *Schrittweite* ein weitere Parameter, welche beeinflusst, wie groß die Sprünge sind, in welchen der Filter über die Daten "geschoben" wird. Als letzter Parameter wäre noch ein mögliches *padding* (Füllung) zu nennen. Hierbei wird eine definierte Anzahl an zusätzlichen Zeilen an jeder Seite des Rasters mit Nullen aufgefüllt. Diese Methode dient dazu, dass der Filter auch die äußeren Werte mit einer Ähnlichen Gewichtung berücksichtigen kann.
 
-
-## Gesichtserkennung
-
-
 ## Emotionserkennung
+
+bla bla nur in gesichtern und wie teilt man ein.
 
 ### Gesichtserkennung
 
+bla bla wie erkennt man gesichter
+
+#### Haar-Cascade 
+
+
 ### Einteilung von Emotionen
 
+Wie  teilt man Emotionen ein? --> Ekman.
 
 <!-- expose Ordnung -->
 ## Einordnung der Daten

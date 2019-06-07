@@ -31,4 +31,4 @@ Die Arbeit gliedert sich in drei Teilbereiche. Zuerst werden die, im Rahmen eine
 
 Im darauf Folgenden Teil wird auf Basis der Erkenntnisse des ersten Teils der Entwurf des künstlichen neuronalen Netzes, sowie die Schritte zur Datenbeschaffung und Vermehrung beschrieben. Ferner wird auch auf die gewählte Trainingsmethode, sowie die Implementierung des Webservice eingegangen.
 
-Der dritte Teil befasst sich mit der Evaluierung des entworfenen Klassifizierers anhand einer tiefer gehenden Analyse (empirisch?). Ein Test des Webservices mit Videodaten von verschiedenen Personen wird durchgeführt um die ausreichende Generalisierung des neuronalen Netzes zu überprüfen. 
+Der dritte Teil befasst sich mit der Evaluierung des entworfenen Klassifizierers anhand einer tiefer gehenden Analyse (TODO: empirisch?). Ein Test des Webservices mit Videodaten von verschiedenen Personen wird durchgeführt um die ausreichende Generalisierung des neuronalen Netzes zu überprüfen. 
