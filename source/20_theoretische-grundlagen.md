@@ -135,8 +135,18 @@ $$
 Wie man sieht, ist für die Ermittlung von $\delta_i$, und somit für die Anwendung der *Delta-Regel*, die Kenntnis des zu erwartenden (korrekten) Ausgabewertes des Knotens $n_i$ erforderlich. 
 Beim *supervised learning* liegt der korrekte Ausgabewert des gesamten Netzwerks vor. Das bedeutet die *Delta-Regel* ist ausschließlich für einschichtige neuronale Netze, also Netze ohne versteckte Schichten, einsetzbar, da nur hier die Ausgabe des Netzes direkt auf die Ausgabe der einzelnen Knoten zurückzuführen ist.
 
-#### Back propgation
+#### Backpropgation
 
+Der Backpropagation Algorithmus soll dieses Problem lösen, sodass man die Grundidee der Delta-Regel auch auf *tiefe* neuronale Netze, also Netze mit mehreren versteckten Schichten anwenden kann. Damit eine Berechnung möglich wird unterteilt der Algorithmus die Anpassung der Gewichte in jeweils 3 Schritte:
+
+1. **Forward pass** Hier werden dem Netz entsprechende Eingabedaten aus dem Trainings-Datensatz präsentiert und von der Eingabe- bis hin zur Ausgabeschicht die Werte aller Knoten berechnet.
+
+2. **Fehlerermittlung** Hier werden die Fehler der Ausgabeknoten ermittelt. Der Fehlerwert wird nun mit einem definierten Schwellwert verglichen. Ist der Fehler kleiner als der Schwellwert, oder die definierte Anzahl an Epochen bereits erreicht, wird der Algorithmus abgebrochen, falls nicht erfolgt der 3. Schritt.
+
+3. **Backward pass** Dieser Schritt, stellt die innovative Neuerung des Algorithmus dar. Die zuvor ermittelten Fehler breiten sich jetzt von der Ausgabeschicht, bis hin zur Eingabeschicht rückwärts aus und die Gewichte der einzelnen Knoten werden entsprechend angepasst. Zur Bestimmung der Gewichtsanpassung kommt das Gradientenabstiegsverfahren zum Einsatz. Nach der Anpassung der Gewichte startet der Algorithmus mit der nächsten Trainingsepoche erneut mit dem *Forward pass*.
+
+Auf eine genaue Beschreibung und mathematische Definition des Gradientenabstiegsverfahrens soll aufgrund der Komplexität in dieser Arbeit verzichtet werden. 
+Typischerweise greifen Heutige neuronale Netze auf den Backpropagation Algorithmus zurück [@NeuronalesNetz-backProp]
 
 ### Deep Learning
 
