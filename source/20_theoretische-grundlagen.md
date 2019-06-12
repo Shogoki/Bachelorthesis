@@ -158,19 +158,31 @@ Jede dieser *convolutional* Schichten hat mehrere (Hyper-)Paramenter, welche Bee
 
 ## Emotionserkennung
 
-bla bla nur in gesichtern und wie teilt man ein.
-
-### Gesichtserkennung
-
-bla bla wie erkennt man gesichter
-
-#### Haar-Cascade 
-
-Gesichtserkennung mache mer HAAR-CASCADE. Weils geht.
+Bevor man sich mit der automatisierten Erkennung von Emotionen befassen sollte zunächst die Frage nach der Definition des Begriffs Emotion geklärt werden. Eine einheitliche Definition ist im Bereich der Psychologie sehr umstritten. Im Allgemeinen beschreiben Emotionen jedoch subjektive Empfindungen kürzerer Zeiträume. In der Wissenschaft haben sich vier verschiedene Ansätze zur Entstehung dieser herauskristallisiert. So unterscheidet man zumeist zwischen dem evolutionstheoretischem , dem stimulativen, dem kognitiven und dem sozial konstruktiven Ansatz[@Schuller2006].
+Folgend wird der evolutionstheoretische Ansatz kurz beschrieben, da diese Arbeit sich vorwiegend auf diesen stützt.
+Dieser stützt sich auf die Erkenntnisse von Charles Darwin [@CharlesDarwin1872], der die Ansicht vertrat, dass die Emotionen des Menschen ein Ergebnis der Evolution sind. Jede Emotion impliziert ein bestimmtes Verhalten, welches sich auf das Aussterben oder Überleben einer Art auswirkt.
 
 ### Einteilung von Emotionen
 
-Wie  teilt man Emotionen ein? --> Ekman.
+Um eine Vorhersage, bzw. Erkennung der aktuellen Emotion zu bewerkstelligen ist es nötig diese sinnvoll zu Unterscheiden. Für die Einteilung oder Kategorisierung von menschlichen Emotionen gibt es ebenfalls unterschiedliche Ansätze welche verfolgt werden können.
+Im Allgemeinen unterscheidet man zwischen der kategorischen und der dimensionalen Einteilung. Bei letzterer werden die Emotionen auf einem Spektrum dargestellt. Es wird also niemals eine konkrete Emotion zugeordnet, sondern immer ein Punkt auf der Skala. 
+<!-- TODO: circumplex Skala + cite evtl. Abbildung?-->
+Bei der kategorischen Einteilung geht man davon aus, dass es eine endliche Anzahl an wohl definierten menschlichen Emotionen gibt. Insbesondere Vertreter des evolutionstheoretischen Ansatzes von Emotionen gehen auch von einer kategorischen Einteilung aus. Zur Untermauerung des Darwinschen Ansatzes untersuchten einige Forscher unter der Leitung von Dr. Ekman [@Ekman1972] die Gesichtsausdrücke für bestimmte Situationen in einen Eingeborenen-Stamm in Neu Guinea Dieser hatte zuvor vollkommen isoliert von anderen Gesellschaften gelebt. Somit waren die Reaktionen der Menschen dort nicht auf gesellschaftliche Einflüsse zurück zu führen. Ekman konnte damals bereits anhand des Gesichtsaudrucks vier universelle Emotionen ableiten. Diese waren *Wut*, *Trauer*, *Ekel* und *Fröhlichkeit*. 
+In weiterführenden Forschungen konnte Ekman die Erkenntnisse vertiefen und entwickelte zusammen mit einigen anderen Wissenschaftlern das *Facial Acting Coding System* (FACS) welche die menschlischen Emotionen in insgesamt sieben Basisemotionen einteilt, welche unabhängig vom gesellschaftlichen Einfluss vorhanden sind. Zusätzlich zu den vier zuvor abgeleiteten Emotionen beinhaltet das FACS noch die Emotionen *Überaschung*, *Verachtung* und *Angst*.
+Das FACS bildet die Basis für die Klassifizerung von Emotionen in dieser Arbeit. <!-- TODO: FACS cite. +  evtl Abbildung -->
+
+
+### Gesichtserkennung
+
+TBD
+
+#### Haar-Cascade 
+
+TBD
+
+
+
+TBD: Wie  teilt man Emotionen ein? --> Ekman.
 
 <!-- expose Ordnung 
 ## Einordnung der Daten

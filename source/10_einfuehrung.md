@@ -7,7 +7,7 @@ Um überhaupt eine solche Klassifizierung zu ermöglichen, müssen Emotionen zun
 
 ## Eingrenzung
 
-Die Erkennung von Emotionen kann mithilfe von Videodaten auf vielfältige Wege geschehen. So bietet ein Video in der Regel Ton-Daten und Bild-Daten. Aus den gewonnen Ton-Daten können Emotionen anhand von spezifischen Stimmlagen erkannt werden. Des Weiteren kann das Gesprochene mit **Sprache-zu-Text** (engl. Speech-to-Text) Systemen in Text umgewandelt und kontextuell ausgewertet werden. 
+Die Erkennung von Emotionen kann mithilfe von Videodaten auf vielfältige Wege geschehen. So bietet ein Video in der Regel Ton-Daten und Bild-Daten. Aus den gewonnen Ton-Daten können Emotionen anhand von spezifischen Stimmlagen erkannt werden. Des Weiteren kann das Gesprochene mit **Sprache-zu-Text** (engl. Speech-to-Text) Systemen in Text umgewandelt und kontextuell ausgewertet werden.
 Aus den Bild-Daten können Emotionen aus Gestik, sowie aus Mimik abgeleitet werden. Aufgrund des begrenzten Zeitraums wird lediglich Letzteres ausführlich in dieser Arbeit behandelt.
 
 <!--
@@ -15,7 +15,7 @@ Die automatisierte Erkennung von Emotionen aus Bildern ist kein grundlegend neue
 
 ## Ziel der Untersuchung
 
-Das Ziel der Arbeit ist es, eine neuronales Netzwerk zu entwerfen und zu trainieren, welches Emotionen von Testern anhand der Mimik "erkennen" kann. Dieses soll von einem Webservice genutzt werden, welcher Videodaten von Probanden entgegen nimmt und eine Zeitleiste mit Emotionen zurück gibt. Der Service soll als Prototyp entwickelt werden.
+Das Ziel der Arbeit ist es, ein neuronales Netzwerk zu entwerfen und zu trainieren, welches Emotionen von Testern anhand der Mimik "erkennen" kann. Dieses soll von einem Webservice genutzt werden, welcher Videodaten von Probanden entgegen nimmt und eine Zeitleiste mit Emotionen zurück gibt. Der Service soll als Prototyp entwickelt werden.
 
 Zur Realisierung eines solchen Service soll diese Arbeit eine Antwort auf folgende Fragen liefern:
 
@@ -31,4 +31,4 @@ Die Arbeit gliedert sich in drei Teilbereiche. Zuerst werden die, im Rahmen eine
 
 Im darauf Folgenden Teil wird auf Basis der Erkenntnisse des ersten Teils der Entwurf des künstlichen neuronalen Netzes, sowie die Schritte zur Datenbeschaffung und Vermehrung beschrieben. Ferner wird auch auf die gewählte Trainingsmethode, sowie die Implementierung des Webservice eingegangen.
 
-Der dritte Teil befasst sich mit der Evaluierung des entworfenen Klassifizierers anhand einer tiefer gehenden Analyse (TODO: empirisch?). Ein Test des Webservices mit Videodaten von verschiedenen Personen wird durchgeführt um die ausreichende Generalisierung des neuronalen Netzes zu überprüfen. 
+Der dritte Teil befasst sich mit der Evaluierung des entworfenen Klassifizierers anhand einer tiefer gehenden Analyse (TODO: empirisch?). Ein Test des Webservices mit Videodaten von verschiedenen Personen wird durchgeführt um die ausreichende Generalisierung des neuronalen Netzes zu überprüfen.

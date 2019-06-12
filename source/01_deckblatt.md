@@ -25,7 +25,7 @@ and add the centred logo
 
         \vspace{1.5cm}
 
-        Abschlussbericht zur berufspraktischen Phase im Bachelorstudiengang Informatik\\
+        Bachelor Thesis im Studiengang Informatik\\
         \vspace{0.8cm}
         \normalsize
         vorgelegt von:\\
@@ -36,10 +36,9 @@ and add the centred logo
         
         \vspace{0.8cm}
         
-        bei: Herr Kühnlein
+        Betreuer: Herr Lachezar Krumov \\
         \vspace{0.8cm}
-        Abgabetermin XX.02.2019\\
-        Die berufspraktische Phase wurde in der Zeit vom XX bis zum XX bei der Firma Evonik Industries AG in Frankfurt am Main durchgeführt.
+        Abgabetermin 02.08.2019\\
         \vfill
         
      
