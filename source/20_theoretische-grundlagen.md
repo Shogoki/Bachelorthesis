@@ -27,10 +27,10 @@ Die Synapsen spielen also in diesem neuronalen Netz eine sehr wichtige Rolle. Si
 ### Formalisiertes Model
 
 Aufgrund dieser vereinfacht beschriebenen Funktionsweise lag es zunächst nahe, ein Neuron formal als *Schwellenwertelement* zu modellieren. Bereits 1943 untersuchten McCulloch und Pitts ein solches Model, weshalb man *Schwellenwertelemente* auch *McCullock-Pitts-Neuronen* nennt. Oft werden *Schwellenwertelemente* auch als *Perzeptron* bezeichnet, obwohl dieses von Rosenblatt entworfene Model eigentlich noch etwas komplexer ist.
-Der Aufbau eines solchen künstlichen Neurons wird in \ref{kuenst_neuron} gezeigt[@Kruse2015].
+Der Aufbau eines solchen künstlichen Neurons wird in Abbildung \ref{perzeptron} gezeigt[@Kruse2015].
 
-![Darstellung eines Perzeptrons  *Angelehnt anTODO: * \label{perzeptorn}](source/figures/perzeptron.png){ width=100% }
-TODO: Abbildung perzeptron
+![Darstellung eines Perzeptrons - *Angelehnt an [@Kruse2015] * \label{perzeptron}](source/figures/perzeptron.pdf){ width=50% }
+
 Den Ausgabewert *a* eines Neurons erhält man durch Anwendung der Aktivierungsfunktion $f_\mathrm{act}$ auf die interne Ladung des Neurons. Bei klassischen *Schwellenwertelementen* ist die Aktivierungsfunktion typischerweise die *Sprungfunktion*.
 
  $$
@@ -49,9 +49,9 @@ Der berechnete Ausgabewert *a* dient wiederum als ein Eingabewert *xi* für eine
 
 Die Wahl der Aktivierungsfunktion spielt eine wichtige Rolle bei der Modellierung eines KNN´s, denn sie bringt die Eingabewerte in Relation mit dem späteren Ausgabewert des Neurons.
 Die Aktivierungsfunktion soll eine nicht-lineare Komponente in das neuronale Netzwerk bringen, da es ansonsten ausschließlich möglich wäre, linear lösbare Probleme zu lösen[@Gupta2013].
-Einige Beispiele für im Umfeld von machinellen Lernen häufig verwendete Aktivierungsfunktionen sind in \ref{aktfunktionen} zu sehen.
+Einige Beispiele für im Umfeld von machinellen Lernen häufig verwendete Aktivierungsfunktionen sind in Abbildung \ref{aktfunktionen} zu sehen.
 
-TODO: Abbildung Aktivierungsfunktionen
+![Beispiele für Aktivierungsfunktionen.\label{aktfunktionen}](source/figures/aktivierungsfunktionen.png){ width=100% }
 
 ### Aufbau und Funktionsweise
 
@@ -62,7 +62,7 @@ Bei der Darstellung eines neuronalen Netzes symbolisieren die Knoten die einzeln
 Ein neuronales Netz wird in der Regel aufgeteilt in eine Eingabe-, sowie eine Ausgabeschicht (engl.: *Input-/Output-Layer*) und optional eine oder mehrere versteckte Schichten (engl.: *hidden Layer*). Jede dieser Schichten (engl.: *Layer*) kann ein oder mehrere Neuronen enthalten. Man bezeichnet die Anzahl der Schichten als die *Tiefe* des Netzwerkes mit $L$, wobei die Eingabeschicht nicht berücksichtigt wird.
 Abbildung \ref{simple_nn} zeigt ein einfaches neuronales Netz mit 3 Eingängen, einem *hidden Layer* und einem *Output Layer*.
 
-TODO: Abbildung simple_nn
+![neuronales Netz mit 3 Eingängen, 1 versteckten Schicht und einem Ausgangsknoten - *Angelehnt an [@Ng2017] * \label{simple_nn}](source/figures/simple_nn.pdf){ width=70% }
 
 Anhand des Beispiels eines neuronalen Netzes zur Klassifizierung von Hundebildern soll im Folgenden die grundsätzliche Funktionsweise der einzelnen Schichten beschrieben werden.
 Zunächst nimmt die Eingabeschicht die benötigten Informationen von außen entgegen, zum Beispiel die numerisch dargestellten Pixel eines Hundebildes. Die Eingabedaten werden durch die versteckten Schichten geleitet und entsprechend verändert, bis sie zur Ausgabeschicht gelangen, welche nun ein Ergebnis anhand der Eingabewerte liefert. In unserem einfachen Beispiel zur Feststellung, ob es sich um ein Hundebild handelt oder nicht (binäre Klassifikation), würde eine Zahl zwischen 0 und 1 ausgegeben, welche der Wahrscheinlichkeit entspricht, dass das eingegebene Bild einen Hund darstellt.
@@ -166,12 +166,13 @@ bla bla wie erkennt man gesichter
 
 #### Haar-Cascade 
 
+Gesichtserkennung mache mer HAAR-CASCADE. Weils geht.
 
 ### Einteilung von Emotionen
 
 Wie  teilt man Emotionen ein? --> Ekman.
 
-<!-- expose Ordnung -->
+<!-- expose Ordnung 
 ## Einordnung der Daten
 
 ### Beschaffenheit der Daten
@@ -197,3 +198,4 @@ Wie  teilt man Emotionen ein? --> Ekman.
 ### Gesichtserkennung
 
 ## aktuell bewährte Modelle
+-->
