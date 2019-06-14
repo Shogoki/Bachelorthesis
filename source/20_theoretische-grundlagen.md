@@ -181,8 +181,14 @@ Die Einteilung nach dem FACS bildet die Basis für die Klassifizerung von Emotio
 Da sich das FACS auf Gesichtszüge bezieht und daher auch die Emotionserkennung in dieser Arbeit anhand von Gesichstsausdrücken stattfindet, ist es sinnvoll das zu erstellende neuronale Netz mit Bildern von Gesichtern als Eingabedaten zu versorgen. Das heißt, dass von einem Bild im Idealfall immer nur der relevante Teil (das Gesicht) ausgeschnitten und dem neuronalen Netz präsentiert wird. Das gilt sowohl für die Trainingsphase, sowie für die spätere Anwendung. 
 Um aus einem größeren Bildausschnitt automatisiert den relevanten Teil, also den Gesichtsausschnitt, zu extrahieren ist es notwendig innerhalb des Bildes das Gesicht und dessen Rahmen (engl. bounding box) zu erkennen.
 
-Zur Gesichtserkennung
-#### Haar-Cascade 
+Die aktuell gängigste Methode zur Gesichtserkennung ist der sogenannte Viola-Jones Detektor[@Shen1997]. Diese Methode gibt nach Eingabe eines größeren Bildes, die genaue Position des Gesichtes in diesem wieder. Dieser Bereich kann dann ausgeschnitten und weiter verwendet werden. Viola und Jones nutzen in Ihrem Algorithmus eine Komposition aus drei unterschiedlichen Operationen. Die 3 Operationen werden im folgenden kurz erläutert.
+
+#### integral Image
+
+
+#### modified AdaBoost
+
+#### cascade of classifiers
 
 TBD
 
