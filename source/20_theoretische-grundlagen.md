@@ -151,7 +151,9 @@ Bei faltenden neuronale Netzen (CNN, convolutional neural networks) handelt es s
 Ein typisches CNN besteht aus einer oder mehreren *convolutional* Schichten gefolgt von einer oder mehreren *fully-connected* Schichten, wie wir Sie bereits aus den klassischen neuronalen Netzen kennen. 
 Eine *convolutional* Schicht besteht aus einem oder mehreren Filtern gleicher Größe. Man kann diesen Filter als eine Art Fenster vorstellen, welches über die Daten "geschoben werden". Dabei entstehen aus den meist größeren Rastern der Eingabedaten, neue Raster mit kleineren Dimensionen (siehe \ref{CNN}). Gibt es mehrere Filter, werden die entstehenden Ausgabeschichten aufeinander gestapelt[@Goodfellow-et-al-2016].
 
-TODO: Abbildung CNN
+![vereinfacht dargestelltes faltendes neuronales Netzwerk \label{hunde_klassifizierer}](source/figures/cnn.pdf){ width=90% }
+
+TODO: FINISH Abbildung CNN
 
 Jede dieser *convolutional* Schichten hat mehrere (Hyper-)Paramenter, welche Beeinflussen welche Dimensionen das nachfolgende Daten-Raster erhält. Diese wären zum Beispiel die *Filtergröße*, sowie die Anzahl der Filter. Daneben ist die *Schrittweite* ein weitere Parameter, welche beeinflusst, wie groß die Sprünge sind, in welchen der Filter über die Daten "geschoben" wird. Als letzter Parameter wäre noch ein mögliches *padding* (Füllung) zu nennen. Hierbei wird eine definierte Anzahl an zusätzlichen Zeilen an jeder Seite des Rasters mit Nullen aufgefüllt. Diese Methode dient dazu, dass der Filter auch die äußeren Werte mit einer Ähnlichen Gewichtung berücksichtigen kann.
 
@@ -190,7 +192,7 @@ Die Wertigkeit eines Pixels im *Integralbild* steht immer im Zussamenhang mit de
 Ein *three-rectangle feature* wird brechnet durch die Differenz, der Summe aus zwei äußeren Rechtecken und der Summe eines zentrierten Rechteckes.
 EIn *four-rectangle feature* wird letzten Endes durch die Differenz zwischen Diagonalen Paaren von Rechtecken beschrieben." [@Shen1997]
 
-![*Haar-like features*, *two-rectangle* (A, B), *three-rectangle* (C), *four-rectangle* (D)\label{haar_features}](source/figures/HaarFeatures.pdf){ width=100% }
+![*Haar-like features*, *two-rectangle* (A, B), *three-rectangle* (C), *four-rectangle* (D) - Quelle: https://commons.wikimedia.org/wiki/File:VJ_featureTypes.svg \label{haar_features}](source/figures/HaarFeatures.pdf){ width=100% }
 
 Zur Berechnung des *Integralbildes* wird das Ursprungsbild zunächst in ein Graustufen-Bild umgewandelt. Dies is ein übliches Vorgehen in der automatisierten Bildverarbeitung, da ein solches in der Regel noch alle benötigten Informationen beinhaltet, aber massiv weniger Daten beinhaltet (zB. 8 Bit pro Pixel statt 24 Bit pro Pixel). Ein Pixel des Integralbildes an der stelle $(x, y)$ errechnet sich nun aus der Summe aller Pixelwertes eines Rechtecks des Graustufen-Bildes vom Ursprung $(0,0)$ des Bildes bis zum besagten Punkt $(x, y)$ [@Shen1997].
 Die Formel zur Berechnung des Pixelwertes an der Stelle $(x, y)$ *Integralbildes* $ii$ aus dem Ursprungs-Graustufenbild $i$ lautet also wie folgt.
