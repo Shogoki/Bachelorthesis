@@ -206,9 +206,9 @@ Die Vorteile der Nutzung des *Integralbildes* sind die einfache, und damit effiz
 
 TODO: Abbildung integral_image_reuse (Schmidt2014)[@Schmidt2014]
 
-#### modified AdaBoost
+#### modifizierter AdaBoost Algorithmus
 
-TBD
+In seiner ursprünglichen Form dient der *AdaBoost* Algorithmus dazu die Performance eiens Klassifzierers zu optimieren (engl. boost)
 
 
 #### cascade of classifiers
