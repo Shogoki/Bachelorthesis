@@ -66,11 +66,10 @@ Abbildung \ref{simple_nn} zeigt ein einfaches neuronales Netz mit 3 Eingängen, 
 
 Anhand des Beispiels eines neuronalen Netzes zur Klassifizierung von Hundebildern soll im Folgenden die grundsätzliche Funktionsweise der einzelnen Schichten beschrieben werden.
 Zunächst nimmt die Eingabeschicht die benötigten Informationen von außen entgegen, zum Beispiel die numerisch dargestellten Pixel eines Hundebildes. Die Eingabedaten werden durch die versteckten Schichten geleitet und entsprechend verändert, bis sie zur Ausgabeschicht gelangen, welche nun ein Ergebnis anhand der Eingabewerte liefert. In unserem einfachen Beispiel zur Feststellung, ob es sich um ein Hundebild handelt oder nicht (binäre Klassifikation), würde eine Zahl zwischen 0 und 1 ausgegeben, welche der Wahrscheinlichkeit entspricht, dass das eingegebene Bild einen Hund darstellt.
-Bei einer Klassifizierung mit mehr als 2 Klassen (z.B. Hund, Katze oder keines von beidem) entspricht das Ergebnis einem Ausgabevektor aus Wahrscheinlichkeiten für jede Klasse. Die Summe der ausgegebenen Wahrscheinlichkeiten entspricht stets 1. Letzteres Beispiel ist in \ref{hunde_klassifizierer} vereinfacht dargestellt. 
+Bei einer Klassifizierung mit mehr als 2 Klassen (z.B. Hund, Katze oder keines von beidem) entspricht das Ergebnis einem Ausgabevektor aus Wahrscheinlichkeiten für jede Klasse. Die Summe der ausgegebenen Wahrscheinlichkeiten entspricht stets 1. Letzteres Beispiel ist in Abbildung \ref{hunde_klassifizierer} vereinfacht dargestellt.
 
-TODO: Abbildung CAT/DOG clsassifier (based on) [@Kirste2018 S.30]
-
-
+![Hunde-/Katzen-Klassifizierer - *Angelehnt an [@Kirste2018]* \label{hunde_klassifizierer}](source/figures/classifier.pdf){ width=100% }
+ 
 ### Training
 
 Eine grundlegende Eigenschaft eines KNN ist, dass man es trainieren kann. Während der Trainingsphase *lernt* das neuronale Netz anhand von Eingabedaten passende Ausgabedaten zu liefern. 
@@ -181,12 +180,36 @@ Die Einteilung nach dem FACS bildet die Basis für die Klassifizerung von Emotio
 Da sich das FACS auf Gesichtszüge bezieht und daher auch die Emotionserkennung in dieser Arbeit anhand von Gesichstsausdrücken stattfindet, ist es sinnvoll das zu erstellende neuronale Netz mit Bildern von Gesichtern als Eingabedaten zu versorgen. Das heißt, dass von einem Bild im Idealfall immer nur der relevante Teil (das Gesicht) ausgeschnitten und dem neuronalen Netz präsentiert wird. Das gilt sowohl für die Trainingsphase, sowie für die spätere Anwendung. 
 Um aus einem größeren Bildausschnitt automatisiert den relevanten Teil, also den Gesichtsausschnitt, zu extrahieren ist es notwendig innerhalb des Bildes das Gesicht und dessen Rahmen (engl. bounding box) zu erkennen.
 
-Die aktuell gängigste Methode zur Gesichtserkennung ist der sogenannte Viola-Jones Detektor[@Shen1997]. Diese Methode gibt nach Eingabe eines größeren Bildes, die genaue Position des Gesichtes in diesem wieder. Dieser Bereich kann dann ausgeschnitten und weiter verwendet werden. Viola und Jones nutzen in Ihrem Algorithmus eine Komposition aus drei unterschiedlichen Operationen. Die 3 Operationen werden im folgenden kurz erläutert.
+Die aktuell gängigste Methode zur Gesichtserkennung ist der sogenannte Viola-Jones Detektor[@Shen1997]. Diese Methode gibt nach Eingabe eines größeren Bildes, die genaue Position des Gesichtes in diesem wieder. Dieser Bereich kann dann ausgeschnitten und weiter verwendet werden. Viola und Jones nutzen in Ihrem Algorithmus 3 unterschiedliche Techniken, die ihn besonders effizient machen. Im Folgenden sollen diese kurz beschrieben werden.
 
 #### integral Image
+Zur weitren einfachen Verarbeitung der Eingabebilder sollen nur bestimmte Merkmale der Bilder extrahiert werden. Anstelle eines pixelbasierten Ansatzes führten Viola und Jones hierzu den Begriff des *Integralbildes* (engl. integral image) ein. Die dazu extrahierten *Features* ähneln den Haar-Basis Merkmalen, wie Sie zuvor auch in anderen Arbeiten verwendet wurden (vergleich TODO: ref Papageorgiou et al.).
+Die Wertigkeit eines Pixels im *Integralbild* steht immer im Zussamenhang mit den Pixeln in der unmittelbaren Umgebung. Desto höher der Wert ist, desto heller ist der betreffende Bildausschnitt. Auf Basis dieser Informationen haben Viola und Jones 3 der, aufgrund Ihrer Ähnlichkeit, *Haar-like features* definiert, welche ein Geischt anhand der entsprechenden Helligkeitsunterschiede beschreiben.
 
+"Ein *two-rectangle feature* wird beschrieben durch die Differenz aus der Summe der Pixel zwischen zwei rechteckigen Bildausschnitten. DIe Ausschnitte haben die selbe Größe und Form und Grenzen entweder horizontal oder vertikal aneinander an.
+Ein *three-rectangle feature* wird brechnet durch die Differenz, der Summe aus zwei äußeren Rechtecken und der Summe eines zentrierten Rechteckes.
+EIn *four-rectangle feature* wird letzten Endes durch die Differenz zwischen Diagonalen Paaren von Rechtecken beschrieben." [@Shen1997]
+
+![*Haar-like features*, *two-rectangle* (A, B), *three-rectangle* (C), *four-rectangle* (D)\label{haar_features}](source/figures/HaarFeatures.pdf){ width=100% }
+
+Zur Berechnung des *Integralbildes* wird das Ursprungsbild zunächst in ein Graustufen-Bild umgewandelt. Dies is ein übliches Vorgehen in der automatisierten Bildverarbeitung, da ein solches in der Regel noch alle benötigten Informationen beinhaltet, aber massiv weniger Daten beinhaltet (zB. 8 Bit pro Pixel statt 24 Bit pro Pixel). Ein Pixel des Integralbildes an der stelle $(x, y)$ errechnet sich nun aus der Summe aller Pixelwertes eines Rechtecks des Graustufen-Bildes vom Ursprung $(0,0)$ des Bildes bis zum besagten Punkt $(x, y)$ [@Shen1997].
+Die Formel zur Berechnung des Pixelwertes an der Stelle $(x, y)$ *Integralbildes* $ii$ aus dem Ursprungs-Graustufenbild $i$ lautet also wie folgt.
+
+$$
+ii(x, y) = \sum_{n=0, m=0}^{n\leq x, m\leq y} i(n, m)
+$$
+
+In Abbildung \ref{integral_image} sieht man die Berechnung eines Pixelwertes anhand eines Beispiels.
+
+TODO: Abbildung integral_image (Schmidt2014)
+Die Vorteile der Nutzung des *Integralbildes* sind die einfache, und damit effiziente, Berechnungsmethode, sowie die einfache Adaptierbarkeint des Prozesses auf einzelne Bildausschnitte. Des Weiteren ist es Möglich, zur Brechnung von Pixelwerten auf zuvor bereits berechnete Werte zurückzugreifen (siehe Abbildung \ref{integral_image_reuse}).
+
+TODO: Abbildung integral_image_reuse (Schmidt2014)[@Schmidt2014]
 
 #### modified AdaBoost
+
+TBD
+
 
 #### cascade of classifiers
 
