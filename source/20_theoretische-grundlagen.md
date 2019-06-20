@@ -210,8 +210,12 @@ TODO: Abbildung integral_image_reuse (Schmidt2014)[@Schmidt2014]
 
 #### modifizierter AdaBoost Algorithmus
 
-In seiner ursprünglichen Form dient der *AdaBoost* Algorithmus dazu die Performance eiens Klassifzierers zu optimieren (engl. boost)
+In seiner ursprünglichen Form dient der *AdaBoost* Algorithmus dazu die Performance eiens Klassifzierers im Bereich des machinellen Lernens zu optimieren (engl. boost). 
+Der Netzwerkfehler eines so optimierten ALgorithmus (engl. *boosted algirthm*) kovergiert mit der Anzahl der Trainingsdurchläufe exponentiell gegen Null. 
 
+In Viola und Jones´ Arbeit egaben sich aus jedem 24x24 Pixel Fenster über 180000 *rectangle-fatures*. Zwar kann jedes einzelne dieser Merkmale sehr effizient berechnet werden, wäre es ziemlich Aufwendig die gesamte MEnge an Merkmalen zu berechnen. Sie stellten die Vermutung auf, dass bereits eine geringe Anzahl dieser Merkmale für einen effektiven Klassifizierer genutzt werden können. Viola und Jones nutzen *AdaBoost* daher an 2 Stellen. Zum einen zum auswählen der zu nutzenden Merkmale und zum anderen zum eigentlichen Trainieren des Klassifizierers. Dazu wurde der *weak classifier*, so angepasst, dass er das Rechteck-Merkmal findet, welches die positiven Beispiel-Daten am besten von den negativen Beispiel-Daten separiert[@Shen1997]. Im folgenden Abbildung \ref{viola_jones_adaboost} ist der modifizierte *AdaBoost* Algorithmus nach Viola und Jones kurz skizziert.
+
+![Darstellung eines biologischen Neurons. *Quelle: [@Kruse2015]* \label{viola_jones_adaboost}](source/figures/viola_jones_adaboost.jpeg){ width=100% }
 
 #### cascade of classifiers
 
