@@ -30,6 +30,18 @@ Das Team von Microsoft Research[@Barsoum2016] beschreibt mehrere Variationen, wi
 
 #### selbsterstellte Daten
 
+Zum selbst erstellen von Daten wurde im Rahmen der Arbeit eine einfache Website erstellt, welche mithilfe von *WebRTC* Zugriff auf die Kamera bekommt. Auf dieser Website haben freiwillige Probanden, und auch der Autor dieser Arbeit, die Möglichkeit nacheinander für jede Emotion des *FACS* ein 15 sekündiges Video aufzunehmen. Dieses wird anschließend direkt auf dem Server gespeichert. Die Webseite ist in Abbildung \ref{webrtc_screenshot} zu sehen.
+
+TODO: Screenshot Website
+
+Mithilfe dieser Webseite wurden insgesamt 25 Sätze an 15 sekündigen Videos von 10 verschiedenen freiwilligen Probanden (den Autor dieser Arbeit eingeschlossen) gesammelt. Aus diesen Videos wurde anschließend mit Hilfe eines python-Skripts (siehe TODO: Listing) pro Sekunde ein Einzelbild extrahiert, und mit dem Namen der entsprechenden Klasse abgespeichert. Somit wurden also $25 * 15 = 375$ Einzelbilder pro Klasse generiert.
+
+TODO: Code Listing
+
+
+Die Einzelbilder wurden anschließend vom Autor manuell auf Korrektheit, das heißt Zuordnung zur Klasse, geprüft. Dabei wurden insgesamt 100 Bilder wieder aussortiert (TODO: Verify numbers).
+
+
 ### Einteilung der Datensätze (Train/DEV_train/DEV/test)
 
 ## Datenpräparation
