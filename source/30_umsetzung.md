@@ -44,6 +44,8 @@ Die Einzelbilder wurden anschließend vom Autor manuell auf Korrektheit, das hei
 
 ### Einteilung der Datensätze (Train/DEV_train/DEV/test)
 
+Beim machinellen Lernen ist es üblich den vorhandenen Datensatz, bzw. die vorhandenen Datensätze in verschiedene Verwendungszwecke einzuteilen. Klassischerweise sprach man hier immer vom *train/test-Split*, also einer Aufteilung der Daten in einen Trainings- und einen Test-Datensatz. In modernen Projekten, welche sich mit maschinellen Lernen beschäftigen spricht man jedoch zumeist von einem *train/dev/test-split*. Die Daten werden also in einen Trainings-, einen Entwicklungs- und einen Test-Datensatz eingeteilt. Als Entwicklungs-Datensatz bezeichnet man, jene Daten, welche während der Entwicklung, also dem Anpassen bestimmter (Hyper-)Parameter, des neuronalen Netzes zur Evaluierung verwendet. 
+
 ## Datenpräparation
 
 ### Vorverarbeitung
