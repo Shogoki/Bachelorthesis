@@ -28,7 +28,7 @@ TODO: Abbildung FER+ Single row image
 
 Das Team von Microsoft Research[@Barsoum2016] beschreibt mehrere Variationen, wie die mehrfach *gelabelten* Daten verwendbar sind. In dieser Arbeit wird jedoch ausschließlich der einfache Mehrheits-Ansatz verfolgt. Es wird also jedes Bild der Klasse zugeordnet, welche die meisten Stimmen erhalten hat.
 
-#### selbsteerstellte Daten
+#### selbsterstellte Daten
 
 ### Einteilung der Datensätze (Train/DEV_train/DEV/test)
 
