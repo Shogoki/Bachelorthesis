@@ -10,7 +10,7 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-- script: apt-get update && apt-get install pandoc texlive-full
+- script: sudo apt-get update && sudo apt-get install pandoc texlive-full
   displayName: 'Run a one-line script'
 
 - script: |
