@@ -215,12 +215,13 @@ Der Netzwerkfehler eines so optimierten ALgorithmus (engl. *boosted algirthm*) k
 
 In Viola und Jones´ Arbeit egaben sich aus jedem 24x24 Pixel Fenster über 180000 *rectangle-fatures*. Zwar kann jedes einzelne dieser Merkmale sehr effizient berechnet werden, wäre es ziemlich Aufwendig die gesamte MEnge an Merkmalen zu berechnen. Sie stellten die Vermutung auf, dass bereits eine geringe Anzahl dieser Merkmale für einen effektiven Klassifizierer genutzt werden können. Viola und Jones nutzen *AdaBoost* daher an 2 Stellen. Zum einen zum auswählen der zu nutzenden Merkmale und zum anderen zum eigentlichen Trainieren des Klassifizierers. Dazu wurde der *weak classifier*, so angepasst, dass er das Rechteck-Merkmal findet, welches die positiven Beispiel-Daten am besten von den negativen Beispiel-Daten separiert[@Shen1997]. Im folgenden Abbildung \ref{viola_jones_adaboost} ist der modifizierte *AdaBoost* Algorithmus nach Viola und Jones kurz skizziert.
 
-![Darstellung eines biologischen Neurons. *Quelle: [@Kruse2015]* \label{viola_jones_adaboost}](source/figures/viola_jones_adaboost.jpeg){ width=100% }
+![modifizerter AdaBoost Algorithmus nach Viola und Jones. *Quelle: [@Shen1997]* \label{viola_jones_adaboost}](source/figures/viola_jones_adaboost.jpeg){ width=100% }
 
 #### cascade of classifiers
 
-TBD
+Die dritte von Viola und Jones eingeführte Technik zur Geischtserkennung sind die kaskadierenden Klassifizierer. Die Idee hierbei besteht darin mehrere optimierte Klassifizierer für nur ein bestimmtes Merkmal hintereinander zu schalten. Die einzelnen Klassifizierer haben dabei eine Negativ-Erkennungs-Rate (engl. *false positive rate*) gegen 0. So können diese eine große Anzahl an nicht passenden Bildausschnitten aussortieren und nur die passenden an den enstprechenden nächsten Klassifizierer weitergeben. Da diese einfachen Klassifizierungen sehr effizient berechnet werden können, wird verhindert, dass für nicht passende Ausschnitte zu viel Rechenaufwand betrieben wird. Der Begriff Kaskade wurde gewählt um zu veranschaulischen, dass jeder Klassifizierer nur anhand eines postivien Ergebnisses des vorgeschalteten Klassifizierers weiter arbeitet. 
 
+TODO: Abbildung cascade of classifiers
 
 
 <!-- expose Ordnung 
