@@ -21,7 +21,7 @@ In dieser Arbeit wurden beide Ansätze in Kombination verwendet. Es wurden also 
 
 #### FER+
 
-Als großer frei Verfügbarer Datensatz wurde der *Facial Expression Recognition+* (FER+)[@Barsoum2016] Datensatz verwendet. Bei den Eingangsaten des *FER+* handelt es sich um die selben Bilder, wie auch beim *FER2013*, welcher Teil der International Conference for Machine Learning (ICML) Challenge 2013 war, und danach der Öffentlichkeit zur Verfügung gestellt wurde. Bei FER+ wurden jedoch alle *Label*, mithilfe von *Crowdsourcing* neu erstellt, um eine bessere Datenqualität zu erreichen. (Vergleich [@Barsoum2016]). Der Datensatz besteht aus 34034 NxN Graustufen Bilder von Gesichtern. Jedes dieser Bilder von je 10 Taggern mithilfe von *Crowdsourcing* bewertet. Der Datensatz enthält für jede Klasse (Emotionen des *FACS* und "kein Gesicht") die Anzahl an Taggern, welche das Bild entsprechend bewertet haben.
+Als großer frei Verfügbarer Datensatz wurde der *Facial Expression Recognition+* (FER+)[@Barsoum2016] Datensatz verwendet. Bei den Eingangsaten des *FER+* handelt es sich um die selben Bilder, wie auch beim *FER2013*, welcher Teil der International Conference for Machine Learning (ICML) Challenge 2013 war, und danach der Öffentlichkeit zur Verfügung gestellt wurde. Bei FER+ wurden jedoch alle *Label*, mithilfe von *Crowdsourcing* neu erstellt, um eine bessere Datenqualität zu erreichen. (Vergleich [@Barsoum2016]). Der Datensatz besteht aus 34034 48x48 Graustufen Bilder von Gesichtern. Jedes dieser Bilder von je 10 Taggern mithilfe von *Crowdsourcing* bewertet. Der Datensatz enthält für jede Klasse (Emotionen des *FACS* und "kein Gesicht") die Anzahl an Taggern, welche das Bild entsprechend bewertet haben.
 Ein Beispiel für ein einzelnes Datum des Datensatzes ist in Abbildung \ref{single_ferplus} zu sehen
 
 TODO: Abbildung FER+ Single row image
@@ -49,13 +49,37 @@ Bei der Wahl der Datenquellen, ist es wichtig, dass die Test-Daten möglichst ä
 
 Für diese Arbeit bedeutet das, dass die Entwicklungs- und Test-Daten aus den selbstgenerierten Daten stammen, da diese Bereits von aufgenommenen Videos stammen, was den Zeildaten sehr nahe kommt.
 Als Trainingsdaten wird entsprechend der *FER+* Datensatz verwendet.
-EIn Problem bei einer solchen Aufteilung, wenn also die Trainingsdaten aus einem anderen Datensatz stammen als die Entwicklungs und Test-Daten ist, dass man gewisse Probleme, wie zum Beispiel eine Überanpassung manchmal nur schwer erkennen kann. Deshalb ist es in einem solchen Fall sinnvoll noch einen vierten Datensatz einzuführen, welcher aus der selben Quelle wie die Trainingsdaten stammt (hier *FER+*). Man spricht hier vom *dev_train* oder auch *bridge* Datensatz. Dieser wird im Prinzip analog zum Entwicklungsdatensatz behandelt, und dient zum testen der Parameter des neuronalen Netzwerkes, nach jeder Änderung. Anhand der Unterschiedlichen Ergebnisse für den *bridge* und den *dev* Datensatz kann man nun schnell, bestimmte Probleme des neuronalen Netzwerks erkennen.
+Ein Problem bei einer solchen Aufteilung, wenn also die Trainingsdaten aus einem anderen Datensatz stammen als die Entwicklungs und Test-Daten ist, dass man gewisse Probleme, wie zum Beispiel eine Überanpassung manchmal nur schwer erkennen kann. Deshalb ist es in einem solchen Fall sinnvoll noch einen vierten Datensatz einzuführen, welcher aus der selben Quelle wie die Trainingsdaten stammt (hier *FER+*). Man spricht hier vom *dev_train* oder auch *bridge* Datensatz. Dieser wird im Prinzip analog zum Entwicklungsdatensatz behandelt, und dient zum testen der Parameter des neuronalen Netzwerkes, nach jeder Änderung. Anhand der Unterschiedlichen Ergebnisse für den *bridge* und den *dev* Datensatz kann man nun schnell, bestimmte Probleme des neuronalen Netzwerks erkennen.
+
+In dieser Arbeit wurde daher auch die Einteilung in 4 Datensätze gewählt. Die Daten wurden dabei wie folgt aufgeteilt:
+Die selbsterstellten Daten wurden in zu je 50% in den Entwicklungs- und Test-Datensatz aufgeteilt. Vom *FER+* Datensatz wurden  10% Der Bilder für den *Bridge* Datensatz verwendet und 90% als Trainingsdaten. Die Aufteilung ist in Abbildung \ref{data_split} veranschaulicht.
+
+TODO: Abbildung Datenteilung \label{data_split <!--like this https://www.freecodecamp.org/news/what-to-do-when-your-training-and-testing-data-come-from-different-distributions-d89674c6ecd8/ -->
+
+Um eine Eingangs zufällige, jedoch immer gleich reproduzierbare Aufteilung zu erzielen wurde das folgende Python Skript verwendet.
+
+TODO: Code Listing Data_split.py
+
 
 ## Datenpräparation
 
+Um die Effizienz, sowie die Genauigkeit der Vorhersage des neuronalen Netzwerkes zu steigern werden alle Daten, bevor Sie dem KNN präsentiert werden auf diverse Arten präpariert. Im Folgenden wird auf die angewandten Methoden genauer eingegangen.
+
 ### Vorverarbeitung
 
+Um ein möglichst gutes Ergebnis zu erzielen wurden die selbst erstellten Daten, aber auch die frei verfügbaren Daten aus dem *FER+* Datensatz auf diverse Weise Vorverarbeitet. 
+Bei den selbst aufgezeichneten Daten, wurde wie bereits erwähnt eine abschließende manuelle Sichtung vorgenommen, um möglichst alle falsch markierten Daten auszusortieren. Des weiteren werden alle der selbst aufgezeichneten Bilder auf den Ausschnitt des Gesichtes beschränkt, bevor Sie dem selbst entworfenen KNN präsentiert werden. Dazu wird der bereits beschriebene *Viola-Jones-Detektor*[@Shen1997] verwendet um das Gesicht im jeweiligen Bild zu detektieren. Nachdem der gesichtsenthaltende Teil des Bildes ausgeschnitten wurde, wird dieser auf 48x48 Pixel skaliert und in ein Graustufenbild umgewandelt. Damit haben letzten Endes alle Eingangsdaten des neuronalen Netzes die gleiche Struktur. Der Python Code für diese Vorverarbeitung ist im folgenden Listing zu sehen.
+
+TODO: Listing, preprocess selfrecorded data.
+
+Bei den Daten aus dem *FER+* Datensatz ist etwas weniger Vorverarbeitung nötig.Die Vorverarbeitung dieser Daten besteht im wesentlcihen darin, die Pixelwerte welche als ein eindimensionales Array vorliegen in eine 48x48 Matrix umzuwandeln. Des weiteren wird aus dem mehrstimmigen *Labels* des *FER+* Datensatzes noch mithilfe des einfachen Mehrheitsprinzips das hier genutzte extrahiert. In einem letzten Schritt werden dann noch alle Datensätze, welche mit "not a face" markiert sind, aussortiert. (siehe Listing TODO:) 
+
+TODO: CODELISTING PROCESS FER+
+
+
 ### Generalisierung
+
+
 
 ### Datenmehrung
 
