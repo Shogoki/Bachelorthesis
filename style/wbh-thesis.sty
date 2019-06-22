@@ -1,0 +1,182 @@
+% -*- coding: utf-8 -*-
+% wbh-thesis.sty
+% 
+% Style-File zum Satz der Bachelor-Thesis an der "Wilhelm Büchner Hochschule
+% Darmstadt (Pfungsstadt)" mit LaTeX. Alle Rechte liegen bei der Hochschule.
+%
+% Autor:    Markus Kwaśnicki (MK)
+% Version:  v1.1 (Final release)
+% Stand:    2016-01-25
+%
+
+\usepackage[T1]{fontenc}    % Aktivieren europäischer Zeichensätze, u.a. für 
+                            % korrekte Silbentrennung
+\usepackage[utf8]{inputenc} % Ermöglichen direkter Eingabe von Sonderzeichen,
+                            % ohne diese escapen bzw. entwerten (\) zu müssen
+\usepackage[ngerman]{babel} % Festlegen der neuen deutschen Rechtschreibung für 
+                            % das gesamte Dokument
+
+\usepackage{textcomp} % Erweitert den Zeichensatz
+\usepackage{mathptmx}    % Setzt die Standardschriftart Times New Roman
+                           % für den Fließtext und ebenso die mathematische Schrift 
+
+\KOMAoption{twoside}{false} % Setzt das Dokument einseitig
+\KOMAoption{open}{any} % Kapitel können auf jeder beliebigen Seite beginnen
+\KOMAoption{fontsize}{12pt} % Schriftgröße für die Hauptschrift mit Serifen
+\KOMAoption{parskip}{full}  % Absatzauszeichnung ohne Einzug
+\KOMAoption{listof}{totocnumbered}  % Fügt weitere Listenverzeichnisse in das 
+                                    % Inhaltsverzeichnis ein
+
+\usepackage{scrhack}  % Behebt einige Warnungen in Verbindung mit KOMA-Script
+
+\usepackage[onehalfspacing]{setspace} % Der 1,5-zeilige Zeilenabstand
+\usepackage{geometry}                 % Setzen des geforderten Korrekturrand auf 
+\geometry{right=4cm}                  % konstant vier Zentimeter (4cm)
+
+\usepackage{graphicx}   % Erlaubt das Einbinden externer Grafiken
+\usepackage{ifthen}     % Ermöglicht Kontrollstrukturen
+\usepackage[hidelinks]{hyperref}  % Verknüpft Referenzen sowie Links und
+                                  % ermöglicht Navigation im Dokument
+
+% \usepackage[autostyle]{csquotes}  % Von BibLaTeX verlangte Abhängigkeit
+
+%\usepackage[backend=bibtex,        % Legt das Format des Literaturverzeichnisses 
+%  style=verbose,sortcase=false,   % fest, hier "BibLaTeX" mit "bibtex" als 
+ % autolang=other]{biblatex}       % Backend
+  % Alternativ wäre auch "Biber" als Backend möglich, dann muss die Bibliografie mit
+  % quellen.bib eingebunden werden!
+% \bibliography{quellen}            % Lädt Literaturliste aus Datei "quellen.bib"
+% \defbibheading{bibliography}[\bibname]  % Kapitelname für das Literaturverzeichnis
+ % {\chapter{Literaturverzeichnis}}          %  u.a. im Inhaltsverzeichnis
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% MAKRO-DEFINITIONEN %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\WBH}{Wilhelm Büchner Hochschule}
+
+\newcommand{\Fachbereich}[1]{%
+  % Entspricht einer der folgenden Optionen für den Fachbereich:
+  % * ING = Ingenieurwissenschaften
+  % * INF = Informatik
+  % * WRT = Wirtschaftsingenieurwesen und Technologiemanagement
+  \ifthenelse{\equal{#1}{ING}}{\newcommand{\fachbereich}
+    {Ingenieurwissenschaften}}{%
+    \ifthenelse{\equal{#1}{INF}}{\newcommand{\fachbereich}{Informatik}}{%
+      \ifthenelse{\equal{#1}{WRT}}{\newcommand{\fachbereich}
+        {Wirtschaftsingenieurwesen \\ und Technologiemanagement}}{%
+        \errmessage{Unbekannter Fachbereich}
+      }
+    }
+  }
+}
+
+% Ermittlung des Schlüssel/Wert-Paares für den/die Betreuer/in
+\newcommand{\Betreuung}[2][nogender]{%
+  \ifthenelse{\equal{#1}{m}}{\newcommand{\betreuungschluessel}{Betreuer}}{%
+    \ifthenelse{\equal{#1}{f}}{\newcommand{\betreuungschluessel}{Betreuerin}}{%
+      \newcommand{\betreuungschluessel}{Betreuer/in}
+    }
+  }
+  \newcommand{\betreuungwert}{#2}
+}
+
+% Ermittlung des Schlüssel/Wert-Paares für den/die Autor/in bzw. die/den
+% Studierende/n
+\newcommand{\Autor}[2][nogender]{%
+  \ifthenelse{\equal{#1}{m}}{%
+    \newcommand{\autorschluessel}{Autor}
+    \newcommand{\studentschluessel}{Studierender}
+  }{%
+    \ifthenelse{\equal{#1}{f}}{%
+      \newcommand{\autorschluessel}{Autorin}
+      \newcommand{\studentschluessel}{Studierende}
+    }{%
+      \newcommand{\autorschluessel}{Autor/in}
+      \newcommand{\studentschluessel}{Studierende/r}
+    }
+  }
+  \newcommand{\autorwert}{#2}
+}
+
+\newcommand{\Matrikelnummer}[1]{\newcommand{\matrikelnummer}{#1}}
+
+\newcommand{\Abgabetermin}[1]{\newcommand{\abgabetermin}{#1}}
+
+% Die Anschrift bestehend aus zwei Teilen:
+% * Straße mit Hausnummer
+% * Postleitzahl und Ort
+\newcommand{\Anschrift}[2]{%
+  \newcommand{\strhausnr}{#1}
+  \newcommand{\plzort}{#2}
+}
+
+% Einfügen der Zusammenfassung (Abstract) aus externer Datei
+\newcommand{\Abstract}[1]{%
+  \addchap*{Zusammenfassung}%
+  \pagenumbering{roman}%
+  \input{#1}} % Deutsch
+\newcommand{\AbstractEN}[1]{
+  \addchap*{Abstract}%
+  \pagenumbering{roman}%
+  \input{#1}}      % Englisch
+
+\renewcommand{\maketitle}{%
+  \begin{titlepage}
+    % Bildkante des Logo bündig mit Text
+    \hspace{-2mm} \includegraphics[scale=0.5]{wbh_logo.png} \\
+    {\sffamily Fachbereich \fachbereich               \\
+    Ostendstraße 3                                              \\
+    D-64319 Pfungstadt                                      }
+
+    \vfill
+
+    {\usekomafont{subtitle}\@title}
+
+    \vfill
+
+    % Meta-Angaben zur vorgelegten Arbeit
+    {\sffamily\begin{tabular}{@{}p{4cm}p{9cm}@{}}
+      \betreuungschluessel: & \betreuungwert  \\
+      \autorschluessel:     & \autorwert      \\
+      Matrikelnummer:     & \matrikelnummer \\
+      Anschrift:                & \strhausnr      \\
+                                    & \plzort         \\
+      Abgabetermin:        & \abgabetermin   \\
+    \end{tabular}}
+  \end{titlepage}
+}
+
+\newcommand{\printEidesstattlicheErklaerung}{%
+  \clearpage
+  \pagenumbering{gobble}  % Keine Seitennummerierung 
+  
+  \chapter*{Eidesstattliche Erklärung}
+
+  \begin{tabular}{@{}p{4cm}p{9cm}@{}}
+    \studentschluessel: & \autorwert      \\
+    Matrikelnummer:     & \matrikelnummer \\
+  \end{tabular}
+
+  \bigskip
+
+  Hiermit erkläre ich, dass ich diese Arbeit selbstständig abgefasst und keine
+  anderen als die angegebenen Quellen und Hilfsmittel benutzt habe.
+
+  Die Arbeit wurde bisher keiner anderen Prüfungsbehörde vorgelegt und auch noch
+  nicht veröffentlicht.
+
+  \vfill
+
+  % Ort, Datum, Unterschrift
+  \begin{tabular}{@{}p{5cm}@{\hspace{1cm}}p{7cm}@{}}
+    \hfill              & \hfill                            \\
+    \dotfill            & \dotfill                          \\
+    \ Ort, Abgabedatum  & \ Unterschrift (Vor- und Zuname)  \\
+  \end{tabular}
+
+  % Ausgeblasstes Siegel rechts unter der Unterschrift
+  \hfill\includegraphics[scale=0.75]{wbh_siegel.png}
+}
+
+
+% End of style file

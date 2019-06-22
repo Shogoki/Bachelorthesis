@@ -1,0 +1,26 @@
+
+\begin{titlepage}
+    % Bildkante des Logo bündig mit Text
+    \hspace{-2mm} \includegraphics[scale=0.5]{style/logo-wbh.jpg} \\
+    {\sffamily Fachbereich \fachbereich               \\
+    Ostendstraße 3                                              \\
+    D-64319 Pfungstadt                                      }
+
+    \vfill
+
+    {\usekomafont{subtitle}\@title}
+
+    \vfill
+
+    % Meta-Angaben zur vorgelegten Arbeit
+    {\sffamily\begin{tabular}{@{}p{4cm}p{9cm}@{}}
+      \betreuungschluessel: & \betreuungwert  \\
+      \autorschluessel:     & \autorwert      \\
+      Matrikelnummer:     & \matrikelnummer \\
+      Anschrift:                & \strhausnr      \\
+                                    & \plzort         \\
+      Abgabetermin:        & \abgabetermin   \\
+    \end{tabular}}
+  \end{titlepage}
+
+\frontmatter % Eigenschaften für den Vorspann setzen

@@ -36,7 +36,7 @@ pdf:
 	--highlight-style pygments \
 	-V fontsize=12pt \
 	-V papersize=a4paper \
-	-V documentclass=article \
+	-V documentclass=scrbook \
 	-N \
 	--pdf-engine=xelatex \
 	--verbose  2>pandoc.log

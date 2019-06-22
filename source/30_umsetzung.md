@@ -87,4 +87,4 @@ EIn Problem bei einer solchen Aufteilung, wenn also die Trainingsdaten aus einem
 		1. Verifizieren mit Testdaten
 		2. Untersuchung der Genauigkeit
 	3. Ergebnisse
->
+-->
