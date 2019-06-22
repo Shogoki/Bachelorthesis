@@ -2,7 +2,7 @@
 
 # Umsetzung & Evaluierung
 
-In diesem Teil wird die Umsetzung der Arbeit eingegangen. im ersten Abschnitt wird auf die Art und Einteilung der zu klassifizierenden Daten eingegangen. Im Weiteren Verlauf wird auf die Beschaffung Der verschiedenen Datensätze eingegangen mit welchen gearbeitet werden soll. Anschließend wird auf diverse Verfahren der Datenpräparation wie Vorbereitung, Generalisierung und Datenvervielfältigung eingegangen. Letzen Endes werden verschiedene neuronale Netze entworfen, trainiert und getestet, bis dann im letzten Abschnitt auf die Realisierung des zu erstellenden Webservice eingegangen wird.
+In diesem Teil wird die Umsetzung der Arbeit eingegangen. im ersten Abschnitt wird auf die Art und Einteilung der zu klassifizierenden Daten eingegangen. Im Weiteren Verlauf wird auf die Beschaffung Der verschiedenen Datensätze eingegangen mit welchen gearbeitet werden soll. Anschließend wird auf diverse Verfahren der Datenpräparation wie Vorbereitung, Normalisierung und Datenvervielfältigung eingegangen. Letzten Endes werden verschiedene neuronale Netze entworfen, trainiert und getestet, bis dann im letzten Abschnitt auf die Realisierung des zu erstellenden Webservice eingegangen wird.
 
 ## Beschaffenheit und Einteilung der Daten
 
@@ -77,7 +77,14 @@ Bei den Daten aus dem *FER+* Datensatz ist etwas weniger Vorverarbeitung nötig.
 TODO: CODELISTING PROCESS FER+
 
 
-### Generalisierung
+### Normalisierung
+
+*"Data normalization has been proposed to address the aforementioned challenge by reducing the training space and making the
+training more efficient."* [@Zhang2018]
+
+Ein üblicher Schritt, um die Trainingsphase  im machinellen Lernen zu beschleunigen ist es die Eingabedaten zu normalisieren. Ziel ist es die Eingabedaten, welche auf einem sehr breiten Spektrum liegen so zu normalisieren um das Spektrum zu verkleinen. In unserem Fall geht es um die Graustufenbilder. Im Generellen kann man Normalisierung von solchen Bilden wie folgt beschreiben: Ein n-dimensionales Graustufenbild $I:\{\mathbb{X}\subseteq\mathbb{R}^n\}\rightarrow\{\text{Min},..,\text{Max}\}$ mit den Pixelwerten zwischen $Min$ unx $Max$ wird in ein neues Graustufenbild $I_N:\{\mathbb{X}\subseteq\mathbb{R}^n\}\rightarrow\{\text{newMin},..,\text{newMax}\}$ mit Pixelwerten zwischen $newMin$ und $newMax$ überführt.
+
+
 
 
 
