@@ -82,13 +82,26 @@ TODO: CODELISTING PROCESS FER+
 *"Data normalization has been proposed to address the aforementioned challenge by reducing the training space and making the
 training more efficient."* [@Zhang2018]
 
-Ein üblicher Schritt, um die Trainingsphase  im machinellen Lernen zu beschleunigen ist es die Eingabedaten zu normalisieren. Ziel ist es die Eingabedaten, welche auf einem sehr breiten Spektrum liegen so zu normalisieren um das Spektrum zu verkleinen. In unserem Fall geht es um die Graustufenbilder. Im Generellen kann man Normalisierung von solchen Bilden wie folgt beschreiben: Ein n-dimensionales Graustufenbild $I:\{\mathbb{X}\subseteq\mathbb{R}^n\}\rightarrow\{\text{Min},..,\text{Max}\}$ mit den Pixelwerten zwischen $Min$ unx $Max$ wird in ein neues Graustufenbild $I_N:\{\mathbb{X}\subseteq\mathbb{R}^n\}\rightarrow\{\text{newMin},..,\text{newMax}\}$ mit Pixelwerten zwischen $newMin$ und $newMax$ überführt.
+Ein üblicher Schritt, um die Trainingsphase  im machinellen Lernen zu beschleunigen ist es die Eingabedaten zu normalisieren. Ziel ist es die Eingabedaten, welche auf einem sehr breiten Spektrum liegen so zu normalisieren um das Spektrum zu verkleinen. In unserem Fall geht es um die Graustufenbilder. Im Generellen kann man Normalisierung von solchen Bilden wie folgt beschreiben: Ein n-dimensionales Graustufenbild $I:\{\mathbb{X}\subseteq\mathbb{R}^n\}\rightarrow\{\text{Min},..,\text{Max}\}$ mit den Pixelwerten zwischen $Min$ unx $Max$ wird in ein neues Graustufenbild $I_N:\{\mathbb{X}\subseteq\mathbb{R}^n\}\rightarrow\{\text{newMin},..,\text{newMax}\}$ mit Pixelwerten zwischen $newMin$ und $newMax$ überführt.[@gonzalez2008digital]
+Die lineare Noramlisierung eines Graustufenbildes berechnet sich wie folgt:
 
+$$
+I_N=(I-\text{Min})\frac{\text{newMax}-\text{newMin}}{\text{Max}-\text{Min}}+\text{newMin}
+$$
 
+In unserem Beispiel sind die Ausgangswerte für $Min = 0$ und $Max = 255$ und für eine einfache Normalisierung wählen wir die Werte $newMin = 0$ und $newMax = 1$, damit alle Werte zwischen 0 und 1 liegen. Damit ergibt sich die vereinfachte Formel:
 
+$$
+I_N=\frac{I}{\text{Max}} \Rightarrow I_N=\frac{I}{255}
+$$
 
+Zur Normalisierung der Daten, werden also alle Pixelwerte durch 255 dividiert, bevor das Bild dem neuronalen Netz gezeigt wird.
 
 ### Datenmehrung
+
+Je mehr Trainingsdaten für das KNN vorhanden sind, desto besser kann es auch mit ungesehenen Daten umgehen. Da nur begrenzt viele Daten zur Verfügung stehen werden in dieser Arbeit einige Methoden der künstlichen  Datenvermehrung angewandt. Dazu werden die Bilder der Eingangsdaten zum Beispiel gespiegelt, verzerrt oder gedreht. Durch die Spiegelung eines Bildes entsteht wieder ein neues Bild, welches zum Training des neuronalen Netzes verwendet werden kann. So kann mit dieser relativ einfachen Methode die Anzahl der Trainingsdaten sehr einfach verdoppelt werden. Die Methode die zum spiegeln der Bilder des *FER+* Datensatzes verwendet wurde ist in LISTING X TODO: zu sehen.
+
+TODO: Code Listing spiegeln
 
 ## Entwurf neuronaler Netze
 
