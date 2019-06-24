@@ -3,5 +3,8 @@
     "editor.wrappingColumn": 0,
     "editor.quickSuggestions": false,
     "cSpell.language": "de",
-    "PandocCiter.DefaultBib": "source/references.bib"
+    "PandocCiter.DefaultBib": "source/references.bib",
+    "cSpell.words": [
+        "stimulativen"
+    ]
 }
