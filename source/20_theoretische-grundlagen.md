@@ -151,9 +151,7 @@ Bei faltenden neuronale Netzen (CNN, convolutional neural networks) handelt es s
 Ein typisches CNN besteht aus einer oder mehreren *convolutional* Schichten gefolgt von einer oder mehreren *fully-connected* Schichten, wie wir Sie bereits aus den klassischen neuronalen Netzen kennen. 
 Eine *convolutional* Schicht besteht aus einem oder mehreren Filtern gleicher Größe. Man kann diesen Filter als eine Art Fenster vorstellen, welches über die Daten "geschoben werden". Dabei entstehen aus den meist größeren Rastern der Eingabedaten, neue Raster mit kleineren Dimensionen (siehe \ref{CNN}). Gibt es mehrere Filter, werden die entstehenden Ausgabeschichten aufeinander gestapelt[@Goodfellow-et-al-2016].
 
-![vereinfacht dargestelltes faltendes neuronales Netzwerk \label{hunde_klassifizierer}](source/figures/cnn.pdf){ width=90% }
-
-TODO: FINISH Abbildung CNN
+![vereinfacht dargestelltes faltendes neuronales Netzwerk \label{CNN}](source/figures/cnn.pdf){ width=90% }
 
 Jede dieser *convolutional* Schichten hat mehrere (Hyper-)Paramenter, welche Beeinflussen welche Dimensionen das nachfolgende Daten-Raster erhält. Diese wären zum Beispiel die *Filtergröße*, sowie die Anzahl der Filter. Daneben ist die *Schrittweite* ein weitere Parameter, welche beeinflusst, wie groß die Sprünge sind, in welchen der Filter über die Daten "geschoben" wird. Als letzter Parameter wäre noch ein mögliches *padding* (Füllung) zu nennen. Hierbei wird eine definierte Anzahl an zusätzlichen Zeilen an jeder Seite des Rasters mit Nullen aufgefüllt. Diese Methode dient dazu, dass der Filter auch die äußeren Werte mit einer Ähnlichen Gewichtung berücksichtigen kann.
 
@@ -167,14 +165,14 @@ Dieser stützt sich auf die Erkenntnisse von Charles Darwin [@CharlesDarwin1872]
 ### Einteilung von Emotionen
 
 Um eine Vorhersage, bzw. Erkennung der aktuellen Emotion zu bewerkstelligen ist es nötig diese sinnvoll zu Unterscheiden. Für die Einteilung oder Kategorisierung von menschlichen Emotionen gibt es ebenfalls unterschiedliche Ansätze welche verfolgt werden können.
-Im Allgemeinen unterscheidet man zwischen der kategorischen und der dimensionalen Einteilung. Bei letzterer werden die Emotionen auf einem Spektrum dargestellt. Es wird also niemals eine konkrete Emotion zugeordnet, sondern immer ein Punkt auf der Skala.
-<!-- TODO: circumplex Skala + cite evtl. Abbildung?-->
+Im Allgemeinen unterscheidet man zwischen der kategorischen und der dimensionalen Einteilung. Bei letzterer werden die Emotionen auf einem Spektrum dargestellt. Es wird also niemals eine konkrete Emotion zugeordnet, sondern immer ein Punkt auf der Skala.[@posner_russell_peterson_2005]
+<!-- TODO:  Abbildung?-->
 
 Bei der kategorischen Einteilung geht man davon aus, dass es eine endliche Anzahl an wohl definierten menschlichen Emotionen gibt. Insbesondere Vertreter des evolutionstheoretischen Ansatzes von Emotionen gehen auch von einer kategorischen Einteilung aus. Zur Untermauerung des Darwinschen Ansatzes untersuchten einige Forscher unter der Leitung von Dr. Ekman [@Ekman1972] die Gesichtsausdrücke für bestimmte Situationen in einen Eingeborenen-Stamm in Neu Guinea Dieser hatte zuvor vollkommen isoliert von anderen Gesellschaften gelebt. Somit waren die Reaktionen der Menschen dort nicht auf gesellschaftliche Einflüsse zurück zu führen. Ekman konnte damals bereits anhand des Gesichtsaudrucks vier universelle Emotionen ableiten. Diese waren *Wut*, *Trauer*, *Ekel* und *Fröhlichkeit*.
 
-In weiterführenden Forschungen konnte Ekman die Erkenntnisse vertiefen und entwickelte zusammen mit einigen anderen Wissenschaftlern das *Facial Acting Coding System* (FACS) welche die menschlichen Emotionen in insgesamt sieben Basisemotionen einteilt, welche unabhängig vom gesellschaftlichen Einfluss vorhanden sind. Zusätzlich zu den vier zuvor abgeleiteten Emotionen beinhaltet das FACS noch die Emotionen *Überaschung*, *Verachtung* und *Angst*.
+In weiterführenden Forschungen konnte Ekman die Erkenntnisse vertiefen und entwickelte zusammen mit einigen anderen Wissenschaftlern das *Facial Acting Coding System* (FACS) welche die menschlichen Emotionen in insgesamt sieben Basisemotionen einteilt, welche unabhängig vom gesellschaftlichen Einfluss vorhanden sind. Zusätzlich zu den vier zuvor abgeleiteten Emotionen beinhaltet das FACS noch die Emotionen *Überraschung*, *Verachtung* und *Angst*.
 
-Die Einteilung nach dem FACS bildet die Basis für die Klassifizerung von Emotionen in dieser Arbeit. <!-- TODO: FACS cite. +  evtl Abbildung -->
+Die Einteilung nach dem FACS bildet die Basis für die Klassifizierung von Emotionen in dieser Arbeit.
 
 
 ### Gesichtserkennung
@@ -185,7 +183,7 @@ Um aus einem größeren Bildausschnitt automatisiert den relevanten Teil, also d
 Die aktuell gängigste Methode zur Gesichtserkennung ist der sogenannte Viola-Jones Detektor[@Shen1997]. Diese Methode gibt nach Eingabe eines größeren Bildes, die genaue Position des Gesichtes in diesem wieder. Dieser Bereich kann dann ausgeschnitten und weiter verwendet werden. Viola und Jones nutzen in Ihrem Algorithmus 3 unterschiedliche Techniken, die ihn besonders effizient machen. Im Folgenden sollen diese kurz beschrieben werden.
 
 #### integral Image
-Zur weitren einfachen Verarbeitung der Eingabebilder sollen nur bestimmte Merkmale der Bilder extrahiert werden. Anstelle eines pixelbasierten Ansatzes führten Viola und Jones hierzu den Begriff des *Integralbildes* (engl. integral image) ein. Die dazu extrahierten *Features* ähneln den Haar-Basis Merkmalen, wie Sie zuvor auch in anderen Arbeiten verwendet wurden (vergleich TODO: ref Papageorgiou et al.).
+Zur weitren einfachen Verarbeitung der Eingabebilder sollen nur bestimmte Merkmale der Bilder extrahiert werden. Anstelle eines pixelbasierten Ansatzes führten Viola und Jones hierzu den Begriff des *Integralbildes* (engl. integral image) ein. Die dazu extrahierten *Features* ähneln den Haar-Basis Merkmalen, wie Sie zuvor auch in anderen Arbeiten verwendet wurden (vergleich [@Papageorgiou].
 Die Wertigkeit eines Pixels im *Integralbild* steht immer im Zussamenhang mit den Pixeln in der unmittelbaren Umgebung. Desto höher der Wert ist, desto heller ist der betreffende Bildausschnitt. Auf Basis dieser Informationen haben Viola und Jones 3 der, aufgrund Ihrer Ähnlichkeit, *Haar-like features* definiert, welche ein Geischt anhand der entsprechenden Helligkeitsunterschiede beschreiben.
 
 "Ein *two-rectangle feature* wird beschrieben durch die Differenz aus der Summe der Pixel zwischen zwei rechteckigen Bildausschnitten. DIe Ausschnitte haben die selbe Größe und Form und Grenzen entweder horizontal oder vertikal aneinander an.
@@ -201,12 +199,14 @@ $$
 ii(x, y) = \sum_{n=0, m=0}^{n\leq x, m\leq y} i(n, m)
 $$
 
-In Abbildung \ref{integral_image} sieht man die Berechnung eines Pixelwertes anhand eines Beispiels.
+In Abbildung \ref{integral_image} sieht man die Berechnung eines Pixelwertes anhand eines Beispiels. Man sieht das hier $ii(1, 1) = 255 + 222 + 220 + 205 = 902$
 
-TODO: Abbildung integral_image (Schmidt2014)
-Die Vorteile der Nutzung des *Integralbildes* sind die einfache, und damit effiziente, Berechnungsmethode, sowie die einfache Adaptierbarkeint des Prozesses auf einzelne Bildausschnitte. Des Weiteren ist es Möglich, zur Brechnung von Pixelwerten auf zuvor bereits berechnete Werte zurückzugreifen (siehe Abbildung \ref{integral_image_reuse}).
 
-TODO: Abbildung integral_image_reuse (Schmidt2014)[@Schmidt2014]
+![Berechnung eines Integralbildes aus einem Graustufenbild - *Angelehnt an [@Schmidt2014]*\label{integral_image}](source/figures/integral_image.pdf){ width=90% }
+
+Die Vorteile der Nutzung des *Integralbildes* sind die einfache, und damit effiziente, Berechnungsmethode, sowie die einfache Adaptierbarkeint des Prozesses auf einzelne Bildausschnitte. Des Weiteren ist es Möglich, zur Brechnung von Pixelwerten auf zuvor bereits berechnete Werte zurückzugreifen. Das ist in Abbildung \ref{integral_image_reuse} veranschaulicht. Hier sieht man dass $ii(2, 0) = i(0, 0) + i(1, 0) + i(2, 0) = 255 + 222 + 200$ gleichzusetzen ist mit $ii(2, 0) = ii(1, 0) + i(2, 0) = 277 + 200$.
+
+![Berechnung der nächstfolgenden Pixelsumme des Integralbildes - *Angelehnt an [@Schmidt2014]*\label{integral_image_reuse}](source/figures/integral_image_reuse.pdf){ width=90% }
 
 #### modifizierter AdaBoost Algorithmus
 
@@ -221,8 +221,7 @@ In Viola und Jones´ Arbeit egaben sich aus jedem 24x24 Pixel Fenster über 1800
 
 Die dritte von Viola und Jones eingeführte Technik zur Geischtserkennung sind die kaskadierenden Klassifizierer. Die Idee hierbei besteht darin mehrere optimierte Klassifizierer für nur ein bestimmtes Merkmal hintereinander zu schalten. Die einzelnen Klassifizierer haben dabei eine Negativ-Erkennungs-Rate (engl. *false positive rate*) gegen 0. So können diese eine große Anzahl an nicht passenden Bildausschnitten aussortieren und nur die passenden an den enstprechenden nächsten Klassifizierer weitergeben. Da diese einfachen Klassifizierungen sehr effizient berechnet werden können, wird verhindert, dass für nicht passende Ausschnitte zu viel Rechenaufwand betrieben wird. Der Begriff Kaskade wurde gewählt um zu veranschaulischen, dass jeder Klassifizierer nur anhand eines postivien Ergebnisses des vorgeschalteten Klassifizierers weiter arbeitet. 
 
-TODO: Abbildung cascade of classifiers
-
+![kaskadierende Klassifizierer C1 bis Cn - *Angelehnt an [@Shen1997]* \label{cascade_of_classifiers}](source/figures/cascade_of_classifiers.pdf){ width=90% }
 
 <!-- expose Ordnung 
 ## Einordnung der Daten
