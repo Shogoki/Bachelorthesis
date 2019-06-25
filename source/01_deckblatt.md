@@ -51,4 +51,3 @@ and add the centred logo
     \end{center}
 \end{titlepage}
 
-\pagenumbering{Roman}
