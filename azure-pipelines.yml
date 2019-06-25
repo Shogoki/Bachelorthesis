@@ -18,9 +18,11 @@ steps:
 #- script:  make pdf_cicd
 #  displayName: 'build thesis'
 
-- task: 'retrieve secrets'
+- task: AzureKeyVault@1
   inputs:
     azureSubscription: 'Microsoft Azure Enterprise (80710935-9dd3-4f6f-a587-8c84723a457c)'
     KeyVaultName: 's18344-keys'
     SecretsFilter: '*'
+  displayName: "retrieve secretes"
 - script: echo $(owncloud-pw)
+  displayName:  "output secret"
