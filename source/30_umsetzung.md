@@ -32,7 +32,7 @@ Das Team von Microsoft Research [@Barsoum2016] beschreibt mehrere Variationen, w
 
 Zum selbst erstellen von Daten wurde im Rahmen der Arbeit eine einfache Website erstellt, welche mithilfe von *WebRTC* Zugriff auf die Kamera bekommt. Auf dieser Website haben freiwillige Probanden, und auch der Autor dieser Arbeit, die Möglichkeit nacheinander für jede Emotion des *FACS* ein 15 sekündiges Video aufzunehmen. Dieses wird anschließend direkt auf dem Server gespeichert. Die Webseite ist in Abbildung \ref{webrtc_screenshot} zu sehen.
 
-![Screenshot der Video-Recording Website\label{bio_neuron}](source/figures/web_recorder.png){ width=70% }
+![Screenshot der Video-Recording Website\label{webrtc_screenshot}](source/figures/web_recorder.png){ width=70% }
 
 Mithilfe dieser Webseite wurden insgesamt 15 Sätze an 15 sekündigen Videos von 8 verschiedenen freiwilligen Probanden (den Autor dieser Arbeit eingeschlossen) gesammelt. Aus diesen Videos wurde anschließend mit Hilfe des folgenden Python-Skripts pro Sekunde ein Einzelbild extrahiert, und mit dem Namen der entsprechenden Klasse abgespeichert. Somit wurden also $15 * 15 = 225$ Einzelbilder pro Klasse generiert. 
 
@@ -55,7 +55,7 @@ def extract_video_frames(prefix, videofile,
         print('Read a new frame: ', success)
         count += 1
 ```
-Python-Skript zum extrahieren der Einzelbilder\label{listing_extract_video}
+<!-- Python-Skript zum extrahieren der Einzelbilder\label{listing_extract_video} -->
 
 Die Einzelbilder wurden anschließend manuell auf Korrektheit, das heißt Zuordnung zur Klasse, geprüft. Dabei wurden insgesamt 200 Bilder wieder aussortiert (TODO: Verify numbers).
 
@@ -73,6 +73,7 @@ In dieser Arbeit wurde daher auch die Einteilung in 4 Datensätze gewählt. Die 
 Die selbsterstellten Daten wurden in zu je 50% in den Entwicklungs- und Test-Datensatz aufgeteilt. Vom *FER+* Datensatz wurden  10% Der Bilder für den *Bridge* Datensatz verwendet und 90% als Trainingsdaten. Die Aufteilung ist in Abbildung \ref{data_split} veranschaulicht.
 
 ![Aufteilung der Daten in 4 Datensätze \label{data_split}](source/figures/train_test_split.pdf){ width=90% } <!-- TODO: enter number -->
+
  <!--like this https://www.freecodecamp.org/news/what-to-do-when-your-training-and-testing-data-come-from-different-distributions-d89674c6ecd8/ -->
 
 Um eine Eingangs zufällige, jedoch immer gleich reproduzierbare Aufteilung zu erzielen wurde das folgende Python Skript verwendet.
@@ -86,12 +87,12 @@ Um die Effizienz, sowie die Genauigkeit der Vorhersage des neuronalen Netzwerkes
 
 ### Vorverarbeitung
 
-Um ein möglichst gutes Ergebnis zu erzielen wurden die selbst erstellten Daten, aber auch die frei verfügbaren Daten aus dem *FER+* Datensatz auf diverse Weise Vorverarbeitet. 
-Bei den selbst aufgezeichneten Daten, wurde wie bereits erwähnt eine abschließende manuelle Sichtung vorgenommen, um möglichst alle falsch markierten Daten auszusortieren. Des weiteren werden alle der selbst aufgezeichneten Bilder auf den Ausschnitt des Gesichtes beschränkt, bevor Sie dem selbst entworfenen KNN präsentiert werden. Dazu wird der bereits beschriebene *Viola-Jones-Detektor*[@Shen1997] verwendet um das Gesicht im jeweiligen Bild zu detektieren. Nachdem der gesichtsenthaltende Teil des Bildes ausgeschnitten wurde, wird dieser auf 48x48 Pixel skaliert und in ein Graustufenbild umgewandelt. Damit haben letzten Endes alle Eingangsdaten des neuronalen Netzes die gleiche Struktur. Der Python Code für diese Vorverarbeitung ist im folgenden Listing zu sehen.
+Um ein möglichst gutes Ergebnis zu erzielen wurden die selbst erstellten Daten, aber auch die frei verfügbaren Daten aus dem *FER+* Datensatz auf diverse Weise vorverarbeitet. 
+Bei den selbst aufgezeichneten Daten, wurde wie bereits erwähnt eine abschließende manuelle Sichtung vorgenommen, um möglichst alle falsch markierten Daten auszusortieren. Des weiteren werden alle der selbst aufgezeichneten Bilder auf den Ausschnitt des Gesichtes beschränkt, bevor sie dem selbst entworfenen KNN präsentiert werden. Dazu wird der bereits beschriebene *Viola-Jones-Detektor* [@Shen1997] verwendet um das Gesicht im jeweiligen Bild zu detektieren. Nachdem der, das Gesicht enthaltende, Teil des Bildes ausgeschnitten wurde, wird dieser auf 48x48 Pixel skaliert und in ein Graustufenbild umgewandelt. Damit haben letzten Endes alle Eingangsdaten des neuronalen Netzes die gleiche Struktur. Der Python Code für diese Vorverarbeitung ist im folgenden Listing zu sehen.
 
 TODO: Listing, preprocess selfrecorded data.
 
-Bei den Daten aus dem *FER+* Datensatz ist etwas weniger Vorverarbeitung nötig.Die Vorverarbeitung dieser Daten besteht im wesentlcihen darin, die Pixelwerte welche als ein eindimensionales Array vorliegen in eine 48x48 Matrix umzuwandeln. Des weiteren wird aus dem mehrstimmigen *Labels* des *FER+* Datensatzes noch mithilfe des einfachen Mehrheitsprinzips das hier genutzte extrahiert. In einem letzten Schritt werden dann noch alle Datensätze, welche mit "not a face" markiert sind, aussortiert. (siehe Listing TODO:) 
+Bei den Daten aus dem *FER+* Datensatz ist etwas weniger Vorverarbeitung nötig. Die Vorverarbeitung dieser Daten besteht im wesentlcihen darin, die Pixelwerte welche als ein eindimensionales Array vorliegen in eine 48x48 Matrix umzuwandeln. Des weiteren wird aus den mehrstimmigen *Labels* des *FER+* Datensatzes mithilfe des einfachen Mehrheitsprinzips das hier genutzte extrahiert. In einem letzten Schritt werden dann alle Datensätze, welche mit "not a face" markiert sind, aussortiert. (siehe Listing TODO:) 
 
 TODO: CODELISTING PROCESS FER+
 
@@ -100,21 +101,23 @@ TODO: CODELISTING PROCESS FER+
 
 *"Data normalization has been proposed to address the aforementioned challenge by reducing the training space and making the
 training more efficient."* [@Zhang2018]
+<!--
+Laut [@Zhang2018] hilft die Normalisierung also dabei die Herausforderung einer effizienten Erkennung zu meistern, indem das Trainingsspektrum verkleinert wird, was die Trainingsphase beschleunigt.-->
 
-Ein üblicher Schritt, um die Trainingsphase  im machinellen Lernen zu beschleunigen ist es die Eingabedaten zu normalisieren. Ziel ist es die Eingabedaten, welche auf einem sehr breiten Spektrum liegen so zu normalisieren um das Spektrum zu verkleinen. In unserem Fall geht es um die Graustufenbilder. Im Generellen kann man Normalisierung von solchen Bilden wie folgt beschreiben: Ein n-dimensionales Graustufenbild $I:\{\mathbb{X}\subseteq\mathbb{R}^n\}\rightarrow\{\text{Min},..,\text{Max}\}$ mit den Pixelwerten zwischen $Min$ unx $Max$ wird in ein neues Graustufenbild $I_N:\{\mathbb{X}\subseteq\mathbb{R}^n\}\rightarrow\{\text{newMin},..,\text{newMax}\}$ mit Pixelwerten zwischen $newMin$ und $newMax$ überführt.[@gonzalez2008digital]
-Die lineare Noramlisierung eines Graustufenbildes berechnet sich wie folgt:
+Ein üblicher Schritt, um die Trainingsphase  im maschinellen Lernen zu beschleunigen ist es die Eingabedaten zu normalisieren. Ziel ist es die Eingabedaten, welche auf einem sehr breiten Spektrum liegen so zu normalisieren um das Spektrum zu verkleinern. Im vorliegenden Fall geht es um die Graustufenbilder. Im Generellen kann man Normalisierung von solchen Bilden wie folgt beschreiben: Ein n-dimensionales Graustufenbild $I:\{\mathbb{X}\subseteq\mathbb{R}^n\}\rightarrow\{\text{Min},..,\text{Max}\}$ mit den Pixelwerten zwischen $Min$ unx $Max$ wird in ein neues Graustufenbild $I_N:\{\mathbb{X}\subseteq\mathbb{R}^n\}\rightarrow\{\text{newMin},..,\text{newMax}\}$ mit Pixelwerten zwischen $newMin$ und $newMax$ überführt.[@gonzalez2008digital]
+Die lineare Normalisierung eines Graustufenbildes berechnet sich wie folgt:
 
 $$
 I_N=(I-\text{Min})\frac{\text{newMax}-\text{newMin}}{\text{Max}-\text{Min}}+\text{newMin}
 $$
 
-In unserem Beispiel sind die Ausgangswerte für $Min = 0$ und $Max = 255$ und für eine einfache Normalisierung wählen wir die Werte $newMin = 0$ und $newMax = 1$, damit alle Werte zwischen 0 und 1 liegen. Damit ergibt sich die vereinfachte Formel:
+Im vorliegenden Beispiel sind die Ausgangswerte für $Min = 0$ und $Max = 255$ und für eine einfache Normalisierung werden die Werte $newMin = 0$ und $newMax = 1$ gewählt, damit alle Datenwerte zwischen 0 und 1 liegen. Damit ergibt sich die vereinfachte Formel:
 
 $$
 I_N=\frac{I}{\text{Max}} \Rightarrow I_N=\frac{I}{255}
 $$
 
-Zur Normalisierung der Daten, werden also alle Pixelwerte durch 255 dividiert, bevor das Bild dem neuronalen Netz gezeigt wird.
+Zur Normalisierung der Daten werden dementsprechend alle Pixelwerte durch 255 dividiert, bevor das Bild dem neuronalen Netz gezeigt wird.
 
 ### Datenmehrung
 

@@ -208,7 +208,7 @@ In Abbildung \ref{integral_image} sieht man die Berechnung eines Pixelwertes anh
 
 ![Berechnung eines Integralbildes aus einem Graustufenbild - *Angelehnt an [@Schmidt2014]*\label{integral_image}](source/figures/integral_image.pdf){ width=90% }
 
-Die Vorteile der Nutzung des *Integralbildes* sind die einfache, und damit effiziente, Berechnungsmethode, sowie die einfache Adaptierbarkeit des Prozesses auf einzelne Bildausschnitte. Des Weiteren ist es Möglich, zur Berechnung von Pixelwerten auf zuvor bereits bestimmte Werte zurückzugreifen. Das ist in Abbildung \ref{integral_image_reuse} veranschaulicht. Hier sieht man dass $ii(2, 0) = i(0, 0) + i(1, 0) + i(2, 0) = 255 + 222 + 200$ gleichzusetzen ist mit $ii(2, 0) = ii(1, 0) + i(2, 0) = 277 + 200$.
+Die Vorteile der Nutzung des *Integralbildes* sind die einfache, und damit effiziente, Berechnungsmethode, sowie die einfache Adaptierbarkeit des Prozesses auf einzelne Bildausschnitte. Des Weiteren ist es möglich, zur Berechnung von Pixelwerten auf zuvor bereits bestimmte Werte zurückzugreifen. Das ist in Abbildung \ref{integral_image_reuse} veranschaulicht. Hier sieht man, dass $ii(2, 0) = i(0, 0) + i(1, 0) + i(2, 0) = 255 + 222 + 200$ gleichzusetzen ist mit $ii(2, 0) = ii(1, 0) + i(2, 0) = 277 + 200$.
 
 ![Berechnung der nächstfolgenden Pixelsumme des Integralbildes - *Angelehnt an [@Schmidt2014]*\label{integral_image_reuse}](source/figures/integral_image_reuse.pdf){ width=90% }
 
