@@ -32,19 +32,37 @@ Das Team von Microsoft Research[@Barsoum2016] beschreibt mehrere Variationen, wi
 
 Zum selbst erstellen von Daten wurde im Rahmen der Arbeit eine einfache Website erstellt, welche mithilfe von *WebRTC* Zugriff auf die Kamera bekommt. Auf dieser Website haben freiwillige Probanden, und auch der Autor dieser Arbeit, die Möglichkeit nacheinander für jede Emotion des *FACS* ein 15 sekündiges Video aufzunehmen. Dieses wird anschließend direkt auf dem Server gespeichert. Die Webseite ist in Abbildung \ref{webrtc_screenshot} zu sehen.
 
-TODO: Screenshot Website
+![Screenshot der Video-Recording Website\label{bio_neuron}](source/figures/web_recorder.png){ width=70% }
 
-Mithilfe dieser Webseite wurden insgesamt 25 Sätze an 15 sekündigen Videos von 10 verschiedenen freiwilligen Probanden (den Autor dieser Arbeit eingeschlossen) gesammelt. Aus diesen Videos wurde anschließend mit Hilfe eines python-Skripts (siehe TODO: Listing) pro Sekunde ein Einzelbild extrahiert, und mit dem Namen der entsprechenden Klasse abgespeichert. Somit wurden also $25 * 15 = 375$ Einzelbilder pro Klasse generiert.
+Mithilfe dieser Webseite wurden insgesamt 25 Sätze an 15 sekündigen Videos von 10 verschiedenen freiwilligen Probanden (den Autor dieser Arbeit eingeschlossen) gesammelt. Aus diesen Videos wurde anschließend mit Hilfe des folgenden Python-Skripts pro Sekunde ein Einzelbild extrahiert, und mit dem Namen der entsprechenden Klasse abgespeichert. Somit wurden also $25 * 15 = 375$ Einzelbilder pro Klasse generiert. 
 
-TODO: Code Listing
+```python
 
+def extract_video_frames(prefix, videofile,
+	targetdir = "../data/extracted"):
+
+    vidcap = cv2.VideoCapture(videofile)
+	fps = min((50, int(vidcap.get((cv2.CAP_PROP_FPS)))))
+	print ("extracting every {} frame from {}".format(fps,videofile))
+    success,image = vidcap.read()
+    count = 0
+    while success:
+        if (count % fps) == 0:
+			# save frame as JPEG file
+            cv2.imwrite("{}/{}_frame{}.jpg".format(targetdir,
+				prefix , count) , image)  
+        success,image = vidcap.read()
+        print('Read a new frame: ', success)
+        count += 1
+```
+Python-Skript zum extrahieren der Einzelbilder\label{listing_extract_video}
 
 Die Einzelbilder wurden anschließend vom Autor manuell auf Korrektheit, das heißt Zuordnung zur Klasse, geprüft. Dabei wurden insgesamt 100 Bilder wieder aussortiert (TODO: Verify numbers).
 
 
-### Einteilung der Datensätze (Train/DEV_train/DEV/test)
+### Einteilung der Datensätze
 
-Beim machinellen Lernen ist es üblich den vorhandenen Datensatz, bzw. die vorhandenen Datensätze in verschiedene Verwendungszwecke einzuteilen. Klassischerweise sprach man hier immer vom *train/test-Split*, also einer Aufteilung der Daten in einen Trainings- und einen Test-Datensatz. In modernen Projekten, welche sich mit maschinellen Lernen beschäftigen spricht man jedoch zumeist von einem *train/dev/test-split*. Die Daten werden also in einen Trainings-, einen Entwicklungs- und einen Test-Datensatz eingeteilt. Als Entwicklungs-Datensatz bezeichnet man, jene Daten, welche während der Entwicklung, also dem Anpassen bestimmter (Hyper-)Parameter, des neuronalen Netzes zur Evaluierung verwendet. Der Test-Datensatz ist in diesem Szenario ein Satz aus Daten, welches das neuronale Netz vor der Fertigstellung noch nicht "zu sehen" bekommen hat. Beim klassichen *train/test-split* ist der Test-Satz also eingetlich, das was wir Heute als Entwicklungs-Datensatz bezeichnen, und es gibt keinen wirklichen Test-Datensatz.
+Beim machinellen Lernen ist es üblich den vorhandenen Datensatz, bzw. die vorhandenen Datensätze in verschiedene Verwendungszwecke einzuteilen. Klassischerweise sprach man hier immer vom *train/test-Split*, also einer Aufteilung der Daten in einen Trainings- und einen Test-Datensatz. In modernen Projekten, welche sich mit maschinellen Lernen beschäftigen spricht man jedoch zumeist von einem *train/dev/test-split*. Die Daten werden also in einen Trainings-, einen Entwicklungs- und einen Test-Datensatz eingeteilt. Als Entwicklungs-Datensatz bezeichnet man, jene Daten, welche während der Entwicklung, also dem Anpassen bestimmter (Hyper-)Parameter, des neuronalen Netzes zur Evaluierung verwendet. Der Test-Datensatz ist in diesem Szenario ein Satz aus Daten, welches das neuronale Netz vor der Fertigstellung noch nicht "zu sehen" bekommen hat. Beim klassischen *train/test-split* ist der Test-Satz also eigentlich, das was wir Heute als Entwicklungs-Datensatz bezeichnen, und es gibt keinen wirklichen Test-Datensatz.
 Bei der Wahl der Datenquellen, ist es wichtig, dass die Test-Daten möglichst ähnlich, zu den später erwarteten Eingangsdaten sind, und dass Entwicklungs- und Test-Datensatz aus der selben Quelle stammen sollten.
 
 Für diese Arbeit bedeutet das, dass die Entwicklungs- und Test-Daten aus den selbstgenerierten Daten stammen, da diese Bereits von aufgenommenen Videos stammen, was den Zeildaten sehr nahe kommt.
@@ -54,7 +72,8 @@ Ein Problem bei einer solchen Aufteilung, wenn also die Trainingsdaten aus einem
 In dieser Arbeit wurde daher auch die Einteilung in 4 Datensätze gewählt. Die Daten wurden dabei wie folgt aufgeteilt:
 Die selbsterstellten Daten wurden in zu je 50% in den Entwicklungs- und Test-Datensatz aufgeteilt. Vom *FER+* Datensatz wurden  10% Der Bilder für den *Bridge* Datensatz verwendet und 90% als Trainingsdaten. Die Aufteilung ist in Abbildung \ref{data_split} veranschaulicht.
 
-TODO: Abbildung Datenteilung \label{data_split <!--like this https://www.freecodecamp.org/news/what-to-do-when-your-training-and-testing-data-come-from-different-distributions-d89674c6ecd8/ -->
+![Aufteilung der Daten in 4 Datensätze \label{data_split}](source/figures/train_test_split.pdf){ width=90% } <!-- TODO: enter number -->
+ <!--like this https://www.freecodecamp.org/news/what-to-do-when-your-training-and-testing-data-come-from-different-distributions-d89674c6ecd8/ -->
 
 Um eine Eingangs zufällige, jedoch immer gleich reproduzierbare Aufteilung zu erzielen wurde das folgende Python Skript verwendet.
 
