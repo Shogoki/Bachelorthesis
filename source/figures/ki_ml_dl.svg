@@ -1,17 +1,107 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="800px" height="540px" viewBox="0 0 800 540">
-  <title>Einordnung KI-ML-DL</title>
-  <desc>Einordnung von Machine Learning und Deep-Learning in die künstliche Intelligenz</desc>
-  <defs></defs>
-  <g id="ki_ml_dl" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-       <ellipse id="ai" fill="#CDCCE2" cx="291" cy="270" rx="205.824607" ry="206">TEST</ellipse>
-    <ellipse id="ml" fill-opacity="0.5" fill="#A3A1D1" cx="291" cy="310" rx="168.077225" ry="165.2"></ellipse>
-  <ellipse id="nn" fill="#F0B9F0" style="mix-blend-mode: multiply;" cx="291" cy="355" rx="120.077225" ry="120"></ellipse>
-    <ellipse id="dl" fill="#D36BD3" cx="291" cy="378" rx="82.3298429" ry="82.4"></ellipse>
-  
-    <text x="225" y="120" fill="#ffffff" >Künstliche Intelligenz</text>
-    <text x="230" y="210" fill="#ffffff" >Maschinelles Lernen</text>
-    <text x="240" y="280" fill="#ffffff" >Neuronale Netze</text>
-    <text x="250" y="380" fill="#ffffff" >Tiefes Lernen</text>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="411.6492"
+   height="412"
+   viewBox="0 0 411.6492 412"
+   version="1.1"
+   id="svg21"
+   sodipodi:docname="ki_ml_dl.svg"
+   inkscape:version="0.92.2 5c3e80d, 2017-08-06">
+  <metadata
+     id="metadata25">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1440"
+     inkscape:window-height="798"
+     id="namedview23"
+     showgrid="false"
+     inkscape:zoom="0.405"
+     inkscape:cx="314.8246"
+     inkscape:cy="206"
+     inkscape:window-x="0"
+     inkscape:window-y="1"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg21" />
+  <title
+     id="title2">Einordnung KI-ML-DL</title>
+  <desc
+     id="desc4">Einordnung von Machine Learning und Deep-Learning in die künstliche Intelligenz</desc>
+  <defs
+     id="defs6" />
+  <g
+     id="ki_ml_dl"
+     style="fill:none;fill-rule:evenodd;stroke:none;stroke-width:1"
+     transform="translate(-85.1754,-64)">
+    <ellipse
+       id="ai"
+       cx="291"
+       cy="270"
+       rx="205.8246"
+       ry="206"
+       style="fill:#cdcce2">TEST</ellipse>
+    <ellipse
+       id="ml"
+       cx="291"
+       cy="310"
+       rx="168.07722"
+       ry="165.2"
+       style="fill:#a3a1d1;fill-opacity:0.5" />
+    <ellipse
+       id="nn"
+       style="mix-blend-mode:multiply;fill:#f0b9f0"
+       cx="291"
+       cy="355"
+       rx="120.07722"
+       ry="120" />
+    <ellipse
+       id="dl"
+       cx="291"
+       cy="378"
+       rx="82.329842"
+       ry="82.400002"
+       style="fill:#d36bd3" />
+    <text
+       x="225"
+       y="120"
+       id="text12"
+       style="fill:#ffffff">Künstliche Intelligenz</text>
+    <text
+       x="230"
+       y="210"
+       id="text14"
+       style="fill:#ffffff">Maschinelles Lernen</text>
+    <text
+       x="240"
+       y="280"
+       id="text16"
+       style="fill:#ffffff">Neuronale Netze</text>
+    <text
+       x="250"
+       y="380"
+       id="text18"
+       style="fill:#ffffff">Tiefes Lernen</text>
   </g>
 </svg>
