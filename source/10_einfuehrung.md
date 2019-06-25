@@ -1,10 +1,13 @@
-\mainmatter 
+
+\mainmatter
 
 # Einführung
 
 Mithilfe überwachter Produkttests können zwar schon Heute wertvolle Informationen über den zu erwartenden Erfolg eines Produktes getroffen werden, jedoch werden die zur Verfügung gestellten Informationen nur ineffizient genutzt. Eine Erfassung der Emotionen, welche der Tester während des Interviews empfindet, könnte hier wichtige Erkenntnisse liefern. Dieser Ansatz ist nicht neu, in der Regel werden diese bereits vom Interviewer erfasst. Dieser ordnet subjektiv, aufgrund seiner Erfahrung und empathischen Fähigkeiten, das Verhalten seines Gegenübers bestimmten Emotionen zu. Im Sinne der Vergleichbarkeit, sowie der Effizienz ist es jedoch wünschenswert diese Analysen automatisiert durchzuführen.
 Die Idee des empathischen Computers fasziniert viele Forscher. Die Arbeiten auf diesem Gebiet erschließen das noch relativ junge Gebiet des **Affective Computings**, welches sich mit der Erkennung von Benutzergefühlen und anderen Stimuli, sowie adäquaten Reaktionen auf diese beschäftigt.[@Schuller2006]
+
 Die maschinelle Erkennung von Emotionen ist jedoch aufgrund der Komplexität und der Individualität des menschlichen Verhaltens nicht wirklich trivial, da die Körpersprache bei vielen Menschen, zum Beispiel auch kulturell bedingt, unterschiedlich ausfallen kann. Aber auch innerhalb eines Kulturkreises erweist sich eine solide Klassifizierung von Emotionen als schwierig.
+
 Um überhaupt eine solche Klassifizierung zu ermöglichen, müssen Emotionen zunächst in Klassen eingeteilt werden und entsprechende Merkmale gefunden werden. Im Bereich der Bilderkennung, bzw. Klassifizierung haben sich in den letzten Jahren künstliche neuronale Netze als führende Technologie durchgesetzt. Diese Arbeit untersucht das Problem der Emotionserkennung mithilfe dieser Netze, genauer gesagt mit **gefalteten neuronalen Netze** (engl.: convolutional neural network).
 
 ## Eingrenzung
