@@ -1,4 +1,5 @@
-\pagenumbering{gobble}
+%\pagenumbering{gobble}
+\pagenumbering{Roman}
   \renewcommand{\contentsname}{Inhaltsverzeichnis}
 \tableofcontents
 
