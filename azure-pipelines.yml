@@ -17,10 +17,6 @@ steps:
 
 - script:  make pdf_cicd
   displayName: 'build thesis'
-- script: |
-    sudo pip3 install numpy pandas matplotlib
-    ./wordcount.sh
-  displayName: 'plotting wordcount'
 - task: AzureKeyVault@1
   inputs:
     azureSubscription: 'Microsoft Azure Enterprise (80710935-9dd3-4f6f-a587-8c84723a457c)'
