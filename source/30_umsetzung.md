@@ -92,7 +92,7 @@ Bei den selbst aufgezeichneten Daten, wurde wie bereits erwähnt eine abschließ
 
 TODO: Listing, preprocess selfrecorded data.
 
-Bei den Daten aus dem *FER+* Datensatz ist etwas weniger Vorverarbeitung nötig. Die Vorverarbeitung dieser Daten besteht im wesentlcihen darin, die Pixelwerte welche als ein eindimensionales Array vorliegen in eine 48x48 Matrix umzuwandeln. Des weiteren wird aus den mehrstimmigen *Labels* des *FER+* Datensatzes mithilfe des einfachen Mehrheitsprinzips das hier genutzte extrahiert. In einem letzten Schritt werden dann alle Datensätze, welche mit "not a face" markiert sind, aussortiert. (siehe Listing TODO:) 
+Bei den Daten aus dem *FER+* Datensatz ist etwas weniger Vorverarbeitung nötig. Die Vorverarbeitung dieser Daten besteht im wesentlichen darin, die Pixelwerte welche als ein eindimensionales Array vorliegen in eine 48x48 Matrix umzuwandeln. Des weiteren wird aus den mehrstimmigen *Labels* des *FER+* Datensatzes mithilfe des einfachen Mehrheitsprinzips das hier genutzte extrahiert. In einem letzten Schritt werden dann alle Datensätze, welche mit "not a face" markiert sind, aussortiert. (siehe Listing TODO:) 
 
 TODO: CODELISTING PROCESS FER+
 
@@ -121,15 +121,39 @@ Zur Normalisierung der Daten werden dementsprechend alle Pixelwerte durch 255 di
 
 ### Datenmehrung
 
-Je mehr Trainingsdaten für das KNN vorhanden sind, desto besser kann es auch mit ungesehenen Daten umgehen. Da nur begrenzt viele Daten zur Verfügung stehen werden in dieser Arbeit einige Methoden der künstlichen  Datenvermehrung angewandt. Dazu werden die Bilder der Eingangsdaten zum Beispiel gespiegelt, verzerrt oder gedreht. Durch die Spiegelung eines Bildes entsteht wieder ein neues Bild, welches zum Training des neuronalen Netzes verwendet werden kann. So kann mit dieser relativ einfachen Methode die Anzahl der Trainingsdaten sehr einfach verdoppelt werden. Die Methode die zum spiegeln der Bilder des *FER+* Datensatzes verwendet wurde ist in LISTING X TODO: zu sehen.
+Je mehr Trainingsdaten für das KNN vorhanden sind, desto besser kann es auch mit ungesehenen Daten umgehen. Da nur begrenzt viele Daten zur Verfügung stehen werden in dieser Arbeit einige Methoden der künstlichen  Datenvermehrung angewandt. Dazu werden die Bilder der Eingangsdaten zum Beispiel gespiegelt, verzerrt oder gedreht. In dieser Arbeit wurden die Methoden der Spiegelung, sowie des zufälligen drehens einiger Bilder angewandt. Durch die Spiegelung, bzw. Derhung eines Bildes entsteht wieder ein neues Bild, welches zum Training des neuronalen Netzes verwendet werden kann. So kann mit dieser relativ einfachen Methode die Anzahl der Trainingsdaten sehr einfach verdoppelt werden. Die Methode die zur Vermehrung der Bilder des *FER+* Datensatzes verwendet wurde ist nachfolgende abgebildet.
 
-TODO: Code Listing spiegeln
+TODO: Code Listing spiegeln/drehen
 
-## Entwurf neuronaler Netze
+## Entwurf und Entwicklung neuronaler Netze
 
-### Topoligien
+Im Rahmen dieser Arbeit sollen 3 verschiedene neuronale Netzwerke entworfen, trainiert und evaluiert werden. Alle 3 sollen gefaltete neuronale Netze sein, sich jedoch in der Topologie und den (Hyper-) Parametern unterscheiden.
 
-### Trainingsmethoden
+### Entwicklungsumgebung
+
+Die Entwicklung der KNN´s wurde in Python mithilfe der Machine-Learning Erweiterunge Keras vorgenommen. Keras ist eine vereinfachte Schnittstellenimplementierung zur einfachen Verwendung von verschiedenen Machine Learning-Schnittstellen. In dieser Arbeit wurde Keras mit der Tensorflow-Schnittstelle verwendet. 
+Als Entwicklungsumgebung wurde hierzu ein Jupyter Notebook verwendet. Der Vorteil eines Jupyter Notebook liegt darin, dass sehr einfach Text und Programmierabschnitte, sowie deren Ausgabe nebeneinander visualisiert werden können.
+
+### Topologie
+
+Unter der Topologie des KNN versteht man die Architektur im Zusammenhang mit den (Hyper-)Parametern. Die Architektur beschreibt den Aufbau, oder die Struktur, des Netzwerkes. In einem CNN also im wesentlichen die Art und Reihenfolge der einzelnen Netzwerkschichten.
+
+Als Hyperparameter hingegen bezeichnet man weitere Rahmenparameter, welche unabhängig vom grundlegenden Aufbau des Netzes verändert werden können. Einige solcher Hyperparameter wurden in Kapitel 2 bereits vorgestellt.
+
+In dieser Arbeit sollen drei verschiedene Netzwerktopoligien für das Problem der Emotions-Klassifizierung entworfen werden. 
+
+#### Einfaches faltendes neuronales Netz
+
+Als erstes Model soll ein sehr einfaches faltendes neuronales Netz entworfen werden. Die Architektur des Netzes sieht dabei wie folgt aus:
+
+
+
+#### abgewandeltes XCeption Net
+
+#### zeitabhängiges faltendes neuronales Netz
+
+
+### Hyperparmater
 
 
 ## Evaluierung neuronaler Netze?
@@ -139,6 +163,16 @@ TODO: Code Listing spiegeln
 ### abschnitt 2
 
 ## Entwicklung eines Webservice
+
+Nachdem sich für das passende neuronale Netz entschieden wurde wird dieses einem Webservice zur Verfügung gestellt. Der Webservice hat die Aufgabe Videodaten entgegen zu nehmen und sekundenweise Einzelbilder an den Klassifizierer zu übergeben und anhand der Ausgabe eine Zeitleiste mit den erkannten Emotionen zurückliefen.
+
+### Softwarearchitektur 
+
+Der Webservice wurde mithilfe der Python Erweiterung Flask realisiert.
+Flask ist eine schlanke Erweiterung zur einfachen Erstellung von Web Diensten in Python. Der Werbservice, sowie der Klassifizierer sind als sogenannte Microservices aufgebaut welche in separaten *Containern* laufen. (siehe Abbildung \ref{app_architecture})
+
+TODO: Abbildung Architektur \label{app_architecture}
+
 
 
 
