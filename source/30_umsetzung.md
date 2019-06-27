@@ -140,13 +140,39 @@ Unter der Topologie des KNN versteht man die Architektur im Zusammenhang mit den
 
 Als Hyperparameter hingegen bezeichnet man weitere Rahmenparameter, welche unabhängig vom grundlegenden Aufbau des Netzes verändert werden können. Einige solcher Hyperparameter wurden in Kapitel 2 bereits vorgestellt.
 
-In dieser Arbeit sollen drei verschiedene Netzwerktopoligien für das Problem der Emotions-Klassifizierung entworfen werden. 
+In dieser Arbeit sollen drei verschiedene Netzwerktopologien für das Problem der Emotions-Klassifizierung entworfen werden. 
 
 #### Einfaches faltendes neuronales Netz
 
-Als erstes Model soll ein sehr einfaches faltendes neuronales Netz entworfen werden. Die Architektur des Netzes sieht dabei wie folgt aus:
+Als erstes Model soll ein sehr einfaches faltendes neuronales Netz entworfen werden. 
 
+##### Architektur
 
+Das Neuronale Netzwerk besteht aus insgesamt 4 *Faltungs-Stapeln* gefolgt von einer Ausgabeschicht. Die *Faltungs-Stapel* bestehen jeweils aus zwei Faltungsschicht, auf welche, abgesehen von der aller letzten Schicht,  eine Stapel-Normalisierung (engl. batch normalization) angewandt wird, gefolgt von einer Pooling Schicht, auf welche eine *Dropout*-Regularisierung angewandt wird. In Abbildung \ref{architecture_simple_cnn} ist die Architektur kurz dargestellt.
+TODO: Abbildung Architektur \label{architecture_simple_cnn}
+
+##### Hyper-Parameter
+
+Die Topoligie des KNN lässt sich durch die folgend beschriebenen Parameter konkretisieren.
+
+* **Filteranzahl**: Die Anzahl der Filter in den einzelnen Faltungsschichten beeinflusst die Dimension der Folgedaten. Für dieses Netzwerk wurde die Filter Anzahl für beide Faltungsschithten eines Stapels in der Regel gleich gesetzt. Mit jedem Stapel verdoppelt sich die An zahl der Filter. Lediglich die letzte Faltungsschicht weicht von diesem Schema ab, und verwendet die fixe Anzahl von 7 Filtern, was der Anzahl der Klassen $|Z|$ entspricht. Die Anzahl der Filter der ersten Faltungsschicht wurde auf 16 festgelegt. Die Schichten in den darauffolgenden Stapeln verwenden also jeweils 32, 64, und 128 Filter.
+
+* **Filtergröße**: Auch die Filtergröße hat einen nicht zu vernachlässigenden Einfluss auf die Dimension der Daten. In diesem Netzwerk wurde für den ersten Stapel eine Filtergröße von $7x7$ festgelegt. Für die 2 Folgenden Stapel wurde die Filtergröße jeweils um $2x2$ verringert und beträgt damit $5x5$, bzw. $3x3$. Der letzte Stapel verwendet ebenfalls eine Filtergöße von $3x3$.
+
+* **Füllung**: Die Füllung (engl. padding) bei einer *convolutional* Schicht beeinflusst im Zusammenspiel mit der Filtergröße, die Dimension der Ausgabedaten. In diesem Model wurde für jede Faltungsschicht das sogenannte *same padding* verwendet. Das bedeutet, dass genau so viele Zeilen aufgefüllt werden die nötig sind, damit die zweidmensionale Ausgabedimension der Eingabedimension entspricht. Da sich im Allgemeinen die Dimension der Ausgabe einer neuronalen Faltungsschicht mit einer Eingabedimension von $n x n$ mit einem *padding* von $p$ und einer Filtergröße von $f x f$ wie folgt berechnen lässt. 
+$$
+conv(n x n, f x f, p) = n +2p - f + 1 x n +2p - f + 1
+$$
+Ergibt sich für das *same padding* die Größe der Füllung $p$ wie folgt.
+
+$$
+n + 2p_{same} -f +1 = n 
+$$
+$$
+p_{same} = \frac{f-1}{2}
+$$
+
+* **Pooling**: 
 
 #### abgewandeltes XCeption Net
 

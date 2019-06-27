@@ -16,4 +16,4 @@ oc.login('azure-pl', pw)
 oc.put_file('output/thesis_latest.pdf', 'output/thesis.pdf')
 ##uploading wordcount if present
 if os.path.isfile("plot_wordcount.png"):
-	oc.put_file('plot_wordcount.png', 'output/plot_wordcount.png')
+	oc.put_file('output/plot_wordcount.png', 'plot_wordcount.png')
