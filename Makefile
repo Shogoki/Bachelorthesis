@@ -42,7 +42,6 @@ pdf:
 	--verbose  2>pandoc.log
 
 pipeline:
-	export owncloud-password=$(owncloid-pw) && \
 	./convert_svg.sh && \
 	pandoc "$(INPUTDIR)"/*.md \
 	-o "$(OUTPUTDIR)/the owsis.pdf" \
@@ -58,7 +57,7 @@ pipeline:
 	--pdf-engine=xelatex \
 	--verbose && \
 	./wordcount.sh && \
-	python3 upload_thesis.py $(owncloud-password)
+	python3 upload_thesis.py $(owncloud-pw)
 pdf_cicd:
 	./convert_svg.sh && \
 	pandoc "$(INPUTDIR)"/*.md \
