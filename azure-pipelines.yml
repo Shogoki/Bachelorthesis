@@ -16,11 +16,6 @@ steps:
       KeyVaultName: 's18344-keys'
       SecretsFilter: '*'
     displayName: "retrieve secretes"
-  - task: DockerCompose@0
-    inputs:
-      containerregistrytype: 'Container Registry'
-      dockerComposeFile: '**/docker-compose.yml'
-      action: 'Run a Docker Compose command'
-      dockerComposeCommand: 'up'
+  - script: docker-compose up
     displayName: "Run Pipeline jobs empowered by docker"
     
