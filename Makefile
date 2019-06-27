@@ -41,7 +41,24 @@ pdf:
 	--pdf-engine=xelatex \
 	--verbose  2>pandoc.log
 
-
+pipeline:
+	export owncloud-password=$(owncloid-pw) && \
+	./convert_svg.sh && \
+	pandoc "$(INPUTDIR)"/*.md \
+	-o "$(OUTPUTDIR)/the owsis.pdf" \
+	-H "$(STYLEDIR)/preamble.tex" \
+	--template="$(STYLEDIR)/template.tex" \
+	--bibliography="$(BIBFILE)" \
+	--csl="$(STYLEDIR)/ref_format.csl" \
+	--highlight-style pygments \
+	-V fontsize=12pt \
+	-V papersize=a4paper \
+	-V documentclass=scrbook \
+	-N \
+	--pdf-engine=xelatex \
+	--verbose && \
+	./wordcount.sh && \
+	python3 upload_thesis.py $(owncloud-password)
 pdf_cicd:
 	./convert_svg.sh && \
 	pandoc "$(INPUTDIR)"/*.md \

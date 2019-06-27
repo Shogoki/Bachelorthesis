@@ -10,20 +10,17 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-- script: |
-    sudo apt-get update && sudo apt-get install texlive-full inkscape python3 python3-pip python3-setuptools
-    wget https://github.com/jgm/pandoc/releases/download/2.7.3/pandoc-2.7.3-1-amd64.deb && sudo dpkg -i pandoc-2.7.3-1-amd64.deb
-  displayName: 'Install Dependencies'
-
-- script:  make pdf_cicd
-  displayName: 'build thesis'
-- task: AzureKeyVault@1
-  inputs:
-    azureSubscription: 'Microsoft Azure Enterprise (80710935-9dd3-4f6f-a587-8c84723a457c)'
-    KeyVaultName: 's18344-keys'
-    SecretsFilter: '*'
-  displayName: "retrieve secretes"
-- script: |
-    sudo pip3 install pyocclient
-    python3 upload_thesis.py '$(owncloud-pw)'
-  displayName:  "upload thesis"
+  - task: AzureKeyVault@1
+    inputs:
+      azureSubscription: 'Microsoft Azure Enterprise (80710935-9dd3-4f6f-a587-8c84723a457c)'
+      KeyVaultName: 's18344-keys'
+      SecretsFilter: '*'
+    displayName: "retrieve secretes"
+  - task: DockerCompose@0
+    inputs:
+      containerregistrytype: 'Container Registry'
+      dockerComposeFile: '**/docker-compose.yml'
+      action: 'Run a Docker Compose command'
+      dockerComposeCommand: 'up'
+    displayName: "Run Pipeline jobs empowered by docker"
+    
