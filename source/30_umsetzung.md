@@ -8,7 +8,7 @@ In diesem Teil wird die Umsetzung der Arbeit eingegangen. im ersten Abschnitt wi
 
 Wie bereits beschrieben, sollen für den späteren Webservice Videodaten als Eingabe dienen. Das neuronale Netz wird jedoch nicht direkt die Videodaten, sondern aus dem Video extrahierte Einzelbilder als Eingabe erhalten. Diese Eingabedaten werden anhand später beschriebener Verfahren noch weiter vorbereitet und optimiert.
 Die Einzelbilder sollen als *Array* von Pixelwerten eines Graustufenbildes an das neuronale Netzwerk übergeben werden, siehe Kapitel Datenpräparation <!-- TODO: REF -->.
-Die Bilder sollen in 7 verschiedene Klassen. Die verschiedenen Emotionen bilden den Zielklassenvektor $Z$, es gilt also $|Z| = 7$. Jedes Bild welches der selben Emotion des *FACS* entspricht ist Mitglied der selben Klasse aus $Z$.
+Die Bilder sollen in 8 verschiedene Klassen. Die verschiedenen Emotionen des *FACS* und die zusätzliche Klasse *neutral* bilden den Zielklassenvektor $Z$, es gilt also $|Z| = 8$. Jedes Bild welches der selben Emotion des *FACS* entspricht ist Mitglied der selben Klasse aus $Z$.
 
 ## Datensätze
 
@@ -21,12 +21,30 @@ In dieser Arbeit wurden beide Ansätze in Kombination verwendet. Es wurden also 
 
 #### FER+
 
-Als großer frei Verfügbarer Datensatz wurde der *Facial Expression Recognition+* (FER+)[@Barsoum2016] Datensatz verwendet. Bei den Eingangsdaten des *FER+* handelt es sich um die selben Bilder, wie auch beim *FER2013*, welcher Teil der International Conference for Machine Learning (ICML) Challenge 2013 war, und danach der Öffentlichkeit zur Verfügung gestellt wurde. Bei FER+ wurden jedoch alle *Label*, mithilfe von *Crowdsourcing* neu erstellt, um eine bessere Datenqualität zu erreichen. (vgl. [@Barsoum2016]). Der Datensatz besteht aus 34034 48x48 Graustufen Bilder von Gesichtern. Jedes dieser Bilder von je 10 Freiwilligen mithilfe von *Crowdsourcing* bewertet. Der Datensatz enthält für jede Klasse (Emotionen des *FACS* und "kein Gesicht") die Anzahl an Freiwilligen, welche das Bild entsprechend bewertet haben.
+Als großer frei Verfügbarer Datensatz wurde der *Facial Expression Recognition+* (FER+)[@Barsoum2016] Datensatz verwendet. Bei den Eingangsdaten des *FER+* handelt es sich um die selben Bilder, wie auch beim *FER2013*, welcher Teil der International Conference for Machine Learning (ICML) Challenge 2013 war, und danach der Öffentlichkeit zur Verfügung gestellt wurde. Bei FER+ wurden jedoch alle *Label*, mithilfe von *Crowdsourcing* neu erstellt, um eine bessere Datenqualität zu erreichen. (vgl. [@Barsoum2016]). Der Datensatz besteht aus 34034 48x48 Graustufen Bilder von Gesichtern. Jedes dieser Bilder von je 10 Freiwilligen mithilfe von *Crowdsourcing* bewertet. Der Datensatz enthält für jede Klasse (Emotionen des *FACS* (inkl. neutral),  "kein Gesicht" und "unbekannt" ) die Anzahl an Freiwilligen, welche das Bild entsprechend bewertet haben.
 Ein Beispiel für ein einzelnes Datum des Datensatzes ist in Abbildung \ref{single_ferplus} zu sehen
 
 TODO: Abbildung FER+ Single row image
 
 Das Team von Microsoft Research [@Barsoum2016] beschreibt mehrere Variationen, wie die mehrfach *gelabelten* Daten verwendbar sind. In dieser Arbeit wird jedoch ausschließlich der einfache Mehrheits-Ansatz verfolgt. Es wird also jedes Bild der Klasse zugeordnet, welche die meisten Stimmen erhalten hat.
+
+Zum Laden der Daten wurde das folgende Python Skript verwendet.
+
+```python
+def load_data_ferplus(fer_ds_path = "fer+/fer2013/fer2013.csv", ferplus_ds_path="fer+/fer2013new.csv"):
+    # loading raw data
+    #fer = pd.read(fer_ds_path)
+    ## loading only the label cols from fer+
+    cols=['neutral', 'happiness', 'surprise', 'sadness', 'anger', 'disgust', 'fear', 'contempt', 'unknown', 'NF']
+    ferplus = pd.read_csv(ferplus_ds_path , usecols=cols, dtype=np.int32)
+    # and only the pcitures (pixels) from original fer2013
+    fer = pd.read_csv(fer_ds_path, usecols=['pixels'])
+    # getting simple majority voted label using idxmax and merge it with the picture dataset
+    merged_fer = pd.concat([fer, ferplus.idxmax(axis=1)], axis=1)
+     #redefining column names
+    merged_fer.columns = ['img_pixels', 'emotion']
+    return merged_fer
+```
 
 #### selbsterstellte Daten
 
@@ -37,7 +55,6 @@ Zum selbst erstellen von Daten wurde im Rahmen der Arbeit eine einfache Website 
 Mithilfe dieser Webseite wurden insgesamt 15 Sätze an 15 sekündigen Videos von 8 verschiedenen freiwilligen Probanden (den Autor dieser Arbeit eingeschlossen) gesammelt. Aus diesen Videos wurde anschließend mit Hilfe des folgenden Python-Skripts pro Sekunde ein Einzelbild extrahiert, und mit dem Namen der entsprechenden Klasse abgespeichert. Somit wurden also $15 * 15 = 225$ Einzelbilder pro Klasse generiert. 
 
 ```python
-
 def extract_video_frames(prefix, videofile,
 	targetdir = "../data/extracted"):
 
@@ -59,28 +76,6 @@ def extract_video_frames(prefix, videofile,
 
 Die Einzelbilder wurden anschließend manuell auf Korrektheit, das heißt Zuordnung zur Klasse, geprüft. Dabei wurden insgesamt 200 Bilder wieder aussortiert (TODO: Verify numbers).
 
-
-### Einteilung der Datensätze
-
-Beim maschinellen Lernen ist es üblich den vorhandenen Datensatz, bzw. die vorhandenen Datensätze in verschiedene Verwendungszwecke einzuteilen. Klassisch spricht man hier immer vom *train/test-Split*, also einer Aufteilung der Daten in einen Trainings- und einen Test-Datensatz. In modernen Projekten, welche sich mit maschinellen Lernen beschäftigen spricht man jedoch zumeist von einem *train/dev/test-split*. Die Daten werden also in einen Trainings-, einen Entwicklungs- und einen Test-Datensatz eingeteilt. Als Entwicklungs-Datensatz bezeichnet man, jene Daten, welche während der Entwicklung, also dem Anpassen bestimmter (Hyper-)Parameter, des neuronalen Netzes zur Evaluierung verwendet werden. Der Test-Datensatz ist in diesem Szenario ein Satz aus Daten, welches das neuronale Netz vor der Fertigstellung noch nicht "zu sehen" bekommen hat. Beim klassischen *train/test-split* ist der Test-Satz also eigentlich, das was wir Heute als Entwicklungs-Datensatz bezeichnen, und es gibt keinen wirklichen Test-Datensatz.
-Bei der Wahl der Datenquellen, ist es wichtig, dass die Test-Daten möglichst ähnlich, zu den später erwarteten Eingangsdaten sind, und dass Entwicklungs- und Test-Datensatz aus der selben Quelle stammen sollten.
-
-Für diese Arbeit bedeutet das, dass die Entwicklungs- und Test-Daten aus den selbstgenerierten Daten stammen, da diese bereits von aufgenommenen Videos stammen, was den Zeildaten sehr nahe kommt.
-Als Trainingsdaten wird entsprechend der *FER+* Datensatz verwendet.
-Ein Problem bei einer solchen Aufteilung, wenn also die Trainingsdaten aus einem anderen Datensatz stammen als die Entwicklungs und Test-Daten, ist, dass man gewisse Probleme, wie zum Beispiel eine Überanpassung teilweise nur schwer erkennen kann. Deshalb ist es in einem solchen Fall sinnvoll noch einen vierten Datensatz einzuführen, welcher aus der selben Quelle wie die Trainingsdaten stammt (hier *FER+*). Man spricht hier vom *dev_train* oder auch *bridge* Datensatz. Dieser wird im Prinzip analog zum Entwicklungsdatensatz behandelt und dient zum Testen der Parameter des neuronalen Netzwerkes nach jeder Änderung. Anhand der Unterschiedlichen Ergebnisse für den *bridge* und den *dev* Datensatz kann man nun schnell bestimmte Probleme des neuronalen Netzwerks erkennen.
-
-In dieser Arbeit wurde daher auch die Einteilung in 4 Datensätze gewählt. Die Daten wurden dabei wie folgt aufgeteilt:
-Die selbsterstellten Daten wurden in zu je 50% in den Entwicklungs- und Test-Datensatz aufgeteilt. Vom *FER+* Datensatz wurden  10% Der Bilder für den *Bridge* Datensatz verwendet und 90% als Trainingsdaten. Die Aufteilung ist in Abbildung \ref{data_split} veranschaulicht.
-
-![Aufteilung der Daten in 4 Datensätze \label{data_split}](source/figures/train_test_split.pdf){ width=90% } <!-- TODO: enter number -->
-
- <!--like this https://www.freecodecamp.org/news/what-to-do-when-your-training-and-testing-data-come-from-different-distributions-d89674c6ecd8/ -->
-
-Um eine Eingangs zufällige, jedoch immer gleich reproduzierbare Aufteilung zu erzielen wurde das folgende Python Skript verwendet.
-
-TODO: Code Listing Data_split.py
-
-
 ## Datenpräparation
 
 Um die Effizienz, sowie die Genauigkeit der Vorhersage des neuronalen Netzwerkes zu steigern werden alle Daten, bevor Sie dem KNN präsentiert werden auf diverse Arten präpariert. Im Folgenden wird auf die angewandten Methoden genauer eingegangen.
@@ -92,9 +87,29 @@ Bei den selbst aufgezeichneten Daten, wurde wie bereits erwähnt eine abschließ
 
 TODO: Listing, preprocess selfrecorded data.
 
-Bei den Daten aus dem *FER+* Datensatz ist etwas weniger Vorverarbeitung nötig. Die Vorverarbeitung dieser Daten besteht im wesentlichen darin, die Pixelwerte welche als ein eindimensionales Array vorliegen in eine 48x48 Matrix umzuwandeln. Des weiteren wird aus den mehrstimmigen *Labels* des *FER+* Datensatzes mithilfe des einfachen Mehrheitsprinzips das hier genutzte extrahiert. In einem letzten Schritt werden dann alle Datensätze, welche mit "not a face" markiert sind, aussortiert. (siehe Listing TODO:) 
+Bei den Daten aus dem *FER+* Datensatz ist etwas weniger Vorverarbeitung nötig. Die Vorverarbeitung dieser Daten besteht im wesentlichen darin, die Pixelwerte welche als ein eindimensionales Array vorliegen in eine 48x48 Matrix umzuwandeln. Des weiteren wird aus den mehrstimmigen *Labels* des *FER+* Datensatzes mithilfe des einfachen Mehrheitsprinzips das hier genutzte extrahiert. In einem letzten Schritt werden dann alle Datensätze, welche mit "not a face" oder "unknown" markiert sind, aussortiert.
 
-TODO: CODELISTING PROCESS FER+
+```python
+def prep_data_ferplus(ferplus_data):
+    # removing NF (no face) and unknown columns
+    cleaned = ferplus_data[ferplus_data['emotion'] != "NF"][ferplus_data['emotion'] != "unknown"]
+    ### Getting oneHot encoded classes using get_dummies
+    emotions = pd.get_dummies(cleaned['emotion']).as_matrix()
+    ## retrieving images from pixel list
+    img_pixels = cleaned['img_pixels'].tolist()
+    img_width, img_height = 48, 48
+    imgs = []
+    # extracting images from space delimited pixel values
+    for pixel_row in img_pixels:
+        img = [int(pixel) for pixel in pixel_row.split(' ')]
+        #Having them in a one-dim list now, we have to make an np array with our img_shape
+        img = np.asarray(img).reshape(img_width, img_height)
+        img = cv2.resize(img.astype('uint8'),(48, 48))
+        imgs.append(img.astype('float32'))
+    imgs = np.asarray(imgs)
+    imgs = np.expand_dims(imgs, -1)
+    return imgs, emotions
+```
 
 
 ### Normalisierung
@@ -121,9 +136,40 @@ Zur Normalisierung der Daten werden dementsprechend alle Pixelwerte durch 255 di
 
 ### Datenmehrung
 
-Je mehr Trainingsdaten für das KNN vorhanden sind, desto besser kann es auch mit ungesehenen Daten umgehen. Da nur begrenzt viele Daten zur Verfügung stehen werden in dieser Arbeit einige Methoden der künstlichen  Datenvermehrung angewandt. Dazu werden die Bilder der Eingangsdaten zum Beispiel gespiegelt, verzerrt oder gedreht. In dieser Arbeit wurden die Methoden der Spiegelung, sowie des zufälligen drehens einiger Bilder angewandt. Durch die Spiegelung, bzw. Derhung eines Bildes entsteht wieder ein neues Bild, welches zum Training des neuronalen Netzes verwendet werden kann. So kann mit dieser relativ einfachen Methode die Anzahl der Trainingsdaten sehr einfach verdoppelt werden. Die Methode die zur Vermehrung der Bilder des *FER+* Datensatzes verwendet wurde ist nachfolgende abgebildet.
+Je mehr Trainingsdaten für das KNN vorhanden sind, desto besser kann es auch mit ungesehenen Daten umgehen. Da nur begrenzt viele Daten zur Verfügung stehen werden in dieser Arbeit einige Methoden der künstlichen  Datenvermehrung angewandt. Dazu werden die Bilder der Eingangsdaten zum Beispiel gespiegelt, verzerrt oder gedreht. In dieser Arbeit wurden die Methoden der Spiegelung, sowie des zufälligen drehens einiger Bilder angewandt. Durch die Spiegelung, bzw. Derhung eines Bildes entsteht wieder ein neues Bild, welches zum Training des neuronalen Netzes verwendet werden kann. So kann mit dieser relativ einfachen Methode die Anzahl der Trainingsdaten sehr einfach verdoppelt werden. Zur Datenmehrung während des Trainingsprozesses wurde der *ImageDataGenerator* aus dem *keras* Modul verwendet. Dieser bieter die Möglichkeit uzufällige Bilder zu spiegeln, oder zu rotieren. Dazu wurden die Parameter *rotation_range* und *horizontal_flip* entsprechend gesetzt.
 
-TODO: Code Listing spiegeln/drehen
+```python
+img_gen = ImageDataGenerator(
+                            featurewise_center=False,
+                            featurewise_std_normalization=False,
+                            rotation_range=45,
+                            horizontal_flip=True)
+```
+
+### Einteilung der Datensätze
+
+Beim maschinellen Lernen ist es üblich den vorhandenen Datensatz, bzw. die vorhandenen Datensätze in verschiedene Verwendungszwecke einzuteilen. Klassisch spricht man hier immer vom *train/test-Split*, also einer Aufteilung der Daten in einen Trainings- und einen Test-Datensatz. In modernen Projekten, welche sich mit maschinellen Lernen beschäftigen spricht man jedoch zumeist von einem *train/dev/test-split*. Die Daten werden also in einen Trainings-, einen Entwicklungs- und einen Test-Datensatz eingeteilt. Als Entwicklungs-Datensatz bezeichnet man, jene Daten, welche während der Entwicklung, also dem Anpassen bestimmter (Hyper-)Parameter, des neuronalen Netzes zur Evaluierung verwendet werden. Der Test-Datensatz ist in diesem Szenario ein Satz aus Daten, welches das neuronale Netz vor der Fertigstellung noch nicht "zu sehen" bekommen hat. Beim klassischen *train/test-split* ist der Test-Satz also eigentlich, das was wir Heute als Entwicklungs-Datensatz bezeichnen, und es gibt keinen wirklichen Test-Datensatz.
+Bei der Wahl der Datenquellen, ist es wichtig, dass die Test-Daten möglichst ähnlich, zu den später erwarteten Eingangsdaten sind, und dass Entwicklungs- und Test-Datensatz aus der selben Quelle stammen sollten.
+
+Für diese Arbeit bedeutet das, dass die Entwicklungs- und Test-Daten aus den selbstgenerierten Daten stammen, da diese bereits von aufgenommenen Videos stammen, was den Zeildaten sehr nahe kommt.
+Als Trainingsdaten wird entsprechend der *FER+* Datensatz verwendet.
+Ein Problem bei einer solchen Aufteilung, wenn also die Trainingsdaten aus einem anderen Datensatz stammen als die Entwicklungs und Test-Daten, ist, dass man gewisse Probleme, wie zum Beispiel eine Überanpassung teilweise nur schwer erkennen kann. Deshalb ist es in einem solchen Fall sinnvoll noch einen vierten Datensatz einzuführen, welcher aus der selben Quelle wie die Trainingsdaten stammt (hier *FER+*). Man spricht hier vom *dev_train* oder auch *bridge* Datensatz. Dieser wird im Prinzip analog zum Entwicklungsdatensatz behandelt und dient zum Testen der Parameter des neuronalen Netzwerkes nach jeder Änderung. Anhand der Unterschiedlichen Ergebnisse für den *bridge* und den *dev* Datensatz kann man nun schnell bestimmte Probleme des neuronalen Netzwerks erkennen.
+
+In dieser Arbeit wurde daher auch die Einteilung in 4 Datensätze gewählt. Die Daten wurden dabei wie folgt aufgeteilt:
+Die selbsterstellten Daten wurden in zu je 50% in den Entwicklungs- und Test-Datensatz aufgeteilt. Vom *FER+* Datensatz wurden  10% Der Bilder für den *Bridge* Datensatz verwendet und 90% als Trainingsdaten. Die Aufteilung ist in Abbildung \ref{data_split} veranschaulicht.
+
+![Aufteilung der Daten in 4 Datensätze \label{data_split}](source/figures/train_test_split.pdf){ width=90% } <!-- TODO: enter number -->
+
+Zum aufteilen der einzelnen Datensätze wurde die Funktion "train_test_split" aus dem Python Modul "sklearn" <!--TODO: ref --> verwendet. Um eine zwar Anfangs zufällige, jedoch reproduzierbare Aufteilung zu erhalten, wird der "Random_state" auf einen festen Wert gesetzt. Das genutzte Python Skript ist im Folgenden abgebildet.
+
+```python
+def split_datasets(ferplus_imgs, ferplus_emotions, selfrecorded_imgs, selfrecorded_emotions):
+    xTrain, xBridge, yTrain, yBridge = train_test_split(
+        ferplus_imgs, ferplus_emotions, test_size = 0.1, random_state = 20808)
+    xDev, xTest, yDev, yTest = train_test_split(
+        ferplus_imgs, ferplus_emotions, test_size = 0.5, random_state = 280919)
+    return xTrain, xBridge, yTrain, yBridge, xDev, xTest, yDev, yTest
+```
 
 ## Entwurf und Entwicklung neuronaler Netze
 
@@ -155,7 +201,7 @@ TODO: Abbildung Architektur \label{architecture_simple_cnn}
 
 Die Topoligie des KNN lässt sich durch die folgend beschriebenen Parameter konkretisieren.
 
-* **Filteranzahl**: Die Anzahl der Filter in den einzelnen Faltungsschichten beeinflusst die Dimension der Folgedaten. Für dieses Netzwerk wurde die Filter Anzahl für beide Faltungsschithten eines Stapels in der Regel gleich gesetzt. Mit jedem Stapel verdoppelt sich die An zahl der Filter. Lediglich die letzte Faltungsschicht weicht von diesem Schema ab, und verwendet die fixe Anzahl von 7 Filtern, was der Anzahl der Klassen $|Z|$ entspricht. Die Anzahl der Filter der ersten Faltungsschicht wurde auf 16 festgelegt. Die Schichten in den darauffolgenden Stapeln verwenden also jeweils 32, 64, und 128 Filter.
+* **Filteranzahl**: Die Anzahl der Filter in den einzelnen Faltungsschichten beeinflusst die Dimension der Folgedaten. Für dieses Netzwerk wurde die Filter Anzahl für beide Faltungsschithten eines Stapels in der Regel gleich gesetzt. Mit jedem Stapel verdoppelt sich die An zahl der Filter. Lediglich die letzte Faltungsschicht weicht von diesem Schema ab, und verwendet die fixe Anzahl von 8 Filtern, was der Anzahl der Klassen $|Z|$ entspricht. Die Anzahl der Filter der ersten Faltungsschicht wurde auf 16 festgelegt. Die Schichten in den darauffolgenden Stapeln verwenden also jeweils 32, 64, und 128 Filter.
 
 * **Filtergröße**: Auch die Filtergröße hat einen nicht zu vernachlässigenden Einfluss auf die Dimension der Daten. In diesem Netzwerk wurde für den ersten Stapel eine Filtergröße von $7x7$ festgelegt. Für die 2 Folgenden Stapel wurde die Filtergröße jeweils um $2x2$ verringert und beträgt damit $5x5$, bzw. $3x3$. Der letzte Stapel verwendet ebenfalls eine Filtergöße von $3x3$.
 
@@ -166,13 +212,17 @@ $$
 Ergibt sich für das *same padding* die Größe der Füllung $p$ wie folgt.
 
 $$
-n + 2p_{same} -f +1 = n 
+n + 2p_{same} -f +1 = n
 $$
 $$
 p_{same} = \frac{f-1}{2}
 $$
 
-* **Pooling**: 
+* **Pooling**: Als Pooling Methode wird in diesem Netzwerk das Durchschnitts-Pooling (engl. *average pooling*) angewandt. Beim Average Pooling, wird ähnlich wie bei einer *convolutional* Schicht, ein Filter einer definierten Größe (hier $2x2$) über die Daten *geschoben*. Beim *average pooling* erhält Das Ziel-Fenster immer den Durchschnittswert, der Werte im Fenster (Vergleich Abbildung \ref{avg_pooling}). Die letzte *pooling* Schicht in diesem Netz stellt eine Besonderheit dar, da hier da sogenannte globale Durchschnitts-Pooling verwendet wurde. Beim *global average pooling* wird für jede zweidmensionale Ebene genau ein Durchschnittswert gebildet, die Filtergröße ist also gleich der Größe der Eingangsdaten.
+
+TODO: Abbilding AVG Pooling \label{avg_pooling}
+
+* **Kosten-Funktion**: Zur Ermittlung des Netzwerksfehlers wird die kategorische Kreuzentropie-Funktion verwendet.<!-- TODO: ref --> Auf die genaue Funktionsweise wird in dieser Arbeit nicht genauer eingegangen.
 
 #### abgewandeltes XCeption Net
 
