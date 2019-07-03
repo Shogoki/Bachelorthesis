@@ -10,7 +10,7 @@ Dieser Teil der Arbeit behandelt die notwendigen theoretischen Grundlagen, welch
 
 Künstliche neuronale Netze (KNN), auch kurz **neuronale Netze** genannt, bezeichnen einen Ansatz zur Modellierung, welcher im Bereich der künstlichen Intelligenz, genauer im Bereich des maschinellen Lernens seinen Einsatz findet. Das Forschungsgebiet des maschinellen Lernens beschäftigt sich mit einer Klasse von Algorithmen, die anhand von Beispielfällen ein Modell erstellen, welches Inputdaten in Sätze aus Attributen und Eigenschaften kategorisiert [@News2018]. Ein weiteres Teilgebiet des maschinellen Lernens stellt das tiefe Lernen, engl.: *Deep Learning*, dar. Abbildung \ref{ki_ml_dl} zeigt die Einordnung von neuronalen Netzen und *Deep Learning* in das Gebiet der künstlichen Intelligenz.
 
-![Einordnung neuronaler Netze in die künstliche Intelligenz. *Quelle: Angelehnt an [@News2018]* \label{ki_ml_dl}](source/figures/ki_ml_dl.pdf){ width=80% }
+![Einordnung neuronaler Netze in die künstliche Intelligenz. *Quelle: Angelehnt an [@News2018]* \label{ki_ml_dl}](source/figures/ki_ml_dl.pdf ){ width=80% }
 
 ### Biologisches Vorbild
 
@@ -19,7 +19,7 @@ Der strukturelle Aufbau, sowie die Arbeitsweise von neuronalen Netzen ist der St
 "Ein Neuron ist eine Zelle, die elektrische Aktivität sammelt und weiterleitet." [@Kruse2015]
 Ein stark vereinfachtes Modell eines **Neurons** ist in Abbildung \ref{bio_neuron} zu sehen.
 
-![Darstellung eines biologischen Neurons. *Quelle: [@Kruse2015]* \label{bio_neuron}](source/figures/neuron.png){ width=100% }
+![Darstellung eines biologischen Neurons. Quelle: [@Kruse2015] \label{bio_neuron}](source/figures/neuron.png "TEST"){ width=100% }
 
 Hier sieht man den Zellkörper, der auch Soma genannt wird. Von ihm aus gehen mehrere Dendriten, sowie das Axon ab. Der Zellkörper ist in der Lage eine interne elektrische Spannung zu speichern. Dabei laden elektrische Signale, die über die Dendriten zum Soma transportiert werden, den Zellkörper auf. Ab einem gewissen Schwellwert jedoch entlädt sich dieser wieder über das Axon, welches mit Dendriten von anderen Neuronen über die Synapsen verbunden ist und lädt diese dadurch auf. So entsteht ein größeres Netzwerk aus Neuronen.
 

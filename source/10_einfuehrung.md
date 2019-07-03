@@ -35,6 +35,6 @@ Zur Realisierung eines solchen Service soll diese Arbeit eine Antwort auf folgen
 Die Arbeit gliedert sich in drei Teilbereiche. Zuerst werden die im Rahmen einer Literatur-Recherche gewonnenen, theoretischen Grundlagen zur Kategorisierung von Emotionen, sowie künstlichen neuronalen Netzen und der Klassifizierung mit deren Hilfe erläutert.
 <!-- TODO: anders schreiben? -->
 
-Im darauf folgenden Teil wird auf Basis der Erkenntnisse des ersten Teils der Entwurf des künstlichen neuronalen Netzes, sowie die Schritte zur Datenbeschaffung und Vermehrung beschrieben. Ferner wird auch auf die gewählte Trainingsmethode, sowie die Implementierung des Webservice eingegangen.
+Im darauf folgenden Teil wird auf Basis der Erkenntnisse des ersten Teils der Entwurf des künstlichen neuronalen Netzes, sowie die Schritte zur Datenbeschaffung und Vermehrung beschrieben. Ferner wird auch auf die Suche nach den besten Netzparametern, sowie die Implementierung des Webservice eingegangen.
 
-Der dritte Teil befasst sich mit der Evaluierung des entworfenen Klassifizierers anhand einer tiefer gehenden Analyse <!--(TODO: empirisch?) -->. Ein Test des Webservices mit Videodaten von verschiedenen Personen wird durchgeführt, um die ausreichende Generalisierung des neuronalen Netzes zu überprüfen. <!-- TODO: Kapitel ref -->
+Der dritte Teil befasst sich mit der weiterführenden Evaluierung des entworfenen Klassifizierers. Ein Test des Webservices mit Videodaten von verschiedenen Personen wird durchgeführt, um die ausreichende Generalisierung des neuronalen Netzes zu überprüfen. <!-- TODO: Kapitel ref -->

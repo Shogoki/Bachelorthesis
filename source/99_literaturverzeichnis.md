@@ -4,7 +4,7 @@ DUMMY[@Wu2006]][@Verma2017]][@Camargo2017][@Lian2018][@Wallhoff2006][@Gupta2013]
 -->
 \newpage
 
-# Literaturverzeichnis
+# Literaturverzeichnis {.unnumbered}
 
 \footnotesize
 
