@@ -17,7 +17,7 @@ steps:
       SecretsFilter: '*'
     displayName: "retrieve secretes"
   - script: | 
-    ./wordcount.sh
-    docker-compose up
+      ./wordcount.sh
+      docker-compose up
     displayName: "Run Pipeline jobs empowered by docker"
     
