@@ -374,7 +374,7 @@ Für das *Transfer Learning Netzwer* wurden diverse Trainigndurchläufe mit den 
 
 Der Trainingsverlauf des besten gefundenen Netzes, das heißt mit der besten Test- und Entwicklungs-Genauigkeit ist in Abbildung \ref{best_xcepton_training} dargestellt. Es handelt sich dabei um das Model mit 64 Einheiten in der ersten vollvernetzten Schicht und einer zusätzlichen vollvernetzten Schicht. Es wurden die letzten 12 Schichten des ursprünglichen Xception Netzwerkes neu traininert und die Anzahl der Epochen betrug 100. Das beste Modell wurde von Epoche 30 (*early stopping*) gewählt.
 
-![Genauigkeit whärend des Trainingsverlaufs des besten gefunden Models für 100 Epochen. Man sieht, dass bereits relativ früh eine Überanpassung an den Trainingsdatensatz stattfindet. \label{best_xcepton_training}](source/figures/best_xception_training.png){ width=80% }
+![Genauigkeit während des Trainingsverlaufs des besten gefunden Models für 100 Epochen. Man sieht, dass bereits relativ früh eine Überanpassung an den Trainingsdatensatz stattfindet. \label{best_xcepton_training}](source/figures/best_xception_training.png){ width=80% }
 
 Wie man sieht ist auch das beste gefundene Model leider keine optimale Lösung für das Problem. An der Abweichung zwischen dem *Bridge* und dem Trainingsdatensatz lässt sich gut ein Generalisierungsproblem erkennen, also eine Überanpassung des Netzes an die Trainingsdaten. In der Regel gibt es drei verschiedene Ansätze um diesem entgegen zu wirken.
 
