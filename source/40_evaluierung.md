@@ -15,6 +15,8 @@ Datensatz | Genauigkeit |
 | Entwicklungs-Daten | 29,0% | 
 | Test-Daten | 29,6,2% |
 
+Tabelle \label{table_acc} Genauigkeit des Netzwerks für die verschiedenen Datensätze.
+
 Bei einem Mehrklassen-Klassifizierer, wie er in dieser Arbeit entwickelt wurde, bietet sich auch immer eine Darstellung einer Verwirrungs-Matrix an. Diese stellt dar, wie oft eine Klasse fälschlicherweise als eine andere klassifiziert wurde. in Abbildung \ref{conf_matrix_bridge} und \ref{conf_matrix_test} ist die Verwirrung-Matrix für den *Bridge* sowie den Test Datensatz auf dem erstellten Model zu sehen.
 
 ![Verwirrungs-Matrix für den *Bridge* Datensatz. Auf der Y-Achse sind die tatsächlichen Emotionen zu sehen, auf der X-Achse die vom Netz vorhergesagten Emotionen.  \label{conf_matrix_bridge}](source/figures/conf_matrix_bridge.png){ width=80% }
@@ -30,7 +32,7 @@ Dies deutet wieder auf unklar definierte Trainingsdaten, oder einfach zu wenige 
 Abschließend wurde der erstellte Webservice getestet. Dazu wurde ein Satz an Videos eines Probanden, der nicht im selbsterstellten Datensatz zu finden war an den Webservice gesendet und das Ergebnis manuell ausgewertet.
 Zur Aufnahme des Videos wurde derselbe Webservice verwendet, wie auch schon zur Beschaffung der Entwicklungs-/Test-Daten. Das Video wurde mithilfe der minimalsitischen Benutzerschnittstelle an den Webservice gesendet. Das Ergebnis eines Beispiel Videos (für die Emotion Freude) ist in Abbildung \ref{screenshot_testweb} zu sehen.
 
-![Verwirrungs-Matrix für den Test Datensatz. \label{screenshot_testweb}](source/figures/conf_matrix_test.png){ width=80% }
+![Screenshot der minimalistischen Benutzerschnittstelle beim Test eines Video für die Emotion Fröhlichkeit. \label{screenshot_testweb}](source/figures/screenshot_web_test.png){ width=80% }
 
 Die Auswertung der Ergebnisse bestätigte die bisher erlangten Erkenntnisse, welche auch aus der Verwirrungs-Matrix hervorgingen. So wurden die Emotion *Fröhlichkeit* und *Überraschung* als einzige vorwiegend richtig erkannt.
 

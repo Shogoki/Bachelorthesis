@@ -470,7 +470,7 @@ def predict_emotion(image):
 ```
 
 Alle Micro Service wurden mithilfe von *Docker* und *docker-compose* containerisiert. Auf die genauere Beschreibun von Docker soll in dieser Arbeit nicht weiter eingegangen werden (Mehr Informationen hier <!-- TODO: ref -->). Docker-compose stellt eine einfache Anwendung zum festhalten aller Parameter einer aus *Docker*-Container bestehenden Microservice-Architektur dar. Dabei werden alle Komponenten in eriner Datei im YAML(Yet another Markup Language) Format festgehalten. Beim YAML Format handelt es sich vereinfacht gesagt um eine für den Menschen leichter lesbare Abwandlung des JSON Formates. Die in dieser Arbeit erstellte Architektur wurde in einer *docker-compose* Datei festgehalten (siehe \ref{anhang_docker-compose})
-<!-- TODO: move to anhan -->
+<!-- TODO: move to anhan 
 ```yaml
 version: '3.0'
 services:
@@ -487,10 +487,11 @@ services:
     environment:
       MODEL_NAME: model
 ```
+-->
 
 Zum Testen der Funktionalität wurde außerdem eine sehr minimalistische Benutzerschnittstelle mithilfe von HTML und Javascript erstellt, welche die Funktionalität bietet eine VideoDatei an den Webservice zu senden und die Ergebnisse im JSON Format anzuzeigen (siehe Abbildung \ref{frontend})
 
-TODO: Abbildung Frontend
+![Screenshot der minimalistischen Benutzerschnittstelle \label{frontend}](source/figures/screenshot_frontend.png){ width=80% }
 
 
 
