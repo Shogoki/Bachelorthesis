@@ -16,6 +16,8 @@ steps:
       KeyVaultName: 's18344-keys'
       SecretsFilter: '*'
     displayName: "retrieve secretes"
-  - script: docker-compose up
+  - script: | 
+    ./wordcount.sh
+    docker-compose up
     displayName: "Run Pipeline jobs empowered by docker"
     

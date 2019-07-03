@@ -56,7 +56,6 @@ pipeline:
 	-N \
 	--pdf-engine=xelatex \
 	--verbose && \
-	./wordcount.sh && \
 	python3 upload_thesis.py $(owncloud-pw)
 pdf_cicd:
 	./convert_svg.sh && \
