@@ -2,7 +2,7 @@
 
 # Theoretische Grundlagen
 
-<!-- TODO: is it okay to start withpout this?
+<!-- is it okay to start withpout this?
 Dieser Teil der Arbeit behandelt die notwendigen theoretischen Grundlagen, welche für die im anschließenden Teil behandelten Themen notwendig sind.
  -->
 
@@ -14,7 +14,7 @@ Künstliche neuronale Netze (KNN), auch kurz **neuronale Netze** genannt, bezeic
 
 ### Biologisches Vorbild
 
-Der strukturelle Aufbau, sowie die Arbeitsweise von neuronalen Netzen ist der Struktur und Funktionsweise eines Nervensystems, genauer gesagt <!--TODO: Change this? --> des menschlichen Gehirns, nachempfunden. Daher wird im Folgenden kurz die Funktionsweise eines biologischen neuronalen Netzwerkes skizziert, wie es zum Beispiel in unserem Gehirn zu finden ist.
+Der strukturelle Aufbau, sowie die Arbeitsweise von neuronalen Netzen ist der Struktur und Funktionsweise eines Nervensystems, genauer gesagt des menschlichen Gehirns, nachempfunden. Daher wird im Folgenden kurz die Funktionsweise eines biologischen neuronalen Netzwerkes skizziert, wie es zum Beispiel in unserem Gehirn zu finden ist.
 
 "Ein Neuron ist eine Zelle, die elektrische Aktivität sammelt und weiterleitet." [@Kruse2015]
 Ein stark vereinfachtes Modell eines **Neurons** ist in Abbildung \ref{bio_neuron} zu sehen.

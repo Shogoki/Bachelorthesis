@@ -24,7 +24,7 @@ In dieser Arbeit wurden beide Ansätze in Kombination verwendet. Es wurden also 
 Als großer frei Verfügbarer Datensatz wurde der *Facial Expression Recognition+* (FER+)[@Barsoum2016] Datensatz verwendet. Bei den Eingangsdaten des *FER+* handelt es sich um dieselben Bilder, wie auch beim *FER2013*, welcher Teil der International Conference for Machine Learning (ICML) Challenge 2013 war und danach der Öffentlichkeit zur Verfügung gestellt wurde. Bei FER+ wurden jedoch alle *Label* mithilfe von *Crowdsourcing* neu erstellt, um eine bessere Datenqualität zu erreichen (vgl. [@Barsoum2016]). Der Datensatz besteht aus 34034 48x48 Graustufen Bilder von Gesichtern. Jedes dieser Bilder wurde von je 10 Freiwilligen mithilfe von *Crowdsourcing* bewertet. Der Datensatz enthält für jede Klasse (Emotionen des *FACS* (inkl. neutral), "kein Gesicht" und "unbekannt" ) die Anzahl an Freiwilligen, welche das Bild entsprechend bewertet haben.
 Ein Beispiel für ein einzelnes Datum des Datensatzes ist in Abbildung \ref{single_ferplus} zu sehen.
 
-TODO: Abbildung FER+ Single row image
+![Darsteillung eines einer einzelnen Zeile aus dem FER+ Datensatz. Oben ist das zugehörige Bild aus den Pixelwerten des originalen *FER2013* Datensatz zu sehen, darunter wird die zugehörige Zeile des *FER+* ausgegeben \label{single_ferplus}](source/figures/dump_ferplus.png){ width=90% } 
 
 Das Team von Microsoft Research [@Barsoum2016] beschreibt mehrere Variationen wie die mehrfach *gelabelten* Daten verwendbar sind. In dieser Arbeit wird jedoch ausschließlich der einfache Mehrheits-Ansatz verfolgt. Es wird also jedes Bild der Klasse zugeordnet, welche die meisten Stimmen erhalten hat.
 
@@ -204,9 +204,9 @@ Ein Problem bei einer solchen Aufteilung, wenn also die Trainingsdaten aus einem
 In dieser Arbeit wurde daher auch die Einteilung in 4 Datensätze gewählt. Die Daten wurden dabei wie folgt aufgeteilt:
 Die selbsterstellten Daten wurden in zu je 50% in den Entwicklungs- und Test-Datensatz aufgeteilt. Vom *FER+* Datensatz wurden 10% der Bilder für den *Bridge* Datensatz verwendet und 90% als Trainingsdaten. Die Aufteilung ist in Abbildung \ref{data_split} veranschaulicht.
 
-![Aufteilung der Daten in 4 Datensätze \label{data_split}](source/figures/train_test_split.pdf){ width=90% } <!-- TODO: enter number -->
+![Aufteilung der Daten in 4 Datensätze \label{data_split}](source/figures/train_test_split.pdf){ width=90% } 
 
-Zum Aufteilen der einzelnen Datensätze wurde die Funktion "train_test_split" aus dem Python Modul "sklearn" <!--TODO: ref --> verwendet. Um eine zwar anfangs zufällige, jedoch reproduzierbare Aufteilung zu erhalten, wird der "Random_state" auf einen festen Wert gesetzt. Das genutzte Python Skript ist im Folgenden abgebildet.
+Zum Aufteilen der einzelnen Datensätze wurde die Funktion "train_test_split" aus dem Python Modul "sklearn"[@scikit-learn] verwendet. Um eine zwar anfangs zufällige, jedoch reproduzierbare Aufteilung zu erhalten, wird der "Random_state" auf einen festen Wert gesetzt. Das genutzte Python Skript ist im Folgenden abgebildet.
 
 ```python
 def split_datasets(ferplus_imgs, ferplus_emotions, selfrecorded_imgs , selfrecorded_emotions ):
@@ -236,12 +236,13 @@ In dieser Arbeit sollen zwei verschiedene Netzwerktopologien für das Problem de
 
 #### Einfaches faltendes neuronales Netz
 
-Als erstes Modell soll ein sehr einfaches faltendes neuronales Netz entworfen werden. 
+Als erstes Modell soll ein sehr einfaches faltendes neuronales Netz entworfen werden.
 
 ##### Architektur
 
 Das Neuronale Netzwerk besteht aus insgesamt 4 *Faltungs-Stapeln*, gefolgt von einer Ausgabeschicht. Die *Faltungs-Stapel* bestehen jeweils aus zwei Faltungsschichten, auf welchen, abgesehen von der letzten Schicht, eine Stapel-Normalisierung (engl. batch normalization) angewandt wird, gefolgt von einer Pooling Schicht, auf welche eine *Dropout*-Regularisierung angewandt wird. In Abbildung \ref{architecture_simple_cnn} ist die Architektur kurz dargestellt.
-TODO: Abbildung Architektur \label{architecture_simple_cnn}
+
+![Architektur des einfachen Faltungsnetzwerekes. \label{architecture_simple_cnn}](sources/figures/simple_cnn_arch.pdf){width: 80%}
 
 ##### Hyper-Parameter
 
@@ -267,9 +268,9 @@ $$
 
 * **Pooling**: Als Pooling Methode wird in diesem Netzwerk das Durchschnitts-Pooling (engl. *average pooling*) angewandt. Beim Average Pooling, wird ähnlich wie bei einer *convolutional* Schicht, ein Filter einer definierten Größe (hier $2x2$) über die Daten *geschoben*. Beim *average pooling* erhält Das Ziel-Fenster immer den Durchschnittswert, der Werte im Fenster (Vergleich Abbildung \ref{avg_pooling}). Die letzte *pooling* Schicht in diesem Netz stellt eine Besonderheit dar, da hier da sogenannte globale Durchschnitts-Pooling verwendet wurde. Beim *global average pooling* wird für jede zweidmensionale Ebene genau ein Durchschnittswert gebildet, die Filtergröße ist also gleich der Größe der Eingangsdaten.
 
-TODO: Abbilding AVG Pooling \label{avg_pooling}
+![Beispielhafte Darstellung von *Average-Pooling* mit einer Fenstergröße von 2x2 und einer Schrittgröße(stride) von 2 \label{avg_pooling}](sources/figures/simple_cnn_arch.pdf){width: 80%}
 
-* **Kosten-Funktion**: Zur Ermittlung des Verlustes wurde die kategorische Kreuzentropie-Funktion verwendet.<!-- TODO: ref --> Auf die genaue Funktionsweise wird in dieser Arbeit nicht genauer eingegangen.
+* **Kosten-Funktion**: Zur Ermittlung des Verlustes wurde die kategorische Kreuzentropie-Funktion verwendet. Für die genaue Funktionsweise sei auf [@Litomisky2012] verwiesen, da sie in dieser Arbeit nicht genauer behandelt wird.
 
 <!-- KERSTINs-Korrektur bis her -->
 
@@ -309,7 +310,7 @@ Tabelle: Vergleich verschiedener vortrainierter Modelle des *Keras* Frameworks. 
 
 Das Xception Netzwerk basiert auf sogenannten *separable convolution* Bausteinen. Diese bestehen aus einer Schicht an räumlichen Faltungen (zum Beispiel 3x3 *convolution*) pro Eingangskanal, gefolgt von einer punktweisen Faltung (1x1 *convolution*).
 
-TODO: Abbildung *separable Convolution ?
+![vereinfachte Darstellung einer *separable convolution*. Zuerst wird eine *depthwise convolution*  (3x3 Filter) durchgeführt. Im Anschluss die *pointwise convolution* (1x1 Filter) \label{sepconv}](source/figures/xception_architecture.png){ width=80% }
 
 Es besteht aus insgesamt 36 Faltungsschichten, welche in 14 Module eingeteilt wurden. Eine Darstellung der usrpünglichen Architelktur ist in Abbildung \ref{xception_architektur} zu sehen.
 
@@ -403,12 +404,12 @@ Auch wenn das beste Model, noch nicht die perfekte gewünschte Genauigkeit erzie
 Nachdem sich für das passende neuronale Netz entschieden wurde wird dieses einem Webservice zur Verfügung gestellt. Der Webservice hat die Aufgabe Videodaten entgegen zu nehmen und sekundenweise Einzelbilder an den Klassifizierer zu übergeben und anhand der Ausgabe eine Zeitleiste mit den erkannten Emotionen im JSON (Java Serial Object Notation)<!-- Todo Ref --> Format zurück zu liefern.
 
 Der Webservice wurde mithilfe der Python Erweiterungen Flask und connexion realisiert.
-Flask ist eine schlanke Erweiterung zur einfachen Erstellung von Web Diensten in Python. Connexion ist eine Erweiterung welche auf Flask aufbaut um API Endpunkte anhand von einer OpenAPI<!-- TODO: Ref --> Spezifikation zu generieren (siehe \ref{anhang_openapispec}).
+Flask ist eine schlanke Erweiterung zur einfachen Erstellung von Web Diensten in Python. Connexion ist eine Erweiterung welche auf Flask aufbaut um API Endpunkte anhand von einer OpenAPI[@OpenAPI] Spezifikation zu generieren.
 
 
 Der Werbservice, sowie der Klassifizierer sind als sogenannte Microservices aufgebaut welche in separaten *Containern* laufen. (siehe Abbildung \ref{app_architecture}). Der Klassifizierer wird dem Webservice mithilfe von Tensorflow-Serve zur Verfügung gestellt. 
 
-TODO: Abbildung Architektur \label{app_architecture}
+![Übersicht über die Software Architektur des entwickelten Webservice. Der Web Endpunkt und der Klassifizierer sind als Microservices konzipiert und kommunizieren über HTTP miteinander. \label{app_architecture}](source/figures/app_architecture.pdf){ width=80% }
 
 Damit dies funktioniert musste das fertige Model zunächst vom Keras Datenformat in das Tensorflow-eigene Datenformat konvertiert werden. Dies wurde mit dem folgenden Python Skript erledigt.
 
@@ -438,7 +439,7 @@ def keras2tf(model_path = "models/keras/model.hdf5",
             outputs={t.name: t for t in model.outputs})
 ```
 
-Der Webservice nimmt die Videodaten im Base64<!-- TODO: Ref --> Format entgegegen und extrahiert jede Sekunde ein Einzelbild. Dieses sendet er an den Klassifizierer um die enstprechende Emotion hervorzusagen und speichert diese zusammen mit der Sekunde ab um Sie zurückzugeben. Für die Verarbeitung des Videos wird die gleiche Python Funktion verwendet, die auch schon zur Vorverarbeitung der selbsterstellten Daten verwendet wurde. Die Einzelbilder werden vom Webservice dann mit folgender Funktion einer Emotion zugeordnet.
+Der Webservice nimmt die Videodaten im Base64[@Base64] Format entgegegen und extrahiert jede Sekunde ein Einzelbild. Dieses sendet er an den Klassifizierer um die enstprechende Emotion hervorzusagen und speichert diese zusammen mit der Sekunde ab um Sie zurückzugeben. Für die Verarbeitung des Videos wird die gleiche Python Funktion verwendet, die auch schon zur Vorverarbeitung der selbsterstellten Daten verwendet wurde. Die Einzelbilder werden vom Webservice dann mit folgender Funktion einer Emotion zugeordnet.
 ```python
 def pred_to_text(pred, cols = ['anger', 'contempt',
          'disgust', 'fear', 'happiness', 'neutral', 
@@ -469,7 +470,7 @@ def predict_emotion(image):
     return pred_to_text(pred)
 ```
 
-Alle Micro Service wurden mithilfe von *Docker* und *docker-compose* containerisiert. Auf die genauere Beschreibun von Docker soll in dieser Arbeit nicht weiter eingegangen werden (Mehr Informationen hier <!-- TODO: ref -->). Docker-compose stellt eine einfache Anwendung zum festhalten aller Parameter einer aus *Docker*-Container bestehenden Microservice-Architektur dar. Dabei werden alle Komponenten in eriner Datei im YAML(Yet another Markup Language) Format festgehalten. Beim YAML Format handelt es sich vereinfacht gesagt um eine für den Menschen leichter lesbare Abwandlung des JSON Formates. Die in dieser Arbeit erstellte Architektur wurde in einer *docker-compose* Datei festgehalten (siehe \ref{anhang_docker-compose})
+Alle Micro Services wurden mithilfe von *Docker* und *docker-compose* containerisiert. Auf die genauere Beschreibun von Docker soll in dieser Arbeit nicht weiter eingegangen werden (Mehr Informationen unter [@Docker]). Docker-compose stellt eine einfache Anwendung zum festhalten aller Parameter einer aus *Docker*-Container bestehenden Microservice-Architektur dar. Dabei werden alle Komponenten in eriner Datei im YAML(Yet another Markup Language) Format festgehalten. Beim YAML Format handelt es sich vereinfacht gesagt um eine für den Menschen leichter lesbare Abwandlung des JSON Formates. Die in dieser Arbeit erstellte Architektur wurde in einer *docker-compose* Datei festgehalten (siehe \ref{anhang_docker-compose})
 <!-- TODO: move to anhan 
 ```yaml
 version: '3.0'

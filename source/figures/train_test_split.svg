@@ -90,16 +90,16 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.8"
-     inkscape:cx="295.02574"
+     inkscape:cx="71.27574"
      inkscape:cy="23.749999"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
-     inkscape:window-width="1440"
-     inkscape:window-height="798"
-     inkscape:window-x="0"
-     inkscape:window-y="1"
-     inkscape:window-maximized="1" />
+     inkscape:window-width="1680"
+     inkscape:window-height="1005"
+     inkscape:window-x="139"
+     inkscape:window-y="2"
+     inkscape:window-maximized="0" />
   <metadata
      id="metadata5">
     <rdf:RDF>
@@ -108,7 +108,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -163,14 +163,14 @@
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:4.67430544px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-       x="35.784904"
+       x="40.547409"
        y="35.062504"
        id="text849"><tspan
          sodipodi:role="line"
          id="tspan847"
-         x="35.784904"
+         x="40.547409"
          y="35.062504"
-         style="stroke-width:0.26458332">ca. 34.000 Bilder</tspan></text>
+         style="stroke-width:0.26458332"> 35.488 Bilder</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:4.67430544px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
@@ -285,5 +285,16 @@
        d="M 163.82178,46.372089 148.96183,71.109324"
        id="path1249"
        inkscape:connector-curvature="0" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:4.67430544px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="152.71442"
+       y="34.996357"
+       id="text876"><tspan
+         sodipodi:role="line"
+         x="152.71442"
+         y="34.996357"
+         style="stroke-width:0.26458332"
+         id="tspan878">1.835 Bilder</tspan></text>
   </g>
 </svg>
