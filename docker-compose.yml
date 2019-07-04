@@ -4,7 +4,7 @@ services:
   thesisbldr:
     image: shogoki/thesisbuilder
     environment:
-      - owncloud-pw
-      - owncloud-password
+      - owncloud-pw=${owncloud-pw}
+      - owncloud-password=${owncloud-pw}
     volumes:
       - .:/usr/src/app
