@@ -9,10 +9,13 @@
 % Stand:    2016-01-25
 %
 
-% \usepackage[T1]{fontenc}    % Aktivieren europäischer Zeichensätze, u.a. für 
+  \usepackage[T1]{fontenc}    % Aktivieren europäischer Zeichensätze, u.a. für 
                             % korrekte Silbentrennung
-% \usepackage[utf8]{inputenc} % Ermöglichen direkter Eingabe von Sonderzeichen,
+  \usepackage[utf8x]{inputenc} % Ermöglichen direkter Eingabe von Sonderzeichen,
                             % ohne diese escapen bzw. entwerten (\) zu müssen
+% \usepackage{fontspec}
+% \defaultfontfeatures{Ligatures=TeX}
+
 \usepackage[ngerman]{babel} % Festlegen der neuen deutschen Rechtschreibung für 
                             % das gesamte Dokument
 
@@ -159,8 +162,9 @@
 
   \bigskip
 
-  Hiermit erkläre ich, dass ich diese Arbeit selbstständig abgefasst und keine
-  anderen als die angegebenen Quellen und Hilfsmittel benutzt habe.
+  Hiermit erkläre ich, dass ich diese Arbeit selbstständig abgefasst und keine anderen als die
+  angegebenen Quellen und Hilfsmittel benutzt habe. Ich bin mit einer Plagiatsprüfung
+  einverstanden. 
 
   Die Arbeit wurde bisher keiner anderen Prüfungsbehörde vorgelegt und auch noch
   nicht veröffentlicht.
@@ -174,8 +178,7 @@
     \ Ort, Abgabedatum  & \ Unterschrift (Vor- und Zuname)  \\
   \end{tabular}
 
-  % Ausgeblasstes Siegel rechts unter der Unterschrift
-  \hfill\includegraphics[scale=0.75]{wbh_siegel.png}
+ 
 }
 
 

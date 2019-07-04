@@ -3,7 +3,7 @@
 # Fazit
 
 Bei der automatisierten Erkennung von Emotionen gibt es aktuell diverse verschiedene Ansätze. Im Rahmen der gesichtsbasierten Emotionserkennung anhand von Bildern gibt es aktuell noch kaum dokumentierte Netzstrukturen, welche mit einer eher geringen Anzahl an Trainingsdaten auskommen.
-Die Leistung der bestehnden Lösungen ist stark abhängig von der Anzahl der gewählten Klassen, was auf die Einteilung der Emotionen zurück zu führen ist. 
+Die Leistung der bestehenden Lösungen ist stark abhängig von der Anzahl der gewählten Klassen, was auf die Einteilung der Emotionen zurück zu führen ist. 
 Zu Beginn dieser Arbeit wurden zunächst verschiedenen Ansätze für die Einteilung von Emotionen kurz betrachtet. Im Gebiet der Psychologie ist die Einteilung nach dem *FACS* weit verbreitet, weshalb diese in dieser Arbeit gewählt wurde. Eine Möglichkeit wäre die Einteilung in weniger Emotionen, was zu besseren Ergebnissen führen könnt.
 <!-- In anderen Arbeiten zum Thema Emotionserkennung wurde die Einteilung in weniger Emotionen vorgenommen (Vergleich XY), was zu besseren Ergebnissen geführt hat. -->
 
@@ -24,7 +24,5 @@ Aufgrund der begrenzten Bearbeitungszeit konnte im Rahmen dieser Arbeit leider k
 
 **Beschaffung von weiteren Trainingsdaten** Eine weitere Idee zur Verbesserung des Netzwerkes ist es mehr Trainingsdaten zu beschaffen. Dazu könnte zum Beispiel der genutzte Webservice zum selbsterstellen von Daten noch weiter verbreitet und verwendet werden um ausreichen eigene Trainingsdaten zu Beschaffen.
 
-Die Implemntierung des Webservice wurde im Rahmen dieser Arbeit von Anfang an, lediglich als Prototyp geplant. Dieser hat ebenfalls könnte zukünftig zum einen um eine anschauliche Benutzeroberfläche erweitert werden und zum anderen in der Funktionalität ausgebaut werden. 
-So wären, nachdem die Gesichtsbasierte Gesichtserkennung ausreichend gut funktioniert, weitere Erweiterungen auf die Erkennung der Emotionen anhand der Tonlage oder der Sprache (*Text2speec*) der Audiodaten der Videos möglich.
-
-
+Die Implementierung des Webservice wurde im Rahmen dieser Arbeit von Anfang an, lediglich als Prototyp geplant. Dieser hat ebenfalls könnte zukünftig zum einen um eine anschauliche Benutzeroberfläche erweitert werden und zum anderen in der Funktionalität ausgebaut werden.
+So wären, nachdem die Gesichtsbasierte Gesichtserkennung ausreichend gut funktioniert, weitere Erweiterungen auf die Erkennung der Emotionen anhand der Tonlage oder der Sprache (*Text2speech*) der Audiodaten der Videos möglich.

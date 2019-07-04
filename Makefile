@@ -37,8 +37,9 @@ pdf:
 	-V fontsize=12pt \
 	-V papersize=a4paper \
 	-V documentclass=scrbook \
+	-V include-after="\printEidesstattlicheErklaerung" \
 	-N \
-	--pdf-engine=xelatex \
+	--pdf-engine=pdflatex \
 	--verbose  2>pandoc.log
 
 pipeline:

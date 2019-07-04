@@ -2,30 +2,34 @@
 This is the Latex-heavy title page. 
 People outside UCL may want to remove the header logo 
 and add the centred logo
+
+% Bildkante des Logo bündig mit Text
+    \includegraphics[]{wbh_logo.png} \\
+    {\sffamily Fachbereich \fachbereich               \\
+    Ostendstraße 3                                              \\
+    D-64319 Pfungstadt   
+    width=0.4\textwidth
+
 -->
 
 \begin{titlepage}
     \begin{center}
 
-    % Delete the following line
-    % to remove the UCL header logo
-    % \ThisULCornerWallPaper{1.0}{style/univ_logo.eps}
-        
-        \vspace*{2.5cm}
+        \vspace*{1cm}
         % Uncomment the following line
         % to add a centered university logo
-        \includegraphics[width=0.4\textwidth]{style/logo-wbh.jpg}
-     
-        
-      %  \vspace{1.5cm}
+        \includegraphics[width=0.4\textwidth]{style/logo-wbh.jpg} \\
+        {\sffamily Fachbereich \fachbereich               \\
+          Ostendstraße 3                                              \\
+          D-64319 Pfungstadt   }
         
         \Large
-        Wilhelm Büchner Hochschule\\
-        Fachbereich Informatik
-
-        \vspace{1.5cm}
-
-        Bachelor Thesis im Studiengang Informatik\\
+         Bachelor Thesis im Studiengang Informatik\\
+        \vspace{0.8cm}
+        \vfill
+        {\usekomafont{subtitle}Emotionserkennung anhand von Videodaten mithilfe von künstlichen neuronalen Netzen}
+        \normalsize
+        \vfill
         \vspace{0.8cm}
         \normalsize
         vorgelegt von:\\
@@ -33,9 +37,7 @@ and add the centred logo
         Prischoßstraße 46\\
         63755 Alzenau\\
         Matrikelnummer: 893511\\
-        
         \vspace{0.8cm}
-        
         Betreuer: Herr Lachezar Krumov \\
         \vspace{0.8cm}
         Abgabetermin 02.08.2019\\

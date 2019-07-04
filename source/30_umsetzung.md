@@ -1,13 +1,13 @@
 \clearpage
 
-# Umsetzung
+# Umsetzung \label{chapter_umsetzung}
 
 In diesem Teil wird die Umsetzung der Arbeit beschrieben. Im ersten Abschnitt wird auf die Art und Einteilung der zu klassifizierenden Daten eingegangen. Im weiteren Verlauf wird die Beschaffung der verschiedenen Datensätze behandelt, mit welchen gearbeitet werden soll. Anschließend werden diverse Verfahren der Datenpräparation wie Vorbereitung, Normalisierung und Datenvervielfältigung thematisiert. Letzten Endes werden verschiedene neuronale Netze entworfen, trainiert und getestet, bis dann im letzten Abschnitt die Realisierung des zu erstellenden Webservice näher betrachtet wird.
 
 ## Beschaffenheit und Einteilung der Daten
 
 Wie bereits beschrieben, sollen für den späteren Webservice Videodaten als Eingabe dienen. Das neuronale Netz wird jedoch nicht direkt die Videodaten, sondern aus dem Video extrahierte Einzelbilder als Eingabe erhalten. Diese Eingabedaten werden anhand später beschriebener Verfahren noch weiter vorbereitet und optimiert.
-Die Einzelbilder sollen als *Array* von Pixelwerten eines Graustufenbildes an das neuronale Netzwerk übergeben werden, siehe Kapitel Datenpräparation <!-- TODO: REF -->.
+Die Einzelbilder sollen als *Array* von Pixelwerten eines Graustufenbildes an das neuronale Netzwerk übergeben werden, siehe Kapitel Datenpräparation \ref{chapter_dataprep}.
 Die Bilder sollen in 8 verschiedene Klassen eingeteilt werden. Die verschiedenen Emotionen des *FACS* und die zusätzliche Klasse *neutral* bilden den Zielklassenvektor $Z$, es gilt also $|Z| = 8$. Jedes Bild, welches der selben Emotion des *FACS* entspricht, ist Mitglied der selben Klasse aus $Z$.
 
 ## Datensätze
@@ -17,29 +17,33 @@ Ein Teil der Arbeit bestand darin, geeignete Datensätze für das Training und d
 ### Beschaffung der Datensätze
 
 Dazu sollen 2 verschiedene Ansätze unterschieden werden. Zum einen die Beschaffung eines vorhandenen freien Datensatzes von Gesichtsbildern inklusive der Zuordnung zu einer der entsprechenden *FACS* Emotionen, sowie zum anderen die Generierung von eigenen Daten mithilfe eines Webservice und freiwillgen Probanden. 
-In dieser Arbeit wurden beide Ansätze in Kombination verwendet. Es wurden also 2 verschiedene Datenquellen herangezogen, was bei der Aufteilung der Datensätze eine wichtige Rolle spielt (siehe Kapitel Einteilung der Datensätze<!--TODO: REF -->). 
+In dieser Arbeit wurden beide Ansätze in Kombination verwendet. Es wurden also 2 verschiedene Datenquellen herangezogen, was bei der Aufteilung der Datensätze eine wichtige Rolle spielt (siehe Kapitel Einteilung der Datensätze \ref{chapter_datasplit}). 
 
 #### FER+
 
-Als großer frei Verfügbarer Datensatz wurde der *Facial Expression Recognition+* (FER+)[@Barsoum2016] Datensatz verwendet. Bei den Eingangsdaten des *FER+* handelt es sich um dieselben Bilder, wie auch beim *FER2013*, welcher Teil der International Conference for Machine Learning (ICML) Challenge 2013 war und danach der Öffentlichkeit zur Verfügung gestellt wurde. Bei FER+ wurden jedoch alle *Label* mithilfe von *Crowdsourcing* neu erstellt, um eine bessere Datenqualität zu erreichen (vgl. [@Barsoum2016]). Der Datensatz besteht aus 34034 48x48 Graustufen Bilder von Gesichtern. Jedes dieser Bilder wurde von je 10 Freiwilligen mithilfe von *Crowdsourcing* bewertet. Der Datensatz enthält für jede Klasse (Emotionen des *FACS* (inkl. neutral), "kein Gesicht" und "unbekannt" ) die Anzahl an Freiwilligen, welche das Bild entsprechend bewertet haben.
+Als großer frei Verfügbarer Datensatz wurde der *Facial Expression Recognition+* (FER+)[@Barsoum2016] Datensatz verwendet. Bei den Eingangsdaten des *FER+* handelt es sich um dieselben Bilder, wie auch beim *FER2013*, welcher Teil der International Conference for Machine Learning (ICML) Challenge 2013 war und danach der Öffentlichkeit zur Verfügung gestellt wurde. Bei FER+ wurden jedoch alle *Label* mithilfe von *Crowdsourcing* neu erstellt, um eine bessere Datenqualität zu erreichen (vgl. [@Barsoum2016]). Der Datensatz besteht aus 34034 48x48 Graustufen Bilder von Gesichtern. Jedes dieser Bilder wurde von je 10 Freiwilligen mithilfe von *Crowdsourcing* bewertet. Der Datensatz enthält für jede Klasse (Emotionen des *FACS* (inkl. neutral), "kein Gesicht" und "unbekannt") die Anzahl an Freiwilligen, welche das Bild entsprechend bewertet haben.
 Ein Beispiel für ein einzelnes Datum des Datensatzes ist in Abbildung \ref{single_ferplus} zu sehen.
 
-![Darsteillung eines einer einzelnen Zeile aus dem FER+ Datensatz. Oben ist das zugehörige Bild aus den Pixelwerten des originalen *FER2013* Datensatz zu sehen, darunter wird die zugehörige Zeile des *FER+* ausgegeben \label{single_ferplus}](source/figures/dump_ferplus.png){ width=90% } 
+![Darsteillung einer einzelnen Zeile aus dem FER+ Datensatz. Oben ist das zugehörige Bild aus den Pixelwerten des originalen *FER2013* Datensatz zu sehen, darunter wird die zugehörige Zeile des *FER+* ausgegeben \label{single_ferplus}](source/figures/dump_ferplus.png){ width=90% } 
 
 Das Team von Microsoft Research [@Barsoum2016] beschreibt mehrere Variationen wie die mehrfach *gelabelten* Daten verwendbar sind. In dieser Arbeit wird jedoch ausschließlich der einfache Mehrheits-Ansatz verfolgt. Es wird also jedes Bild der Klasse zugeordnet, welche die meisten Stimmen erhalten hat.
 
 Zum Laden der Daten wurde das folgende Python Skript verwendet.
 
 ```python
-def load_data_ferplus(fer_ds_path = "fer+/fer2013/fer2013.csv", ferplus_ds_path="fer+/fer2013new.csv"):
-    # loading raw data
-    ## loading only the label cols from fer+
-    cols=['neutral', 'happiness', 'surprise', 'sadness', 'anger', 'disgust', 'fear', 'contempt', 'unknown', 'NF']
-    ferplus = pd.read_csv(ferplus_ds_path , usecols=cols, dtype=np.int32)
+def load_data_ferplus(fer_ds_path = "fer+/fer2013/fer2013.csv",
+        ferplus_ds_path="fer+/fer2013new.csv"):
+    # loading only the label cols from fer+
+    cols=['neutral', 'happiness', 'surprise', 'sadness',
+        'anger', 'disgust', 'fear', 'contempt', 'unknown', 'NF']
+    ferplus = pd.read_csv(ferplus_ds_path , usecols=cols,
+        dtype=np.int32)
     # and only the pcitures (pixels) from original fer2013
     fer = pd.read_csv(fer_ds_path, usecols=['pixels'])
-    # getting simple majority voted label using idxmax and merge it with the picture dataset
-    merged_fer = pd.concat([fer, ferplus.idxmax(axis=1)], axis=1)
+    # getting simple majority voted label using idxmax and
+    # merge it with the picture dataset
+    merged_fer = pd.concat([fer, ferplus.idxmax(axis=1)],
+        axis=1)
     # redefining column names
     merged_fer.columns = ['img_pixels', 'emotion']
     return merged_fer
@@ -47,7 +51,7 @@ def load_data_ferplus(fer_ds_path = "fer+/fer2013/fer2013.csv", ferplus_ds_path=
 
 #### selbsterstellte Daten
 
-Zur Generierung von eigenen Daten wurde im Rahmen der Arbeit eine einfache Website erstellt, welche mithilfe von *WebRTC* Zugriff auf die Kamera bekommt. Auf dieser Website haben freiwillige Probanden und auch der Autor dieser Arbeit die Möglichkeit, nacheinander für jede Emotion des *FACS* ein Video in der Länge von 15 Sekunden aufzunehmen. Dieses wird anschließend direkt auf dem Server gespeichert. Die Webseite ist in Abbildung \ref{webrtc_screenshot} zu sehen.
+Zur Generierung von eigenen Daten wurde im Rahmen der Arbeit eine einfache Website erstellt, welche mithilfe von *WebRTC* (Web Real-Time Communications) Zugriff auf die Kamera bekommt. Auf dieser Website haben freiwillige Probanden und auch der Autor dieser Arbeit die Möglichkeit, nacheinander für jede Emotion des *FACS* ein Video in der Länge von 15 Sekunden aufzunehmen. Dieses wird anschließend direkt auf dem Server gespeichert. Die Webseite ist in Abbildung \ref{webrtc_screenshot} zu sehen.
 
 ![Screenshot der Video-Recording Website\label{webrtc_screenshot}](source/figures/web_recorder.png){ width=70% }
 
@@ -59,23 +63,24 @@ def extract_video_frames(prefix, videofile,
 
     vidcap = cv2.VideoCapture(videofile)
 	fps = min((50, int(vidcap.get((cv2.CAP_PROP_FPS)))))
-	print ("extracting every {} frame from {}".format(fps,videofile))
+	print ("extracting every {} frame from {}".format(fps,
+        videofile))
     success,image = vidcap.read()
     count = 0
     while success:
         if (count % fps) == 0:
 			# save frame as JPEG file
-            cv2.imwrite("{}/{}_frame{}.jpg".format(targetdir,
-				prefix , count) , image)  
-        success,image = vidcap.read()
+            cv2.imwrite("{}/{}_frame{}.jpg".format(
+                targetdir, prefix , count) , image)  
+        success, image = vidcap.read()
         print('Read a new frame: ', success)
         count += 1
 ```
 <!-- Python-Skript zum extrahieren der Einzelbilder\label{listing_extract_video} -->
 
-Die Einzelbilder wurden anschließend manuell auf Korrektheit, das heißt Zuordnung zur Klasse, geprüft. Dabei wurden insgesamt 402 Bilder wieder aussortiert.
+Die Einzelbilder wurden anschließend manuell auf Korrektheit, das heißt Zuordnung zur Klasse, geprüft. Dabei wurden insgesamt 402 Bilder wieder aussortiert. 
 
-## Datenpräparation
+## Datenpräparation \label{chapter_dataprep}
 
 Um die Effizienz, sowie die Genauigkeit der Vorhersage des neuronalen Netzwerkes zu steigern, werden alle Daten bevor sie dem KNN präsentiert werden auf diverse Arten präpariert. Im Folgenden wird auf die angewandten Methoden genauer eingegangen.
 
@@ -85,8 +90,8 @@ Um ein möglichst gutes Ergebnis zu erzielen, wurden die selbst erstellten Daten
 Bei den selbst aufgezeichneten Daten wurde, wie bereits erwähnt, eine abschließende manuelle Sichtung vorgenommen, um möglichst alle falsch markierten Daten auszusortieren. Des Weiteren werden alle selbst aufgezeichneten Bilder auf den Ausschnitt des Gesichtes beschränkt, bevor sie dem selbst entworfenen KNN präsentiert werden. Dazu wird der bereits beschriebene *Viola-Jones-Detektor* [@Shen1997] verwendet. Der das Gesicht enthaltende Teil des Bildes wird anschließend auf 48x48 Pixel skaliert und in ein Graustufenbild umgewandelt. Damit haben letzten Endes alle Eingangsdaten des neuronalen Netzes die gleiche Struktur. Der Python Code für diese Vorverarbeitung ist im folgenden Listing zu sehen.
 
 ```python
-def prep_data_selfrecorded(
-    selfrecorded_data, viola_jones_model="haarcascade_files/haarcascade_frontalface_default.xml"):
+def prep_data_selfrecorded(selfrecorded_data, 
+        viola_jones_model="facedetection/viola_jones.xml"):
     # creating facedetector
     face_detection = cv2.CascadeClassifier(viola_jones_model)
     img_input = selfrecorded_data['img'].tolist()
@@ -97,18 +102,27 @@ def prep_data_selfrecorded(
         img = img_input[i]
         img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         #face detection 
-        faces = face_detection.detectMultiScale(img,scaleFactor=1.1,minNeighbors=5,minSize=(48,48),flags=cv2.CASCADE_SCALE_IMAGE)
+        faces = face_detection.detectMultiScale(img,
+            scaleFactor=1.1,minNeighbors=5,minSize=(48,48),
+            flags=cv2.CASCADE_SCALE_IMAGE)
         # sorting out images with failed detection
         target_face = None
         if len(faces) == 0:
-            print ("ERROR: there was no face detected on image, discarding it")
+            print ("ERROR:",
+                "there was no face detected on image,",
+                "discarding it")
             noface.append(i)
             continue
         elif len(faces) > 1:
-            print ("WARNING: there was more than one face detected on image, using the biggest one")
+            print ("WARNING:",
+                "there was more than one face",
+                "detected on image,",
+                "using the biggest one")
             for face in faces:
                 size = face[2] * face[3]
-                if target_face is None or (target_face[2] * target_face[3] < size):
+                if target_face is None or (
+                        target_face[2] * target_face[3]
+                            < size):
                     target_face = face
         else:
             target_face = faces[0]
@@ -124,8 +138,9 @@ def prep_data_selfrecorded(
     selfrecorded_data = selfrecorded_data.drop(noface)
     ##returning emotions OneHot Encoded. 
     emo = pd.get_dummies(selfrecorded_data['emotion'])
-    # we need to make sure, that we have always the same cols in same order:
-    cols = ['anger', 'contempt', 'disgust', 'fear', 'happiness', 'neutral', 'sadness', 'surprise' ]
+    # we need to make sure, that we have always the same cols
+    cols = ['anger', 'contempt', 'disgust', 'fear', 'happiness',
+        'neutral', 'sadness', 'surprise' ]
     for col in cols:
         if col not in emo.columns.tolist():
             # if col not present create and fill with zeros
@@ -138,7 +153,8 @@ Bei den Daten aus dem *FER+* Datensatz ist etwas weniger Vorverarbeitung nötig.
 ```python
 def prep_data_ferplus(ferplus_data):
     # removing NF (no face) and unknown columns
-    cleaned = ferplus_data[ferplus_data['emotion'] != "NF"][ferplus_data['emotion'] != "unknown"]
+    cleaned = ferplus_data[ferplus_data['emotion'] != "NF"]
+    cleaned = cleaned[cleaned['emotion'] != "unknown"]
     ### Getting oneHot encoded classes using get_dummies
     emotions = pd.get_dummies(cleaned['emotion']).as_matrix()
     ## retrieving images from pixel list
@@ -148,7 +164,8 @@ def prep_data_ferplus(ferplus_data):
     # extracting images from space delimited pixel values
     for pixel_row in img_pixels:
         img = [int(pixel) for pixel in pixel_row.split(' ')]
-        #Having them in a one-dim list now, we have to make an np array with our img_shape
+        # Having them in a one-dim list now,
+        # we have to make an np array with our img_shape
         img = np.asarray(img).reshape(img_width, img_height)
         img = cv2.resize(img.astype('uint8'),(48, 48))
         imgs.append(img.astype('float32'))
@@ -182,17 +199,17 @@ Zur Normalisierung der Daten werden dementsprechend alle Pixelwerte durch 255 di
 
 ### Datenmehrung
 
-Je mehr Trainingsdaten für das KNN vorhanden sind, desto besser kann es auch mit ungesehenen Daten umgehen. Da nur begrenzt viele Daten zur Verfügung stehen werden, in dieser Arbeit einige Methoden der künstlichen  Datenvermehrung angewandt. Dazu werden die Bilder der Eingangsdaten zum Beispiel gespiegelt, verzerrt oder gedreht. In dieser Arbeit wurden die Methoden der Spiegelung, sowie des zufälligen Drehens einiger Bilder angewandt. Durch die Spiegelung, bzw. Drehung eines Bildes entsteht wieder ein neues Bild, welches zum Training des neuronalen Netzes verwendet werden kann. So kann mit dieser relativ einfachen Methode die Anzahl der Trainingsdaten sehr leicht verdoppelt werden. Zur Datenmehrung während des Trainingsprozesses wurde der *ImageDataGenerator* aus dem *keras* Modul verwendet. Dieser bietet die Möglichkeit zufällige Bilder zu spiegeln oder zu rotieren. Dazu wurden die Parameter *rotation_range* und *horizontal_flip* entsprechend gesetzt.
+Je mehr Trainingsdaten für das KNN vorhanden sind, desto besser kann es auch mit ungesehenen Daten umgehen. Da nur begrenzt viele Daten zur Verfügung stehen werden, in dieser Arbeit einige Methoden der künstlichen  Datenvermehrung angewandt. Dazu werden die Bilder der Eingangsdaten zum Beispiel gespiegelt, verzerrt oder gedreht. In dieser Arbeit wurden die Methoden der Spiegelung, sowie des zufälligen Drehens einiger Bilder angewandt. Durch die Spiegelung, bzw. Drehung eines Bildes entsteht wieder ein neues Bild, welches zum Training des neuronalen Netzes verwendet werden kann. So kann mit dieser relativ einfachen Methode die Anzahl der Trainingsdaten sehr leicht verdoppelt werden. Zur Datenmehrung während des Trainingsprozesses wurde der *ImageDataGenerator* aus dem *keras* Modul[@Keras.io2019] verwendet. Dieser bietet die Möglichkeit zufällige Bilder zu spiegeln oder zu rotieren. Dazu wurden die Parameter *rotation_range* und *horizontal_flip* entsprechend gesetzt.
 
 ```python
 img_gen = ImageDataGenerator(
-                            featurewise_center=False,
-                            featurewise_std_normalization=False,
-                            rotation_range=45,
-                            horizontal_flip=True)
+                        featurewise_center=False,
+                        featurewise_std_normalization=False,
+                        rotation_range=45,
+                        horizontal_flip=True)
 ```
 
-### Einteilung der Datensätze
+### Einteilung der Datensätze \label{chapter_dataprep}
 
 Beim maschinellen Lernen ist es üblich den vorhandenen Datensatz bzw. die vorhandenen Datensätze in verschiedene Verwendungszwecke einzuteilen. Klassisch spricht man hier vom *train/test-Split*, also einer Aufteilung der Daten in einen Trainings- und einen Test-Datensatz. In modernen Projekten, welche sich mit maschinellen Lernen beschäftigen, spricht man jedoch zumeist von einem *train/dev/test-split*. Die Daten werden also in einen Trainings-, einen Entwicklungs- und einen Test-Datensatz eingeteilt. Als Entwicklungs-Datensatz bezeichnet man jene Daten, welche während der Entwicklung, also dem Anpassen bestimmter (Hyper-)Parameter, des neuronalen Netzes zur Evaluierung verwendet werden. Der Test-Datensatz ist in diesem Szenario ein Satz aus Daten, welches das neuronale Netz vor der Fertigstellung noch nicht "zu sehen" bekommen hat. Beim klassischen *train/test-split* ist der Test-Satz also eigentlich das, was wir heute als Entwicklungs-Datensatz bezeichnen und es gibt keinen wirklichen Test-Datensatz.
 Bei der Wahl der Datenquellen ist es wichtig, dass die Test-Daten möglichst ähnlich zu den später erwarteten Eingangsdaten sind und die Entwicklungs- und Test-Datensatz aus der selben Quelle stammen.
@@ -209,12 +226,17 @@ Die selbsterstellten Daten wurden in zu je 50% in den Entwicklungs- und Test-Dat
 Zum Aufteilen der einzelnen Datensätze wurde die Funktion "train_test_split" aus dem Python Modul "sklearn"[@scikit-learn] verwendet. Um eine zwar anfangs zufällige, jedoch reproduzierbare Aufteilung zu erhalten, wird der "Random_state" auf einen festen Wert gesetzt. Das genutzte Python Skript ist im Folgenden abgebildet.
 
 ```python
-def split_datasets(ferplus_imgs, ferplus_emotions, selfrecorded_imgs , selfrecorded_emotions ):
+def split_datasets(ferplus_imgs, ferplus_emotions,
+        selfrecorded_imgs , selfrecorded_emotions ):
     xTrain, xBridge, yTrain, yBridge = train_test_split(
-        ferplus_imgs, ferplus_emotions, test_size = 0.1, random_state = 20808)
+        ferplus_imgs, ferplus_emotions, test_size = 0.1,
+            random_state = 20808)
     xDev, xTest, yDev, yTest = train_test_split(
-        selfrecorded_imgs, selfrecorded_emotions, test_size = 0.5, random_state = 280919)
-    return xTrain, xBridge, yTrain, yBridge, xDev, xTest, yDev, yTest
+        selfrecorded_imgs, selfrecorded_emotions,
+            test_size = 0.5, random_state = 280919)
+    datasets = [xTrain, xBridge, yTrain, yBridge,
+        xDev, xTest, yDev, yTest]
+    return datasets
 ```
 
 ## Entwurf und Entwicklung neuronaler Netze
@@ -223,7 +245,7 @@ Im Rahmen dieser Arbeit sollen 2 verschiedene neuronale Netzwerke entworfen, tra
 
 ### Entwicklungsumgebung
 
-Die Entwicklung der KNN´s wurde in Python mithilfe der Machine-Learning Erweiterunge Keras vorgenommen. Keras ist eine vereinfachte Schnittstellenimplementierung zur einfachen Verwendung von verschiedenen Machine Learning-Schnittstellen. In dieser Arbeit wurde Keras mit der Tensorflow-Schnittstelle verwendet.
+Die Entwicklung der KNN´s wurde in Python mithilfe der Machine-Learning Erweiterunge Keras[@Keras.io2019] vorgenommen. Keras ist eine vereinfachte Schnittstellenimplementierung zur einfachen Verwendung von verschiedenen Machine Learning-Schnittstellen. In dieser Arbeit wurde Keras mit der Tensorflow-Schnittstelle verwendet.
 Als Entwicklungsumgebung wurde hierzu ein Jupyter Notebook verwendet. Der Vorteil eines Jupyter Notebook liegt darin, dass sehr einfach Text und Programmierabschnitte, sowie deren Ausgabe nebeneinander visualisiert werden können.
 
 ### Topologie
@@ -257,7 +279,10 @@ Die Topologie des KNN lässt sich durch die folgend beschriebenen Parameter konk
 $$
 conv(n x n, f x f, p) = n +2p - f + 1 x n +2p - f + 1
 $$
-Ergibt sich für das *same padding* die Größe der Füllung $p$ wie folgt.
+
+$$
+\text{Ergibt sich für das "same padding" die Größe der Füllung } p \text{ wie folgt.}
+$$
 
 $$
 n + 2p_{same} -f +1 = n
@@ -268,7 +293,7 @@ $$
 
 * **Pooling**: Als Pooling Methode wird in diesem Netzwerk das Durchschnitts-Pooling (engl. *average pooling*) angewandt. Beim Average Pooling, wird ähnlich wie bei einer *convolutional* Schicht, ein Filter einer definierten Größe (hier $2x2$) über die Daten *geschoben*. Beim *average pooling* erhält Das Ziel-Fenster immer den Durchschnittswert, der Werte im Fenster (Vergleich Abbildung \ref{avg_pooling}). Die letzte *pooling* Schicht in diesem Netz stellt eine Besonderheit dar, da hier da sogenannte globale Durchschnitts-Pooling verwendet wurde. Beim *global average pooling* wird für jede zweidmensionale Ebene genau ein Durchschnittswert gebildet, die Filtergröße ist also gleich der Größe der Eingangsdaten.
 
-![Beispielhafte Darstellung von *Average-Pooling* mit einer Fenstergröße von 2x2 und einer Schrittgröße(stride) von 2 \label{avg_pooling}](sources/figures/simple_cnn_arch.pdf){width: 80%}
+![Beispielhafte Darstellung von *Average-Pooling* mit einer Fenstergröße von 2x2 und einer Schrittgröße(stride) von 2 \label{avg_pooling}](sources/figures/avg_pooling.pdf){width: 80%}
 
 * **Kosten-Funktion**: Zur Ermittlung des Verlustes wurde die kategorische Kreuzentropie-Funktion verwendet. Für die genaue Funktionsweise sei auf [@Litomisky2012] verwiesen, da sie in dieser Arbeit nicht genauer behandelt wird.
 
@@ -277,32 +302,32 @@ $$
 #### *Transfer Learning* auf Basis XCeption
 
 Beim zweiten Model wurde auf die sogenannte *transfer learning* Technik gesetzt. Darunter versteht man das übertragen der Gewichte eines bereits trainierten Netzwerkes auf eine neue, meist ähnliche, Aufgabe. Dabei wird in der Regel die Ausgabeschicht des ursprünglichen Netzes entfernt und eine oder mehrere neue vollvernetzte Schichten angehängt, welche dann die Aufgabe haben vom ursprünglichen auf das neue Problem zu schließen.
-In dieser Arbeit wurde *transfer learning* auf Basis des XCeption Netzwerkes[@Chollet2017] welches für die Klassifizierung des *ImageNet* Datensatzes[@ILSVRC15] trainiert wurde. Für das XCeption Netzwerk wurde sich aufgrund der Tatsache entschieden, dass es für den *ImageNet* Datensatz eine sehr hohe Genauigkeit mit einer relativ geringen Anzahl an Parametern (siehe Tabelle \ref{keras_app_table}) erzielen konnte.
+In dieser Arbeit wurde *transfer learning* auf Basis des XCeption Netzwerkes[@Chollet2017] welches für die Klassifizierung des *ImageNet* Datensatzes[@ILSVRC15] trainiert wurde. Für das XCeption Netzwerk wurde sich aufgrund der Tatsache entschieden, dass es für den *ImageNet* Datensatz eine sehr hohe Genauigkeit mit einer relativ geringen Anzahl an Parametern (siehe Tabelle 3.1) erzielen konnte.
 
- Model | Größe | Top-1 Genauigkeit | Top-5 Genauigkeit | Parameter-Anzahl | Tiefe |
-| ----- | ----: | --------------: | --------------: | ----------: | -----: |
-| [Xception](#xception) | 88 MB | 0.790 | 0.945 | 22,910,480 | 126 |
-| [VGG16](#vgg16) | 528 MB | 0.713 | 0.901 | 138,357,544 | 23 |
-| [VGG19](#vgg19) | 549 MB | 0.713 | 0.900 | 143,667,240 | 26 |
-| [ResNet50](#resnet) | 98 MB | 0.749 | 0.921 | 25,636,712 | - |
-| [ResNet101](#resnet) | 171 MB | 0.764 | 0.928 | 44,707,176 | - |
-| [ResNet152](#resnet) | 232 MB | 0.766 | 0.931 | 60,419,944 | - |
-| [ResNet50V2](#resnet) | 98 MB | 0.760 | 0.930 | 25,613,800 | - |
-| [ResNet101V2](#resnet) | 171 MB | 0.772 | 0.938 | 44,675,560 | - |
-| [ResNet152V2](#resnet) | 232 MB | 0.780 | 0.942 | 60,380,648 | - |
-| [ResNeXt50](#resnet) | 96 MB | 0.777 | 0.938 | 25,097,128 | - |
-| [ResNeXt101](#resnet) | 170 MB | 0.787 | 0.943 | 44,315,560 | - |
-| [InceptionV3](#inceptionv3) | 92 MB | 0.779 | 0.937 | 23,851,784 | 159 |
-| [InceptionResNetV2](#inceptionresnetv2) | 215 MB | 0.803 | 0.953 | 55,873,736 | 572 |
-| [MobileNet](#mobilenet) | 16 MB | 0.704 | 0.895 | 4,253,864 | 88 |
-| [MobileNetV2](#mobilenetv2) | 14 MB | 0.713 | 0.901 | 3,538,984 | 88 |
-| [DenseNet121](#densenet) | 33 MB | 0.750 | 0.923 | 8,062,504 | 121 |
-| [DenseNet169](#densenet) | 57 MB | 0.762 | 0.932 | 14,307,880 | 169 |
-| [DenseNet201](#densenet) | 80 MB | 0.773 | 0.936 | 20,242,984 | 201 |
-| [NASNetMobile](#nasnet) | 23 MB | 0.744 | 0.919 | 5,326,716 | - |
-| [NASNetLarge](#nasnet) | 343 MB | 0.825 | 0.960 | 88,949,818 | - |
+ Model | Top-1 Genauigkeit | Top-5 Genauigkeit | Parameter-Anzahl |
+| ----- | --------------: | --------------: | ----------: |
+| Xception| 0.790 | 0.945 | 22,910,480 |
+| VGG16 | 0.713 | 0.901 | 138,357,544 |
+| VGG19 | 0.713 | 0.900 | 143,667,240 |
+| ResNet50 | 0.749 | 0.921 | 25,636,712 |
+| ResNet101 | 0.764 | 0.928 | 44,707,176 |
+| ResNet152 | 0.766 | 0.931 | 60,419,944 |
+| ResNet50V2 | 0.760 | 0.930 | 25,613,800 |
+| ResNet101V2 | 0.772 | 0.938 | 44,675,560 |
+| ResNet152V2 | 0.780 | 0.942 | 60,380,648 |
+| ResNeXt50 | 0.777 | 0.938 | 25,097,128 |
+| ResNeXt101 | 0.787 | 0.943 | 44,315,560 |
+| InceptionV3 | 0.779 | 0.937 | 23,851,784 |
+| InceptionResNetV2  | 0.803 | 0.953 | 55,873,736 |
+| MobileNet | 0.704 | 0.895 | 4,253,864 |
+| MobileNetV2 | 0.713 | 0.901 | 3,538,984 |
+| DenseNet121 | 0.750 | 0.923 | 8,062,504 |
+| DenseNet169 | 0.762 | 0.932 | 14,307,880 |
+| DenseNet201 | 0.773 | 0.936 | 20,242,984 |
+| NASNetMobile | 0.744 | 0.919 | 5,326,716 |
+| NASNetLarge  | 0.825 | 0.960 | 88,949,818 |
 
-Tabelle: Vergleich verschiedener vortrainierter Modelle des *Keras* Frameworks. Die Top-1 und Top-5 Genauigkeit wurden für den *ImageNet* Datensatz erzielt. - Quelle: [@Keras.io2019] \label{keras_app_table}
+Tabelle 3.1: Vergleich verschiedener vortrainierter Modelle des *Keras* Frameworks. Die Top-1 und Top-5 Genauigkeit wurden für den *ImageNet* Datensatz erzielt. - Quelle: [@Keras.io2019]  \label{table_31} 
 
 
 
@@ -325,7 +350,7 @@ Bei den selbsterstellten Daten wurde lediglich auf die Konvertierung in ein Grau
 
 ## Training und Evaluierung
 
-Nach dem Festlegen der Netzwerktopoligien begann die Trainingsphase. Hierzu wurden die vorher festgelegten Trainings, *Bridge* und Entwicklungs-Datensätze herangezogen. Beim Trainieren der Netzwerke gibt es diverse weitere (Hyper-)Parameter, welche sich auf die Leistung des Netzes auswirken. Einige dieser Parameter wurden in dieser Arbeit konstant gehalten, andere jedoch wurden variabel gehalten und so für die Optimierung des Klassifizierers genutzt. Für jedes Netzwerk wurden mehrere Trainingsdurchläufe gestartet und die Leistung des Netzes überprüft um die bestmögliche Belegung dieser Parameter zu finden. Insgesamt wurde jedes Netz TODO: mal traininert.
+Nach dem Festlegen der Netzwerktopoligien begann die Trainingsphase. Hierzu wurden die vorher festgelegten Trainings, *Bridge* und Entwicklungs-Datensätze herangezogen. Beim Trainieren der Netzwerke gibt es diverse weitere (Hyper-)Parameter, welche sich auf die Leistung des Netzes auswirken. Einige dieser Parameter wurden in dieser Arbeit konstant gehalten, andere jedoch wurden variabel gehalten und so für die Optimierung des Klassifizierers genutzt. Für jedes Netzwerk wurden mehrere Trainingsdurchläufe gestartet und die Leistung des Netzes überprüft um die bestmögliche Belegung dieser Parameter zu finden.
 
 ### konstante Trainingsparameter
 
@@ -340,7 +365,9 @@ $$
     \alpha_{neu} = \alpha * \lambda
 $$
 
-Der Anpassungsrate wurde in dieser Arbeit bei allen Trainingsruchläufen fix auf $\lambda = 0,1$ gesetzt.
+$$
+\text{Die Anpassungsrate wurde in dieser Arbeit fix auf }\lambda = 0,1 \text{ gesetzt.}
+$$
 
 * **vorzeitiges Trainingsende (engl. *early stopping*)**: Unter *early stopping* versteht man das frühzeitige Abbrechen eines Trainingsvorganges um eine Überanpassung und damit verbundene schlechtere Generalisierung zu verhindern. Bei den Trainingsdurchläufen im Rahmen dieser Arbeit wurde nicht direkt *early stopping* verwendet, jedoch wurde folgendes Verfahren angewendet. Nach jeder Epoche des Trainings wurde der *Netzwerkfehler* für die Daten aus Entwicklungs-Datensatz berechnet. Sobald sich dieser im Vergleich zur vorherigen Epoche verbessert hat wurde der Zustand des Netzwerkes (Also die Gewichte) abgespeichert. Somit konnte am Ende des Trainings der Trainingstand, mit dem besten Ergebnis für den Entwicklungs-Datensatz, gewählt werden, unabhängig von der gewählten Anzahl an Trainingsepochen.
 
@@ -349,11 +376,11 @@ Der Anpassungsrate wurde in dieser Arbeit bei allen Trainingsruchläufen fix auf
 
 ### variable Trainingsparameter
 
-* **Anzahl der Epochen**: Die Anzahl der Epochen, legt fest wie oft der gesamt Trainingsdatensatz dem Netzwerk präsentiert wird und die Gewichte entsprechend angepasst werden. Zu Anfang wurden die Netze jeweils für 10 Epochen traininert. Anhand der Trainingsverläufe wurde zunächst versucht, alle  weiteren Parameter zu optimieren. Nachdem ein viel versprechendes Set an Parametern gefunden wurde, wurde das netz mit diesen für 20 Epochen trainiert und eine erneute Anpassung vorgenommen. TODO: better...
+* **Anzahl der Epochen**: Die Anzahl der Epochen, legt fest wie oft der gesamt Trainingsdatensatz dem Netzwerk präsentiert wird und die Gewichte entsprechend angepasst werden. Zu Anfang wurden die Netze jeweils für 10 Epochen traininert. Anhand der Trainingsverläufe wurde zunächst versucht, alle  weiteren Parameter zu optimieren. Nachdem ein viel versprechendes Set an Parametern gefunden wurde, wurde das Netz mit diesen für 20 Epochen trainiert und eine erneute Anpassung vorgenommen. So wurde die Anzahl der Trainings-Epochen immer nach oben iteriert, bis zu 150 Epochen.
 
 Die folgenden Paramter wurden nur beim zweiten Model verwendet.
 
-* **Anzahl der neu zu trainierenden Schichten:** Üblicherweise werden bei ´m *transfer learning* alle Schichten des ursprünglichen Netzwerkes gesperrt. Das heißt, die Gewichte dieser Schichten sind während des Trainings statisch und werden nicht angepasst. Oft bringt es jeodch ein gutes Ergebnis, wenn man ein paar der hinteren Schichten für das Training öffnet. Der Hintergrund ist, dass die ersten Schichten nur Basis-Merkmale erkennen. Je tiefer die Schicht jedoch ist, desto detailierter ist das Merkmal, dass Sie extrahieren. Da man beim *transfer learning* das gelernte eines Problems auf ein anderes anwendet, kann man mit dem öffnen der hinteren Schichten seine Ergebnisse oft verbessern. Die Anzahl der letzten Schichten des Xception Netzes, welche neu traininert wurden wurde als Parameter behandelt, welcher in der Trainingsphase die Werte 3, 6, 9, 12, 15 und 18 angenommen hat. 
+* **Anzahl der neu zu trainierenden Schichten:** Üblicherweise werden beim *transfer learning* alle Schichten des ursprünglichen Netzwerkes gesperrt. Das heißt, die Gewichte dieser Schichten sind während des Trainings statisch und werden nicht angepasst. Oft bringt es jeodch ein gutes Ergebnis, wenn man ein paar der hinteren Schichten für das Training öffnet. Der Hintergrund ist, dass die ersten Schichten nur Basis-Merkmale erkennen. Je tiefer die Schicht jedoch ist, desto detailierter ist das Merkmal, dass Sie extrahieren. Da man beim *transfer learning* das gelernte eines Problems auf ein anderes anwendet, kann man mit dem öffnen der hinteren Schichten seine Ergebnisse oft verbessern. Die Anzahl der letzten Schichten des Xception Netzes, welche neu traininert wurden wurde als Parameter behandelt, welcher in der Trainingsphase die Werte 3, 6, 9, 12, 15 und 18 angenommen hat. 
 
 * **Größe der ersten vollvernetzten Schicht**: Die Größe der vollvernetzten Schicht, welche am Ende des Xception Netzwerkes angehängt wurde wurde als weiterer Parameter betrachtet. Hier wurden die Werte 128 und 64 verwendet.
 
@@ -367,7 +394,7 @@ Zunächst wurden die Netzwerke jeweils für eine geringere Anzahl an Epochen tra
 
 Für das einfache Faltungsnetzwerk wurden hier nur wenig befriedigenden Ergebnisse erzielt (siehe Abbildung \ref{simple_cnn_training}). Die Genauigkeit der Trainingsdaten stagnierte hier schnell bei einem Wert um $0,65$. Daher wurde sich im weiteren Verlauf auf die Optimierung des zweiten Netzes (*transfer Learning* auf Basis des Xception Netzes) beschränkt.
 
-![Genauigkeit whärend des Trainingsverlaufs des einfachen Faltungs-Netzwerkes für 50 Epochen. Man erkennt ein *Bias* Problem, da das Netzwerk, selbst den Trainingsdatensatz nicht ausreichend gut erlernen kann. \label{simple_cnn_training}](source/figures/simple_cnn_training.png){ width=80% }
+![Genauigkeit während des Trainingsverlaufs des einfachen Faltungs-Netzwerkes für 50 Epochen. Man erkennt ein *Bias* Problem, da das Netzwerk, selbst den Trainingsdatensatz nicht ausreichend gut erlernen kann. \label{simple_cnn_training}](source/figures/simple_cnn_training.png){ width=80% }
 
 ### *Transfer Learning* Netzwerk
 
@@ -401,10 +428,10 @@ Eine weitere Tatsache, welche aus den Auswertungen der Trainingsverläufe hervor
 ## Entwicklung des eines Webservice
 
 Auch wenn das beste Model, noch nicht die perfekte gewünschte Genauigkeit erzielen konnte, wurde es verwendet um einen Prototyp eines Webservice zu entwicklen.
-Nachdem sich für das passende neuronale Netz entschieden wurde wird dieses einem Webservice zur Verfügung gestellt. Der Webservice hat die Aufgabe Videodaten entgegen zu nehmen und sekundenweise Einzelbilder an den Klassifizierer zu übergeben und anhand der Ausgabe eine Zeitleiste mit den erkannten Emotionen im JSON (Java Serial Object Notation)<!-- Todo Ref --> Format zurück zu liefern.
+Nachdem sich für das passende neuronale Netz entschieden wurde wird dieses einem Webservice zur Verfügung gestellt. Der Webservice hat die Aufgabe Videodaten entgegen zu nehmen und sekundenweise Einzelbilder an den Klassifizierer zu übergeben und anhand der Ausgabe eine Zeitleiste mit den erkannten Emotionen im JSON (JavaScript Object Notation) Format zurück zu liefern.
 
 Der Webservice wurde mithilfe der Python Erweiterungen Flask und connexion realisiert.
-Flask ist eine schlanke Erweiterung zur einfachen Erstellung von Web Diensten in Python. Connexion ist eine Erweiterung welche auf Flask aufbaut um API Endpunkte anhand von einer OpenAPI[@OpenAPI] Spezifikation zu generieren.
+Flask ist eine schlanke Erweiterung zur einfachen Erstellung von Web Diensten in Python. Connexion ist eine Erweiterung welche auf Flask aufbaut um API (Application Programmable Interface) Endpunkte anhand von einer OpenAPI[@OpenAPI] Spezifikation zu generieren.
 
 
 Der Werbservice, sowie der Klassifizierer sind als sogenannte Microservices aufgebaut welche in separaten *Containern* laufen. (siehe Abbildung \ref{app_architecture}). Der Klassifizierer wird dem Webservice mithilfe von Tensorflow-Serve zur Verfügung gestellt. 
@@ -420,7 +447,8 @@ import os
 def keras2tf(model_path = "models/keras/model.hdf5",
         export_path="models/tf/", model_version = 1):
     #extract model name from path
-    model_name = os.path.splitext(os.path.basename(model_path))[0]
+    model_name = os.path.splitext(
+        os.path.basename(model_path))[0]
     # create output path
     export_dir = export_path + model_name
     os.mkdir(export_dir)
@@ -456,7 +484,8 @@ def pred_to_text(pred, cols = ['anger', 'contempt',
 
 def predict_emotion(image):
     img = prep_single_img_selfrecorded(image,
-        image_shape=(INPUT_IMG_WIDTH, INPUT_IMG_HEIGHT), grey=INPUT_IMG_GREY)
+        image_shape=(INPUT_IMG_WIDTH, INPUT_IMG_HEIGHT),
+            grey=INPUT_IMG_GREY)
     
     if img is None:
         return "no_face"
@@ -470,8 +499,8 @@ def predict_emotion(image):
     return pred_to_text(pred)
 ```
 
-Alle Micro Services wurden mithilfe von *Docker* und *docker-compose* containerisiert. Auf die genauere Beschreibun von Docker soll in dieser Arbeit nicht weiter eingegangen werden (Mehr Informationen unter [@Docker]). Docker-compose stellt eine einfache Anwendung zum festhalten aller Parameter einer aus *Docker*-Container bestehenden Microservice-Architektur dar. Dabei werden alle Komponenten in eriner Datei im YAML(Yet another Markup Language) Format festgehalten. Beim YAML Format handelt es sich vereinfacht gesagt um eine für den Menschen leichter lesbare Abwandlung des JSON Formates. Die in dieser Arbeit erstellte Architektur wurde in einer *docker-compose* Datei festgehalten (siehe \ref{anhang_docker-compose})
-<!-- TODO: move to anhan 
+<Alle Micro Services wurden mithilfe von *Docker* und *docker-compose* containerisiert. Auf die genauere Beschreibun von Docker soll in dieser Arbeit nicht weiter eingegangen werden (Mehr Informationen unter [@Docker]). Docker-compose stellt eine einfache Anwendung zum festhalten aller Parameter einer aus *Docker*-Container bestehenden Microservice-Architektur dar. Dabei werden alle Komponenten in eriner Datei im YAML (Yet another Markup Language) Format festgehalten. Beim YAML Format handelt es sich vereinfacht gesagt um eine für den Menschen leichter lesbare Abwandlung des JSON Formates.<!-- Die in dieser Arbeit erstellte Architektur wurde in einer *docker-compose* Datei festgehalten. -->
+<!-- move to anhan 
 ```yaml
 version: '3.0'
 services:
@@ -490,7 +519,7 @@ services:
 ```
 -->
 
-Zum Testen der Funktionalität wurde außerdem eine sehr minimalistische Benutzerschnittstelle mithilfe von HTML und Javascript erstellt, welche die Funktionalität bietet eine VideoDatei an den Webservice zu senden und die Ergebnisse im JSON Format anzuzeigen (siehe Abbildung \ref{frontend})
+Zum Testen der Funktionalität wurde außerdem eine sehr minimalistische Benutzerschnittstelle mithilfe von HTML (Hyper Text Markup Language) und Javascript erstellt, welche die Funktionalität bietet eine Video-Datei an den Webservice zu senden und die Ergebnisse im JSON Format anzuzeigen (siehe Abbildung \ref{frontend})
 
 ![Screenshot der minimalistischen Benutzerschnittstelle \label{frontend}](source/figures/screenshot_frontend.png){ width=80% }
 

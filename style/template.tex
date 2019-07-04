@@ -33,8 +33,8 @@ $endif$
 \usepackage{ifxetex,ifluatex}
 \usepackage{fixltx2e} % provides \textsubscript
 \ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
-  \usepackage[T1]{fontenc}
-%%  \usepackage[utf8]{inputenc}
+%   \usepackage[T1]{fontenc}
+% \usepackage[utf8]{inputenc}
 $if(euro)$
   \usepackage{eurosym}
 $endif$
@@ -45,7 +45,7 @@ $endif$
   \else
     \usepackage{fontspec}
   \fi
-  \defaultfontfeatures{Mapping=tex-text,Scale=MatchLowercase}
+  \defaultfontfeatures{Mapping=tex-text,Scale=MatchLowercase,Ligatures=TeX}
   \newcommand{\euro}{€}
 $if(mainfont)$
     \setmainfont{$mainfont$}
@@ -184,12 +184,6 @@ $if(toc)$
 \tableofcontents
 }
 $endif$
-$if(lot)$
-\listoftables
-$endif$
-$if(lof)$
-\listoffigures
-$endif$
 
 $body$
 
@@ -202,7 +196,7 @@ $else$
 \renewcommand\refname{$biblio-title$}
 $endif$
 $endif$
-\bibliography{$biblio-files$}
+ \bibliography{$biblio-files$}
 
 $endif$
 $endif$
