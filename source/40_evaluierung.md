@@ -13,7 +13,7 @@ Datensatz | Genauigkeit |
 | Trainings-Daten | 65,3%  |
 | Bridge-Daten | 45,2% |
 | Entwicklungs-Daten | 29,0% | 
-| Test-Daten | 29,6,2% |
+| Test-Daten | 29,6% |
 
 Tabelle \label{table_acc} Genauigkeit des Netzwerks für die verschiedenen Datensätze.
 
