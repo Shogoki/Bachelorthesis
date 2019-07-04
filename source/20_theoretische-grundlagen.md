@@ -240,30 +240,3 @@ Die dritte von Viola und Jones eingeführte Technik zur Gesichtserkennung sind d
 
 ![kaskadierende Klassifizierer C1 bis Cn - *Angelehnt an [@Shen1997]* \label{cascade_of_classifiers}](source/figures/cascade_of_classifiers.pdf){ width=90% }
 
-<!-- expose Ordnung 
-## Einordnung der Daten
-
-### Beschaffenheit der Daten
-
-### Vorbereitung der Daten
-
-### Klassifizierung
-
-#### Einteilung der Emotionen
-
-#### Zuordnung der Daten
-
-## künstliche neuronale Netze
-
-### Übersicht & Definition
-
-### Deep Learning
-
-### Convolutional Neural Network
-
-### Trainingsmethoden??
-
-### Gesichtserkennung
-
-## aktuell bewährte Modelle
--->

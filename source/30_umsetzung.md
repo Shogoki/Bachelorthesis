@@ -523,17 +523,3 @@ Zum Testen der Funktionalität wurde außerdem eine sehr minimalistische Benutze
 
 ![Screenshot der minimalistischen Benutzerschnittstelle \label{frontend}](source/figures/screenshot_frontend.png){ width=80% }
 
-
-
-
-<!-- expose:
-3. Umsetzung & Evaluierung
-	1. Prototyping
-		1. Aufbau verschiedener neuronaler Netze
-		2. Trainieren der Modelle
-		3. Bereitstellung als Webservice
-	2. Experiment
-		1. Verifizieren mit Testdaten
-		2. Untersuchung der Genauigkeit
-	3. Ergebnisse
--->
