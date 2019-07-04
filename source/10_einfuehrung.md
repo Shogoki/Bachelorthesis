@@ -25,8 +25,10 @@ Das Ziel der Arbeit ist es, ein neuronales Netzwerk zu entwerfen und zu trainier
 Zur Realisierung eines solchen Service soll diese Arbeit eine Antwort auf folgende Fragen liefern:
 
 * Wie kann man menschliche Emotionen sinnvoll klassifizieren?
-* Welche Modelle können für diesen Anwendungsfall genutzt und entsprechend spezialisiert werden?
 * Woher bekommt man entsprechende Trainingsdaten?
+* Wie sind die Daten für die Nutzung mit einem neuronalen Netz zu präparieren.
+* Welche Modelle können für diesen Anwendungsfall genutzt und entsprechend spezialisiert werden?
+
 
 <!--## Stand der Forschung -->
 
