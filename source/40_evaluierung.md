@@ -6,7 +6,7 @@ Dieses Kapitel befasst sich mit der weiterführenden Evaluierung des erstellten 
 
 ## abschließende Bewertung der Netzwerkleistung
 
-Nach der finalen Implementierung des neuronalen Netzwerkes wurde ein Letzter Validierungslauf für den *Bridge*, das Entwicklungs sowie auch für den Test-Datensatz gestartet. Dabei wurden die Erkenntnisse aus Kapitel \ref{chapter_umsetzung} bestätigt, dass der Klassifizierer weniger gut mit nicht erlenten Daten umgehen kann. Tabelle 4.1 zeigt die Genauigkeit der einzelnen Datensätze während des Validierungslaufes. Wie zu erwarten schneidet der Test-Datensatz ähnlich ab wie der Entwicklungsdatensatz.
+Nach der finalen Implementierung des neuronalen Netzwerkes wurde ein Letzter Validierungslauf für den *Bridge*, das Entwicklungs sowie auch für den Test-Datensatz gestartet. Dabei wurden die Erkenntnisse aus Kapitel \ref{chapter_umsetzung} bestätigt, dass der Klassifizierer, beim behandeln von nicht gelernten Daten noch einige Optimierungsmöglichkeiten bietet . Tabelle 4.1 zeigt die Genauigkeit der einzelnen Datensätze während des Validierungslaufes. Wie zu erwarten schneidet der Test-Datensatz ähnlich ab wie der Entwicklungsdatensatz.
 
 Datensatz | Genauigkeit |
 | ----- | ----: |
@@ -25,7 +25,7 @@ Bei einem Mehrklassen-Klassifizierer, wie er in dieser Arbeit entwickelt wurde, 
 
 In den beiden Verwirrungs-Matrizen kann man sehen, dass die Emotionen *Verachtung*, *Ekel*, *Angst* und *Traurigkeit*, bis auf wenige kleine Ausnahmen immer falsch zugewiesen wurden. Die meisten falsch zugewiesenen Emotionen wurden fälschlicherweise als Wut klassifiziert.
 
-Dies deutet wieder auf unklar definierte Trainingsdaten, oder einfach zu wenige Trainingdaten hin. Eine zukünftige Verbesserung könnte durch eine genauere Prüfung der Trainingsdaten erreicht werden.
+Dies deutet auf unklar definierte Trainingsdaten, oder einfach zu wenige Trainingdaten für diese Emotion hin. Eine zukünftige Verbesserung könnte durch eine genauere Prüfung der Trainingsdaten erreicht werden.
 
 ## Testen des Webservice mit Fremddaten
 

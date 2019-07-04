@@ -404,7 +404,7 @@ Der Trainingsverlauf des besten gefundenen Netzes, das heißt mit der besten Tes
 
 ![Genauigkeit während des Trainingsverlaufs des besten gefunden Models für 100 Epochen. Man sieht, dass bereits relativ früh eine Überanpassung an den Trainingsdatensatz stattfindet. \label{best_xcepton_training}](source/figures/best_xception_training.png){ width=80% }
 
-Wie man sieht ist auch das beste gefundene Model leider keine optimale Lösung für das Problem. An der Abweichung zwischen dem *Bridge* und dem Trainingsdatensatz lässt sich gut ein Generalisierungsproblem erkennen, also eine Überanpassung des Netzes an die Trainingsdaten. In der Regel gibt es drei verschiedene Ansätze um diesem entgegen zu wirken.
+Wie man sieht ist aucherreicht das beste gefundene Model an der besten Stelle eine Genauigkeit 30% auf die Entwicklungs-Daten und 45% auf die *Bridge* Daten. Dies stellt zar noch nicht die optimale Lösung für das Problem dat, ist jedoch für den relativ kurzen Versuchszeitraum und die Art des Problems ein gutes Ergebnis. An der Abweichung zwischen dem *Bridge* und dem Trainingsdatensatz lässt sich gut ein Generalisierungsproblem erkennen, also eine Überanpassung des Netzes an die Trainingsdaten. In der Regel gibt es drei verschiedene Ansätze um diesem entgegen zu wirken.
 
 1. Trainieren eines kleineren Netzwerkes.
 2. Trainieren des Netzes mit mehr Trainingsdaten.
@@ -412,7 +412,7 @@ Wie man sieht ist auch das beste gefundene Model leider keine optimale Lösung f
 
 Es kann in der Tat helfen ein kleineres Netzwerk zu trainieren um einer Überanpassung entgegenzuwirken. Dies hat jedoch den Nachteil, dass sich mit einer Verkleinerung auch die Genauigkeit verschlechtert. Da auch diese im obigen Modell mit 70% nicht perfekt ist, wurde dieser Ansatz nicht gewählt.
 
-Auch der zweite Ansatz konnte leider nicht gewählt werden, da keine Möglichkeit bestand im zeitlichen Rahmen der Arbeit einen größeren Trainings-Datensatz zu erlangen.
+Auch der zweite Ansatz konnte im Rahmen der Arbeit nicht gewählt werden, da keine Möglichkeit bestand im zeitlichen Rahmen der Arbeit einen größeren Trainings-Datensatz zu erlangen.
 
 Eine Regularisierung der Daten wurde von Anfang an durchgeführt, indem zum Beispiel eine Varieierung der Eingangsbilder mithilfe des *Keras ImageGenerator* vorgenommen wurde. Um die Daten im Netzwerk noch weiter zu Regularisieren wurden weitere kleine vollvernetzte Schichten an das Netz gehängt, auf welche eine Dropout Regularisierung angewendet wurde.
 Diese Methode konnte kleinere Erfolge erzielen um der Überanpassung entgegenzuwirken. Jedoch hatte auch diese Methode einen negativen Einfluss auf die Genauigkeit des Netzes auf den Trainingsdatensatz (Vergleich Abbildung \ref{more_regularization_acc} und \ref{more_regularization_loss}).
@@ -427,8 +427,8 @@ Eine weitere Tatsache, welche aus den Auswertungen der Trainingsverläufe hervor
 
 ## Entwicklung des eines Webservice
 
-Auch wenn das beste Model, noch nicht die perfekte gewünschte Genauigkeit erzielen konnte, wurde es verwendet um einen Prototyp eines Webservice zu entwicklen.
-Nachdem sich für das passende neuronale Netz entschieden wurde wird dieses einem Webservice zur Verfügung gestellt. Der Webservice hat die Aufgabe Videodaten entgegen zu nehmen und sekundenweise Einzelbilder an den Klassifizierer zu übergeben und anhand der Ausgabe eine Zeitleiste mit den erkannten Emotionen im JSON (JavaScript Object Notation) Format zurück zu liefern.
+Auch wenn das gefundene Model, später noch verbessert werden soll, wurde es vorerst schon einmal verwendet um einen Prototyp eines Webservice zu entwicklen.
+Der Webservice hat die Aufgabe Videodaten entgegen zu nehmen und sekundenweise Einzelbilder an den Klassifizierer zu übergeben und anhand der Ausgabe eine Zeitleiste mit den erkannten Emotionen im JSON (JavaScript Object Notation) Format zurück zu liefern.
 
 Der Webservice wurde mithilfe der Python Erweiterungen Flask und connexion realisiert.
 Flask ist eine schlanke Erweiterung zur einfachen Erstellung von Web Diensten in Python. Connexion ist eine Erweiterung welche auf Flask aufbaut um API (Application Programmable Interface) Endpunkte anhand von einer OpenAPI[@OpenAPI] Spezifikation zu generieren.
