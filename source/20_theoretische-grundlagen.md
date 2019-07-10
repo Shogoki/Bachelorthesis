@@ -23,15 +23,15 @@ Der strukturelle Aufbau, sowie die Arbeitsweise von neuronalen Netzen ist der St
 
 ![Darstellung eines biologischen Neurons. Quelle: [@Kruse2015] \label{bio_neuron}](source/figures/neuron.png){ width=100% }
 
-Abbildung \ref{bio_neuron} zeigt ein stark vereinfachtes Model eines **Neurons**. Hier ist der Zellkörper, der auch Soma genannt wird, zu sehen. Von ihm aus gehen mehrere Dendriten, sowie das Axon ab. Der Zellkörper ist in der Lage eine interne elektrische Spannung zu speichern. Dabei laden elektrische Signale, die über die Dendriten zum Soma transportiert werden, den Zellkörper auf. Ab einem gewissen Schwellwert entlädt sich dieser wieder über das Axon, welches mit Dendriten von anderen Neuronen über die Synapsen verbunden ist und lädt diese dadurch auf. So entsteht ein größeres Netzwerk aus Neuronen.
+Abbildung \ref{bio_neuron} zeigt ein stark vereinfachtes Modell eines **Neurons**. Hier ist der Zellkörper, der auch Soma genannt wird, zu sehen. Von ihm aus gehen mehrere Dendriten, sowie das Axon ab. Der Zellkörper ist in der Lage eine interne elektrische Spannung zu speichern. Dabei laden elektrische Signale, die über die Dendriten zum Soma transportiert werden, den Zellkörper auf. Ab einem gewissen Schwellwert entlädt sich dieser wieder über das Axon, welches mit Dendriten von anderen Neuronen über die Synapsen verbunden ist und lädt diese dadurch auf. So entsteht ein größeres Netzwerk aus Neuronen.
 
-Die Verbindung zwischen Synapsen und Dendriten ist nicht perfekt leitend, da eine "kleiner Spalt" zwischen ihnen besteht, den die Elektronen nicht ohne Weiteres überwinden können. Dieser ist mit chemischen Substanzen, den sogenannten Neurotransmittern, gefüllt. Diese können durch eine anliegende Spannung ionisiert werden, sodass sie eine Ladung über den Spalt transportieren <!-- TODO: Check this --> [@HeinsohnBoerschSocher2012, @News2018]
+Die Verbindung zwischen Synapsen und Dendriten ist nicht perfekt leitend, da eine "kleiner Spalt" zwischen ihnen besteht, den die Elektronen nicht ohne Weiteres überwinden können. Dieser ist mit chemischen Substanzen, den sogenannten Neurotransmittern, gefüllt. Diese können durch eine anliegende Spannung ionisiert werden, sodass sie eine Ladung über den Spalt transportieren. [@HeinsohnBoerschSocher2012, @News2018] <!-- TODO: Check this --> 
 
 Die Synapsen spielen in diesem neuronalen Netz eine sehr wichtige Rolle. Sie können ihre Leitfähigkeit verändern, wodurch ein neuronales Netz mithilfe der Anpassung der Leitfähigkeit (der Gewichte) der einzelnen Verbindungen (Synapsen) zwischen den Neuronen lernfähig wird. Denn abhängig von der Leitfähigkeit der einzelnen Synapsen, verändert sich die Reaktion des Netzwerkes auf bestimmte Eingabeinformationen.
 
 ### Formalisiertes Modell
 
-Aufgrund dieser vereinfacht beschriebenen Funktionsweise lag zunächst die Idee nahe, ein Neuron formal als *Schwellenwertelement* zu modellieren. Bereits 1943 untersuchten McCulloch und Pitts ein solches Model, weshalb man *Schwellenwertelemente* auch *McCullock-Pitts-Neuronen* nennt. Oft wird ein *Schwellenwertelement* auch als *Perzeptron* bezeichnet, obwohl dieses von Rosenblatt entworfene Modell eigentlich noch etwas komplexer ist.
+Aufgrund dieser vereinfacht beschriebenen Funktionsweise lag zunächst die Idee nahe, ein Neuron formal als *Schwellenwertelement* zu modellieren. Bereits 1943 untersuchten McCulloch und Pitts ein solches Modell, weshalb man *Schwellenwertelemente* auch *McCullock-Pitts-Neuronen* nennt. Oft wird ein *Schwellenwertelement* auch als *Perzeptron* bezeichnet, obwohl dieses von Rosenblatt entworfene Modell eigentlich noch etwas komplexer ist.
 Der Aufbau eines solchen künstlichen Neurons wird in Abbildung \ref{perzeptron} gezeigt [@Kruse2015].
 
 ![Darstellung eines Perzeptrons - *Angelehnt an [@Kruse2015] * \label{perzeptron}](source/figures/perzeptron.pdf){ width=50% }
@@ -196,7 +196,7 @@ Die Einteilung nach FACS bildet die Basis für die Klassifizierung von Emotionen
 
 ### Gesichtserkennung
 
-Da sich das FACS auf Gesichtszüge bezieht und daher auch die Emotionserkennung in dieser Arbeit anhand von Gesichstsausdrücken stattfindet, ist es sinnvoll das zu erstellende neuronale Netz mit Bildern von Gesichtern als Eingabedaten zu versorgen. Das heißt, dass von einem Bild im Idealfall immer nur der relevante Teil (das Gesicht) ausgeschnitten und dem neuronalen Netz präsentiert wird. Das gilt sowohl für die Trainingsphase, als auch für die spätere Anwendung. 
+Da sich das FACS auf Gesichtszüge bezieht und daher auch die Emotionserkennung in dieser Arbeit anhand von Gesichtsausdrücken stattfindet, ist es sinnvoll das zu erstellende neuronale Netz mit Bildern von Gesichtern als Eingabedaten zu versorgen. Das heißt, dass von einem Bild im Idealfall immer nur der relevante Teil (das Gesicht) ausgeschnitten und dem neuronalen Netz präsentiert wird. Das gilt sowohl für die Trainingsphase, als auch für die spätere Anwendung. 
 
 Um aus einem größeren Bildausschnitt automatisiert den relevanten Teil, also den Gesichtsausschnitt, zu extrahieren ist es notwendig innerhalb des Bildes das Gesicht und dessen Rahmen (engl. bounding box) zu erkennen.
 
@@ -206,7 +206,7 @@ Die aktuell gängigste Methode zur Gesichtserkennung ist der sogenannte Viola-Jo
 
 Zur weiteren einfachen Verarbeitung der Eingabebilder sollen nur bestimmte Merkmale der Bilder extrahiert werden. Anstelle eines pixelbasierten Ansatzes führten Viola und Jones hierzu den Begriff des *Integralbildes* (engl. integral image) ein. Die dazu extrahierten *Features* ähneln den Haar-Basis Merkmalen, wie sie zuvor auch in anderen Arbeiten verwendet wurden (vergleich [@Papageorgiou]).
 
-Die Wertigkeit eines Pixels im *Integralbild* steht immer im Zusammenhang mit den Pixeln in der unmittelbaren Umgebung. Desto höher der Wert ist, desto heller ist der betreffende Bildausschnitt. Auf Basis dieser Informationen haben Viola und Jones drei aufgrund ihrer Ähnlichkeit sogenannte *Haar-like features* definiert, welche ein Gesicht anhand der entsprechenden Helligkeitsunterschiede beschreiben.
+Die Wertigkeit eines Pixels im *Integralbild* steht immer im Zusammenhang mit den Pixeln in der unmittelbaren Umgebung. Je höher der Wert ist, desto heller ist der betreffende Bildausschnitt. Auf Basis dieser Informationen haben Viola und Jones drei aufgrund ihrer Ähnlichkeit sogenannte *Haar-like features* definiert, welche ein Gesicht anhand der entsprechenden Helligkeitsunterschiede beschreiben.
 
 "Ein *two-rectangle feature* wird beschrieben durch die Differenz aus der Summe der Pixel zwischen zwei rechteckigen Bildausschnitten. Die Ausschnitte haben dieselbe Größe und Form, und Grenzen entweder horizontal oder vertikal aneinander an.
 Ein *three-rectangle feature* wird durch die Differenz der Summe aus zwei äußeren Rechtecken und der Summe eines zentrierten Rechteckes berechnet.
