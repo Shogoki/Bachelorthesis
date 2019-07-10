@@ -13,9 +13,10 @@ For me, this was the only drawback of writing in Markdown: it is not possible to
 
 \renewcommand{\chaptermark}[1]{\markboth{}{\sffamily #1}}
 \chaptermark{Abbildungsverzeichnis}
+\setcounter{page}{3}
 
 Abbildung \ref{ki_ml_dl} Einordnung in die künstliche Intelligenz . . . \hfill{\pageref{ki_ml_dl}}  \newline
-Abbildung \ref{bio_neuron} Ein biologisches Neuron . . .  \setcounter{page}{3} \hfill{\pageref{bio_neuron}} \newline
+Abbildung \ref{bio_neuron} Ein biologisches Neuron . . .   \hfill{\pageref{bio_neuron}} \newline
 Abbildung \ref{perzeptron} Perzeptron . . . \hfill{\pageref{perzeptron}} \newline
 Abbildung \ref{aktfunktionen} Aktivierungsfunktionen . . . \hfill{\pageref{aktfunktionen}} \newline
 Abbildung \ref{simple_nn} verinfachtes neuronales Netzwerk . . . \hfill{\pageref{simple_nn}} \newline

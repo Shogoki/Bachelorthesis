@@ -13,6 +13,9 @@ Im Anschluss wurden frei verfügbare Trainingsdaten gesucht und beschafft. Dabei
 Eine weitere besondere Herausforderung für die Maschine sind nicht eindeutige Emotionen, die selbst Menschen schwer interpretieren können.
  -->
 
+<!-- NICEMAKING -->
+\clearpage
+
 Bei der Verwendung von zwei verschiedenen Bild-Datensätzen wurde in der Arbeit auch detailliert auf die Vorverarbeitung von solchen Daten eingegangen. Hier wurden verschiedene Möglichkeiten zur Transformation der Daten in ein trainier- bzw. lernbares Format, sowie zur Vervielfachung betrachtet.
 
 Für diese Daten wurde anschließend ein gut funktionierendes Netzwerk-Modell mit möglichst optimalen Parametern gesucht. Hierbei wurden vorerst zwei verschiedene Netzwerkarchitekturen verglichen, wovon das Erste aber nach einigen Testläufen verworfen wurde. Daraufhin wurde sich noch mit der *Transfer Learning* Variante beschäftigt. Dazu ist eine Vielzahl an möglichen Parametern evaluiert worden, um ein möglichst gutes Modell zu finden. Hierbei wurde schnell erkannt, dass das Modell leicht zur Überanpassung auf den Trainingsdatensatz neigt, was im Rahmen der Arbeit zwar nicht vollständig behoben werden konnte, dafür aber Maßnahmen abgeleitet werden konnten, die für eine zukünftige Optimierung verwendet werden können.

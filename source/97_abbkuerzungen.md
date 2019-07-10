@@ -1,5 +1,5 @@
 # Abkürzungen {.unnumbered}
-\chaptermark{Tabellenverzeichnis}
+\chaptermark{Abkürzungen}
 
 \begin{tabbing}
 \textbf{API}    ~~~~~~~~~~~~ \=  \textbf{A}pplication \textbf{P}rogramming \textbf{I}nterface \\  
