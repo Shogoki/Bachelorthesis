@@ -1,4 +1,4 @@
-# Abbkürzungen {.unnumbered}
+# Abkürzungen {.unnumbered}
 \chaptermark{Tabellenverzeichnis}
 
 \begin{tabbing}

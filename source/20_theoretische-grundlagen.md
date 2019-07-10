@@ -1,6 +1,6 @@
 \clearpage
 
-# Theoretische Grundlagen
+# Theoretische Grundlagen \label{chapter_grundlagen}
 
 <!-- is it okay to start withpout this?
 Dieser Teil der Arbeit behandelt die notwendigen theoretischen Grundlagen, welche für die im anschließenden Teil behandelten Themen notwendig sind.
@@ -8,7 +8,10 @@ Dieser Teil der Arbeit behandelt die notwendigen theoretischen Grundlagen, welch
 
 ## Künstliche neuronale Netze
 
-Künstliche neuronale Netze (KNN), auch kurz **neuronale Netze** genannt, bezeichnen einen Ansatz zur Modellierung, welcher im Bereich der künstlichen Intelligenz, genauer im Bereich des maschinellen Lernens seinen Einsatz findet. Das Forschungsgebiet des maschinellen Lernens beschäftigt sich mit einer Klasse von Algorithmen, die anhand von Beispielfällen ein Modell erstellen, welches Inputdaten in Sätze aus Attributen und Eigenschaften kategorisiert [@News2018]. Ein weiteres Teilgebiet des maschinellen Lernens stellt das tiefe Lernen, engl.: *Deep Learning*, dar. Abbildung \ref{ki_ml_dl} zeigt die Einordnung von neuronalen Netzen und *Deep Learning* in das Gebiet der künstlichen Intelligenz.
+<!-- Bernhard TODO: Mehr Literatur? -->
+Künstliche neuronale Netze (KNN), auch kurz **neuronale Netze** genannt, bezeichnen einen Ansatz zur Modellierung, welcher im Bereich der künstlichen Intelligenz, genauer im Bereich des maschinellen Lernens seinen Einsatz findet. Das Forschungsgebiet des maschinellen Lernens beschäftigt sich mit einer Klasse von Algorithmen, die anhand von Beispielfällen ein Modell erstellen, welches Inputdaten in Sätze aus Attributen und Eigenschaften kategorisiert [@News2018]. 
+
+Ein weiteres Teilgebiet des maschinellen Lernens stellt das tiefe Lernen (engl.: *Deep Learning*) dar. Abbildung \ref{ki_ml_dl} zeigt die Einordnung von neuronalen Netzen und *Deep Learning* in das Gebiet der künstlichen Intelligenz.
 
 ![Einordnung neuronaler Netze in die künstliche Intelligenz. *Quelle: Angelehnt an [@News2018]* \label{ki_ml_dl}](source/figures/ki_ml_dl.pdf ){ width=80% }
 
@@ -17,101 +20,100 @@ Künstliche neuronale Netze (KNN), auch kurz **neuronale Netze** genannt, bezeic
 Der strukturelle Aufbau, sowie die Arbeitsweise von neuronalen Netzen ist der Struktur und Funktionsweise eines Nervensystems, genauer gesagt des menschlichen Gehirns, nachempfunden. Daher wird im Folgenden kurz die Funktionsweise eines biologischen neuronalen Netzwerkes skizziert, wie es zum Beispiel in unserem Gehirn zu finden ist.
 
 "Ein Neuron ist eine Zelle, die elektrische Aktivität sammelt und weiterleitet." [@Kruse2015]
-Ein stark vereinfachtes Modell eines **Neurons** ist in Abbildung \ref{bio_neuron} zu sehen.
 
-![Darstellung eines biologischen Neurons. Quelle: [@Kruse2015] \label{bio_neuron}](source/figures/neuron.png "TEST"){ width=100% }
+![Darstellung eines biologischen Neurons. Quelle: [@Kruse2015] \label{bio_neuron}](source/figures/neuron.png){ width=100% }
 
-Hier sieht man den Zellkörper, der auch Soma genannt wird. Von ihm aus gehen mehrere Dendriten, sowie das Axon ab. Der Zellkörper ist in der Lage eine interne elektrische Spannung zu speichern. Dabei laden elektrische Signale, die über die Dendriten zum Soma transportiert werden, den Zellkörper auf. Ab einem gewissen Schwellwert jedoch entlädt sich dieser wieder über das Axon, welches mit Dendriten von anderen Neuronen über die Synapsen verbunden ist und lädt diese dadurch auf. So entsteht ein größeres Netzwerk aus Neuronen.
+Abbildung \ref{bio_neuron} zeigt ein stark vereinfachtes Model eines **Neurons**. Hier ist der Zellkörper, der auch Soma genannt wird, zu sehen. Von ihm aus gehen mehrere Dendriten, sowie das Axon ab. Der Zellkörper ist in der Lage eine interne elektrische Spannung zu speichern. Dabei laden elektrische Signale, die über die Dendriten zum Soma transportiert werden, den Zellkörper auf. Ab einem gewissen Schwellwert entlädt sich dieser wieder über das Axon, welches mit Dendriten von anderen Neuronen über die Synapsen verbunden ist und lädt diese dadurch auf. So entsteht ein größeres Netzwerk aus Neuronen.
 
-Die Verbindung zwischen Synapsen und Dendriten ist jedoch nicht perfekt leitend, da es einen "kleinen Spalt" zwischen ihnen gibt, welchen die Elektronen nicht ohne Weiteres überwinden können. Dieser ist mit chemischen Substanzen, den sogenannten Neurotransmittern, gefüllt. Diese können durch eine anliegende Spannung ionisiert werden, sodass sie eine Ladung über den Spalt transportieren. [@HeinsohnBoerschSocher2012] [@News2018]
+Die Verbindung zwischen Synapsen und Dendriten ist nicht perfekt leitend, da eine "kleiner Spalt" zwischen ihnen besteht, den die Elektronen nicht ohne Weiteres überwinden können. Dieser ist mit chemischen Substanzen, den sogenannten Neurotransmittern, gefüllt. Diese können durch eine anliegende Spannung ionisiert werden, sodass sie eine Ladung über den Spalt transportieren <!-- TODO: Check this --> [@HeinsohnBoerschSocher2012, @News2018]
 
-Die Synapsen spielen also in diesem neuronalen Netz eine sehr wichtige Rolle. Sie können ihre Leitfähigkeit verändern, wodurch ein neuronales Netz mithilfe der Anpassung der Leitfähigkeit (der Gewichte) der einzelnen Verbindungen (Synapsen) zwischen den Neuronen lernfähig wird. Denn abhängig von der Leitfähigkeit der einzelnen Synapsen, verändert sich die Reaktion des Netzwerkes auf bestimmte Eingabeinformationen.
+Die Synapsen spielen in diesem neuronalen Netz eine sehr wichtige Rolle. Sie können ihre Leitfähigkeit verändern, wodurch ein neuronales Netz mithilfe der Anpassung der Leitfähigkeit (der Gewichte) der einzelnen Verbindungen (Synapsen) zwischen den Neuronen lernfähig wird. Denn abhängig von der Leitfähigkeit der einzelnen Synapsen, verändert sich die Reaktion des Netzwerkes auf bestimmte Eingabeinformationen.
 
 ### Formalisiertes Modell
 
-Aufgrund dieser vereinfacht beschriebenen Funktionsweise lag es zunächst nahe, ein Neuron formal als *Schwellenwertelement* zu modellieren. Bereits 1943 untersuchten McCulloch und Pitts ein solches Model, weshalb man *Schwellenwertelemente* auch *McCullock-Pitts-Neuronen* nennt. Oft wird ein *Schwellenwertelement* auch als *Perzeptron* bezeichnet, obwohl dieses von Rosenblatt entworfene Modell eigentlich noch etwas komplexer ist.
+Aufgrund dieser vereinfacht beschriebenen Funktionsweise lag zunächst die Idee nahe, ein Neuron formal als *Schwellenwertelement* zu modellieren. Bereits 1943 untersuchten McCulloch und Pitts ein solches Model, weshalb man *Schwellenwertelemente* auch *McCullock-Pitts-Neuronen* nennt. Oft wird ein *Schwellenwertelement* auch als *Perzeptron* bezeichnet, obwohl dieses von Rosenblatt entworfene Modell eigentlich noch etwas komplexer ist.
 Der Aufbau eines solchen künstlichen Neurons wird in Abbildung \ref{perzeptron} gezeigt [@Kruse2015].
 
 ![Darstellung eines Perzeptrons - *Angelehnt an [@Kruse2015] * \label{perzeptron}](source/figures/perzeptron.pdf){ width=50% }
 
+<!-- TODO: Adjust Bild und FOrmel Text -->
 Den Ausgabewert *a* eines Neurons erhält man durch Anwendung der Aktivierungsfunktion $f_\mathrm{act}$ auf die interne Ladung des Neurons. Bei klassischen *Schwellenwertelementen* ist die Aktivierungsfunktion typischerweise die *Sprungfunktion*, welche 1 annimmt, sobald die interne Ladung $\epsilon$ eines Neurons den definierten Schwellenwert $\theta$ überschreitet.
 
  $$
 	  f_\mathrm{act}(\epsilon,\theta) = \Bigg\{ \begin{tabular}{ll} $1,$ wenn $\epsilon\geq\theta,$ \\$0,$ sonst. \end{tabular}
  $$
 
- Die interne Ladung $\epsilon$ erhält man, indem man eine gewichtete Summe der Eingabeparameter berechnet. Also das Skalarprodukt eines Eingabevektors $\vec{x}$ mit den Eingabewerten $x_1, ..., x_n$ und dem Gewichtsvektor $\vec{w}$ mit den jeweiligen Gewichten $w_1, ..., w_n$. Zu diesem wird vor Anwendung der Aktivierungsfunktion noch ein sogenannter Bias $b$ addiert.
+ Die interne Ladung $\epsilon$ erhält man, indem man eine gewichtete Summe der Eingabeparameter berechnet. Also das Skalarprodukt eines Eingabevektors $\vec{x}$ mit den Eingabewerten $x_1, ..., x_n$ und dem Gewichtsvektor $\vec{w}$ mit den jeweiligen Gewichten $w_1, ..., w_n$. Zu diesem wird vor Anwendung der Aktivierungsfunktion noch ein sogenannter Bias $b$ addiert <!-- TODO: describe BIAS?-->.
 
 $$
 	\epsilon = \sum_{i=1}^nw_ix_i + b
 $$
 
-Der berechnete Ausgabewert *a* dient wiederum als ein Eingabewert *x_i* für eines oder mehrere weitere Neuronen im künstlichen neuronalen Netzwerk.
+Der berechnete Ausgabewert $a$ dient entweder als endgültige Ausgabe, oder als ein Eingabewert $x_i$ für eines oder mehrere weitere Neuronen im künstlichen neuronalen Netzwerk.
 
 ### Aktivierungsfunktionen
 
 Die Wahl der Aktivierungsfunktion spielt eine wichtige Rolle bei der Modellierung eines KNN´s, denn sie bringt die Eingabewerte in Relation mit dem späteren Ausgabewert des Neurons.
-Die Aktivierungsfunktion soll eine nicht-lineare Komponente in das neuronale Netzwerk bringen, da es ansonsten ausschließlich möglich wäre, linear lösbare Probleme zu lösen [@Gupta2013].
+Die Aktivierungsfunktion soll eine nicht-lineare Komponente in das neuronale Netzwerk bringen, da ansonsten ausschließlich lineare Probleme gelöst werden könnten [@Gupta2013].
 Einige Beispiele für im Umfeld von maschinellen Lernen häufig verwendete Aktivierungsfunktionen sind in Abbildung \ref{aktfunktionen} zu sehen.
+
+<!-- Bernhard TODO: Quelle für Aktivierungsfunktionen. Hinweis zur erstellung der Bilder?-->
 
 ![Beispiele für Aktivierungsfunktionen.\label{aktfunktionen}](source/figures/aktivierungsfunktionen.png){ width=100% }
 
 ### Aufbau und Funktionsweise
 
 Bei der Betrachtung neuronaler Netze werden diese typischerweise als gerichtete Graphen dargestellt. 
-Ein Graph besteht im Allgemeinen aus einem oder mehreren Knoten und Kanten. Die Kanten verbinden die einzelnen Knoten. Die Kanten eines Graphen können ungerichtet oder gerichtet sein. Bei einer ungerichteten Kante existiert eine Verbindung zwischen den Knoten in beide Richtungen, bei einem gerichteten jedoch immer nur in eine. Man spricht auch von einem gerichteten oder ungerichteten Graphen, wenn dieser nur gerichtete oder ungerichtete Kanten enthält [@Goodfellow-et-al-2016].
+Ein Graph besteht im Allgemeinen aus einem oder mehreren Knoten und Kanten. Die Kanten verbinden die einzelnen Knoten. Die Kanten eines Graphen können ungerichtet oder gerichtet sein. Bei einer ungerichteten Kante existiert eine Verbindung zwischen den Knoten in beide Richtungen, bei einem gerichteten jedoch immer nur in eine. Man spricht von einem gerichteten oder ungerichteten Graphen, wenn dieser nur gerichtete oder ungerichtete Kanten enthält [@Goodfellow-et-al-2016].
 
 Bei der Darstellung eines neuronalen Netzes symbolisieren die Knoten die einzelnen Neuronen und die gerichteten Kanten die Synapsen bzw. die Verbindungen. 
-Ein neuronales Netz wird in der Regel aufgeteilt in eine Eingabe-, sowie eine Ausgabeschicht (engl.: *Input-/Output-Layer*) und optional eine oder mehrere versteckte Schichten (engl.: *hidden Layer*). Jede dieser Schichten (engl.: *Layer*) kann ein oder mehrere Neuronen enthalten. Man bezeichnet die Anzahl der Schichten als die *Tiefe* $L$ des Netzwerkes, wobei die Eingabeschicht nicht berücksichtigt wird.
+Ein neuronales Netz wird in der Regel aufgeteilt in eine Eingabe-, sowie eine Ausgabeschicht (engl.: *Input-/Output-Layer*) und optional eine oder mehrere versteckte Schichten (engl.: *Hidden Layer*). Jede dieser Schichten (engl.: *Layer*) kann ein oder mehrere Neuronen enthalten. Man bezeichnet die Anzahl der Schichten als die *Tiefe* $L$ des Netzwerkes, wobei die Eingabeschicht nicht berücksichtigt wird.
+<!-- Bernhard TODO: Quelle -->
 
-Abbildung \ref{simple_nn} zeigt ein einfaches neuronales Netz mit 3 Eingängen, einem *hidden Layer* und einem *Output Layer*.
+Abbildung \ref{simple_nn} zeigt ein einfaches neuronales Netz mit drei Eingängen, einem *Hidden Layer* und einem *Output Layer*.
 
-![neuronales Netz mit 3 Eingängen, 1 versteckten Schicht und einem Ausgangsknoten - *Angelehnt an [@Ng2017] * \label{simple_nn}](source/figures/simple_nn.pdf){ width=70% }
+![Neuronales Netz mit drei Eingängen, einer versteckten Schicht und einem Ausgangsknoten - *Angelehnt an [@Ng2017] * \label{simple_nn}](source/figures/simple_nn.pdf){ width=70% }
+
+<!-- TODO: Bernhard Zu seltsam zu Hundebildern zu springen? -->
 
 Anhand des Beispiels eines neuronalen Netzes zur Klassifizierung von Hundebildern soll im Folgenden die grundsätzliche Funktionsweise der einzelnen Schichten beschrieben werden.
-Zunächst nimmt die Eingabeschicht die benötigten Informationen von außen entgegen, zum Beispiel die numerisch dargestellten Pixel eines Hundebildes. Die Eingabedaten werden durch die versteckten Schichten geleitet und entsprechend verändert, bis sie zur Ausgabeschicht gelangen, welche nun ein Ergebnis anhand der Eingabewerte liefert. In unserem einfachen Beispiel zur Feststellung, ob es sich um ein Hundebild handelt oder nicht (binäre Klassifikation), würde eine Zahl zwischen 0 und 1 ausgegeben, welche der Wahrscheinlichkeit entspricht, dass das eingegebene Bild einen Hund darstellt.
+Zunächst nimmt die Eingabeschicht die benötigten Informationen von außen entgegen, zum Beispiel die numerisch dargestellten Pixel eines Hundebildes. Die Eingabedaten werden durch die versteckten Schichten geleitet und entsprechend verändert, bis sie zur Ausgabeschicht gelangen, welche nun ein Ergebnis anhand der Eingabewerte liefert. <!-- Bernhard TODO: folgender Satz zu kompliziert? --> In unserem einfachen Beispiel zur Feststellung, ob es sich um ein Hundebild handelt oder nicht (binäre Klassifikation), würde eine Zahl zwischen 0 und 1 ausgegeben, die der Wahrscheinlichkeit entspricht, dass das eingegebene Bild einen Hund darstellt.
 
-Bei einer Klassifizierung mit mehr als 2 Klassen (z.B. Hund, Katze oder keines von beidem) entspricht das Ergebnis einem Ausgabevektor aus Wahrscheinlichkeiten für jede Klasse. Die Summe der ausgegebenen Wahrscheinlichkeiten entspricht stets 1. Letzteres Beispiel ist in Abbildung \ref{hunde_klassifizierer} vereinfacht dargestellt.
+Bei einer Klassifizierung mit mehr als zwei Klassen (z.B. Hund, Katze oder keines von beidem) entspricht das Ergebnis einem Ausgabevektor aus Wahrscheinlichkeiten für jede Klasse. Die Summe der ausgegebenen Wahrscheinlichkeiten entspricht stets 1. Letzteres Beispiel ist in Abbildung \ref{hunde_klassifizierer} vereinfacht dargestellt.
 
 ![Hunde-/Katzen-Klassifizierer - *Angelehnt an [@Kirste2018]* \label{hunde_klassifizierer}](source/figures/classifier.pdf){ width=100% }
  
 ### Training
 
-Eine grundlegende Eigenschaft eines KNN ist, dass man es trainieren kann. Während der Trainingsphase *lernt* das neuronale Netz anhand von Eingabedaten passende Ausgabedaten zu liefern. 
+Eine grundlegende Eigenschaft eines KNN ist,<!--Bernhard TODO: man und es = böse +  Quelle ?--> dass man es trainieren kann. Während der Trainingsphase *lernt* das neuronale Netz anhand von Eingabedaten passende Ausgabedaten zu liefern. 
 
 Das Wort *lernen* ist ein starker Begriff, da man leicht auf die Idee kommen könnte, die Maschine (oder das KNN) würde analog zum Menschen eine neue Fertigkeit, wie zum Beispiel Zeichnen oder das Verstehen einer fremden Sprache, erlernen. 
 Bei der herkömmlichen Entwicklung von Programmen ist der Großteil des Programmverhaltens durch den Programmierer klar vorgegeben. Das bedeutet, der Entwickler setzt klare Regeln für die Lösung eines entsprechenden Problems.
 
-Beim machinellen Lernen dagegen verwendet man bestimmte Regeln zur Anpassung von Parametern anhand gegebener Daten [@Gupta2013].
+Beim maschinellen Lernen dagegen verwendet man bestimmte Regeln zur Anpassung von Parametern anhand gegebener Daten [@Gupta2013].
 
-Genauer bedeutet das, dass je nach Art der verfügbaren Daten innerhalb eines Trainingsprozesses die einzelnen Gewichte und Biase des neuronalen Netzes anhand von bestimmten Regeln angepasst werden. 
-Man unterscheidet bei den den Trainings- bzw. Lernverfahren im Allgemeinen zwischen überwachtem, unüberwachtem und *reinforcement learning*.
+Genauer bedeutet das, dass je nach Art der verfügbaren Daten innerhalb eines Trainingsprozesses die einzelnen Gewichte und Biase des neuronalen Netzes anhand von fundierten mathematischen Verfahren angepasst werden. 
+Man unterscheidet bei den den Trainings- bzw. Lernverfahren im Allgemeinen zwischen dem überwachten und dem unüberwachten Lernen, sowie dem *Reinforcement Learning*. <!-- Bernhard TODO: soll das kursiv bleiben? -->
 
 
-#### Überwachtes Lernen (*supervised learning*): 
-
-Das überwachte Lernen ist die einfachste Trainingsmethode für neuronale Netze. Hierzu benötigt man einen Datensatz, in welchem sich sowohl die Eingangsdaten, als auch auch die dazu passende Ausgabe befindet. Hierbei werden in mehreren Durchläufen (Epochen) die Eingabewerte dem neuronalen Netzwerk präsentiert und der *Netzwerkfehler* berechnet. Der Trainingsprozess hat das Ziel den *Netzwerkfehler* mit jeder Epoche zu verringern und diesen dadurch zu minimieren.
-Der *Netzwerkfehler* kann mit Hilfe von unterschiedlichen Kosten-Funktionen berechnet werden. 
+Das überwachte Lernen (engl.: *supervised learning*) ist die einfachste Trainingsmethode<!--Bernhard TODO: warum einfachste--> für neuronale Netze. Hierzu benötigt man einen Datensatz, in welchem sich sowohl die Eingangsdaten, als auch die dazu passende Ausgabe befindet. Hierbei werden in mehreren Durchläufen (Epochen) die Eingabewerte dem neuronalen Netzwerk präsentiert und der *Netzwerkfehler* berechnet. Der Trainingsprozess hat das Ziel den *Verlust* mit jeder Epoche zu verringern und diesen dadurch zu minimieren.
+Der *Verlust* kann mit Hilfe von unterschiedlichen Kosten-Funktionen berechnet werden.  <!--Bernhard TODO: Quelle -->
 Typische Beispiele für Probleme, welche mit *supervised learning* gelöst werden, sind Probleme der Regression oder Klassifizierung.
+<!-- Bernhard TODO: mehr Beispiele oder umschreibe? -->
 
-
-#### Unüberwachtes Lernen (*unsupervised learning*):
-
-Das Gegenstück zum *supervised learning* ist das *unsupervised learning*.
+Das Gegenstück zum *supervised learning* ist das unüberwachte Lernen (engl.: *unsupervised learning*).
 Hierbei werden dem Netzwerk in jedem Schritt Trainingsdaten gezeigt, ohne jedoch den Zielausgabewert zu kennen. Das Netz *lernt* in diesen Daten bestimmte Strukturen oder Muster zu erkennen. 
+Beispiele für Probleme des unüberwachten Lernens sind die Erkennung von Ausreißern oder generative Modelle, welche neue Daten nach Art der Trainingsdaten generieren. 
+<!-- Bernhard TODO: Bild unsupervised learning -->
 
-Beispiele für Probleme des unüberwachten Lernens sind die Erkennung von Ausreißern oder generative Modelle, welche neue Daten nach Art der Trainingsdaten generieren.
-
-#### Reinforcement learning:
-
-Beim *reinforcement learning* wird dem neuronalen Netz, ähnlich wie beim überwachten Lernen, während des Lernprozesses ein Feedback gegeben. Die Ausgabe eines Reinforcement learning Modells wird als *action* bezeichnet. Das Label (Zielwert beim überwachten Lernen) für einen Eingabewert wird als *reward* bezeichnet. Das Netz erhält also vereinfacht gesagt für jede Eingabe eine Belohnung oder eine Bestrafung. Ein *reward* muss sich nicht immer direkt auf eine Eingabe beziehen, sondern kann sich auch auf mehrere Eingaben, oder eine Eingabe der Vergangenheit beziehen.
+Beim **Reinforcement Learning** wird dem neuronalen Netz, ähnlich wie beim überwachten Lernen, während des Lernprozesses ein Feedback gegeben. Die Ausgabe eines Reinforcement Learning Modells wird als *action* bezeichnet. Das Label (Zielwert beim überwachten Lernen) für einen Eingabewert wird *reward* genannt. Das Netz erhält vereinfacht gesagt für jede Eingabe eine Belohnung oder eine Bestrafung. Ein *reward* muss sich nicht immer direkt auf eine Eingabe beziehen, sondern kann sich auch auf mehrere Eingaben, oder eine Eingabe der Vergangenheit beziehen. <!-- Bernhard TODO: definition Reward? -->
 
 Typische Anwendungsfelder sind zum Beispiel das Spielen eines Spiels (z.B. Go) oder auch die Steuerung von Robotern, bei denen es kein *richtiges* Ergebnis im eigentlichen Sinne gibt, sondern nur Konsequenzen, welche geringfügig mit bestimmten Aktionen in Verbindung stehen [@Gupta2013].
 
 Im weiteren Verlauf wird zunehmend auf überwachtes Lernen eingegangen, da die Methode auch in dieser Arbeit verwendet wird.
-Nach der Trainingsphase ist das neuronale Netzwerk im Idealfall in der Lage, anhand von *ungesehenen* Eingaben, das heißt solchen, welche nicht im Trainingsdatensatz vorhanden waren, den richtigen Ausgabewert zu ermitteln. Man nennt das die Generalisierungsfähigkeit des Netzes. Es kann passieren, dass während des Trainings eine Überanpassung (engl.: overfitting) an die Daten aus dem Trainingsdatensatz stattgefunden hat. Das bedeutet das Netzwerk kennt die Daten so gut, dass es diese perfekt zuordnen kann, kann jedoch keine brauchbaren Ergebnisse für neue Daten liefern.
+Nach der Trainingsphase ist das neuronale Netzwerk im Idealfall in der Lage, anhand von *ungesehenen* Eingaben, das heißt solchen, welche nicht im Trainingsdatensatz vorhanden waren, den richtigen Ausgabewert zu ermitteln. Man nennt das die Generalisierungsfähigkeit des Netzes. Es kann passieren, dass während des Trainings eine Überanpassung (engl.: *overfitting*) an die Daten aus dem Trainingsdatensatz stattgefunden hat. Das bedeutet das Netzwerk kennt die Daten so gut, dass es diese perfekt zuordnen kann, kann jedoch keine brauchbaren Ergebnisse für neue Daten liefern. <!-- Bernhard TODO: welche Daten. Begrifflichkeiten einführen? -->
 
-Daher ist es ein weiteres Ziel der Trainingsphase auch ein *overfitting* zu verhindern und somit eine gute Generalisierungsfähigkeit zu erhalten [@Kruse2015]. 
+Daher ist es ein weiteres Ziel der Trainingsphase auch eine Überanpassung zu verhindern und somit eine gute Generalisierungsfähigkeit zu erhalten [@Kruse2015]. <!-- Bernhard TODO: underfitting -->
 
 Nach jeder Epoche des Trainings werden die Gewichte anhand einer sogenannten Lernregel angepasst.
 Im Folgenden wird auf einige bekannte Lernregeln kurz eingegangen.
@@ -122,6 +124,7 @@ Die Hebb-Regel stellt eine der einfachsten Lernregeln dar. Sie weist eine große
 Auf das Thema der neuronalen Netze bezogen, lässt sich die Regel wie folgt formulieren:
 
 *Das Gewicht zwischen zwei Knoten wird dann verändert, wenn beide Knoten gleichzeitig aktiv sind* [@NeuronalesNetz-de-Hebb]. 
+<!-- Bernhard TODO: besser beschreiben? Formelzeichen nj, ni definieren? -->
 
 Als Formel lässt sie sich wie folgt beschreiben:
 $$
@@ -148,26 +151,27 @@ Beim *supervised learning* liegt der korrekte Ausgabewert des gesamten Netzwerks
 
 #### Backpropagation
 
-Der Backpropagation Algorithmus soll dieses Problem lösen, sodass man die Grundidee der Delta-Regel auch auf *tiefe* neuronale Netze, also Netze mit mehreren versteckten Schichten anwenden kann. Damit eine Berechnung möglich wird unterteilt der Algorithmus die Anpassung der Gewichte jeweils in die 3 Schritte *forward pass*, *Fehlerermittlung* und *backward pass*.
+<!--Jenni TODO: Check after compile (Trennung von Grundidee) -->
+Der Backpropagation-Algorithmus hilft dieses Problem zu lösen, sodass die Grundidee der Delta-Regel auch auf *tiefe* neuronale Netze, also Netze mit mehreren versteckten Schichten angewendet werden kann. Damit eine Berechnung möglich wird unterteilt der Algorithmus die Anpassung der Gewichte jeweils in die 3 Schritte *forward pass*, *Fehlerermittlung* und *backward pass*. <!-- Bernhard TODO: Quelle>
 
-1. **Forward pass** Hier werden dem Netz entsprechende Eingabedaten aus dem Trainings-Datensatz präsentiert und von der Eingabe- bis hin zur Ausgabeschicht die Werte aller Knoten berechnet.
+1. **Forward pass:** Hier werden dem Netz entsprechende Eingabedaten aus dem Trainings-Datensatz präsentiert und von der Eingabe- bis hin zur Ausgabeschicht die Werte aller Knoten berechnet.
 
-2. **Fehlerermittlung** Hier werden die Fehler der Ausgabeknoten ermittelt. Der Fehlerwert wird nun mit einem definierten Schwellwert verglichen. Ist der Fehler kleiner als der Schwellwert, oder die definierte Anzahl an Epochen bereits erreicht, wird der Algorithmus abgebrochen, falls nicht erfolgt der 3. Schritt.
+2. **Fehlerermittlung:** Hier werden die Fehler der Ausgabeknoten ermittelt. Der Fehlerwert wird nun mit einem definierten Schwellwert verglichen. Ist der Fehler kleiner als der Schwellwert, oder die definierte Anzahl an Epochen bereits erreicht, wird der Algorithmus abgebrochen, falls nicht erfolgt der 3. Schritt.
 
-3. **Backward pass** Dieser Schritt, stellt die innovative Neuerung des Algorithmus dar. Die zuvor ermittelten Fehler breiten sich jetzt von der Ausgabeschicht, bis hin zur Eingabeschicht rückwärts aus und die Gewichte der einzelnen Knoten werden entsprechend angepasst. Zur Bestimmung der Gewichtsanpassung kommt das Gradientenabstiegsverfahren zum Einsatz. Nach der Anpassung der Gewichte startet der Algorithmus mit der nächsten Trainingsepoche erneut mit dem *Forward pass*.
+3. **Backward pass:** Dieser Schritt, stellt die innovative Neuerung des Algorithmus dar. Die zuvor ermittelten Fehler breiten sich jetzt von der Ausgabeschicht, bis hin zur Eingabeschicht rückwärts aus und die Gewichte der einzelnen Knoten werden entsprechend angepasst. Zur Bestimmung der Gewichtsanpassung kommt das Gradientenabstiegsverfahren zum Einsatz. Nach der Anpassung der Gewichte startet der Algorithmus mit der nächsten Trainingsepoche erneut mit dem *Forward pass*.
 
-Auf eine genaue Beschreibung und mathematische Definition des Gradientenabstiegsverfahrens soll aufgrund der Komplexität in dieser Arbeit verzichtet werden. 
+Auf eine genaue Beschreibung und mathematische Definition des Gradientenabstiegsverfahrens soll aufgrund der Komplexität in dieser Arbeit verzichtet werden. <!-- Bernhard TODO: gradient descent ref. und change backprop ref to https://www.nature.com/articles/323533a0 anstatt neuronalesNetz.de-->
 Typischerweise greifen heutige neuronale Netze auf den Backpropagation Algorithmus zurück. [@NeuronalesNetz-backProp]
 
 ### Faltende Neuronale Netze
 
-Bei faltenden neuronalen Netzen (CNN, convolutional neural networks) handelt es sich um eine Sonderform von KNN, welche vor allem bei Daten verwendet werden, welche eine Raster-artige Struktur aufweisen. Beispiele dafür sind Bilder, welche man sich als ein zweidimensionales Raster von Pixel-Werten vorstellen kann.
+Bei faltenden neuronalen Netzen (CNN, convolutional neural networks) handelt es sich um eine Sonderform von KNN, welche vor allem bei Daten verwendet werden, die eine Raster-artige Struktur aufweisen, beispielsweise Bilder, welche man sich als ein zweidimensionales Raster von Pixel-Werten vorstellen kann.
 
 Ein typisches CNN besteht aus einer oder mehreren *convolutional* Schichten gefolgt von einer oder mehreren *fully-connected* Schichten, wie wir sie bereits aus den klassischen neuronalen Netzen kennen. 
 
-Eine *convolutional* Schicht besteht aus einem oder mehreren Filtern gleicher Größe. Man kann sich diesen Filter als eine Art Fenster vorstellen, welches über die Daten "geschoben wird". Dabei entstehen aus den meist größeren Rastern der Eingabedaten neue Raster mit kleineren Dimensionen (siehe \ref{CNN}). Gibt es mehrere Filter, werden die entstehenden Ausgabeschichten aufeinander gestapelt [@Goodfellow-et-al-2016].
+Eine *convolutional* Schicht besteht aus einem oder mehreren Filtern gleicher Größe. Man kann sich diesen Filter als eine Art Fenster vorstellen, welches über die Daten "geschoben wird". Dabei entstehen aus den meist größeren Rastern der Eingabedaten neue Raster mit kleineren Dimensionen (siehe Abbildung \ref{CNN}). Gibt es mehrere Filter, werden die entstehenden Ausgabeschichten aufeinander gestapelt [@Goodfellow-et-al-2016].
 
-![vereinfacht dargestelltes faltendes neuronales Netzwerk \label{CNN}](source/figures/cnn.pdf){ width=90% }
+![Vereinfacht dargestelltes faltendes neuronales Netzwerk \label{CNN}](source/figures/cnn.pdf){ width=90% }
 
 Jede dieser *convolutional* Schichten hat mehrere (Hyper-)Paramenter, die beeinflussen, welche Dimensionen das nachfolgende Daten-Raster erhält. Diese wären zum Beispiel die *Filtergröße*, sowie die Anzahl der Filter. Daneben ist die *Schrittweite* ein weiterer Parameter, welcher beeinflusst, wie groß die Sprünge sind, in welchen der Filter über die Daten "geschoben" wird. Als letzter Parameter wäre noch ein mögliches *padding* (Füllung) zu nennen. Hierbei wird eine definierte Anzahl an zusätzlichen Zeilen an jeder Seite des Rasters mit Nullen aufgefüllt. Diese Methode dient dazu, dass der Filter auch die äußeren Werte mit einer ähnlichen Gewichtung berücksichtigen kann.
 
@@ -182,13 +186,13 @@ Der Ansatz stützt sich auf die Erkenntnisse von Charles Darwin [@CharlesDarwin1
 
 Um eine Vorhersage bzw. Erkennung der aktuellen Emotion zu bewerkstelligen, ist es nötig diese sinnvoll zu unterscheiden. Für die Einteilung oder Kategorisierung von menschlichen Emotionen gibt es ebenfalls unterschiedliche Ansätze, welche verfolgt werden können.
 
-Im Allgemeinen unterscheidet man zwischen der kategorischen und der dimensionalen Einteilung. Bei Letzterer werden die Emotionen auf einem Spektrum dargestellt. Es wird also niemals eine konkrete Emotion zugeordnet, sondern immer ein Punkt auf der Skala. [@posner_russell_peterson_2005]
+Im Allgemeinen unterscheidet man zwischen der kategorischen und der dimensionalen Einteilung. Bei Letzterer werden die Emotionen auf einem Spektrum dargestellt. Daher wird niemals eine konkrete Emotion zugeordnet, sondern immer ein Punkt auf der Skala. [@posner_russell_peterson_2005]
 
 Bei der kategorischen Einteilung geht man davon aus, dass es eine endliche Anzahl an wohl definierten menschlichen Emotionen gibt. Diese Einteilung wird insbesondere von Anhängern des evolutionstheoretischen Ansatzes von Emotionen vertreten. Zur Untermauerung des Darwinschen Ansatzes untersuchten einige Forscher unter der Leitung von Dr. Ekman [@Ekman1972] die Gesichtsausdrücke für bestimmte Situationen in einen Eingeborenen-Stamm in Neu Guinea. Dieser hatte zuvor vollkommen isoliert von anderen Gesellschaften gelebt. Somit waren die Reaktionen der Menschen dort nicht auf gesellschaftliche Einflüsse zurückzuführen. Ekman konnte damals bereits anhand des Gesichtsaudrucks vier universelle Emotionen ableiten. Diese waren *Wut*, *Trauer*, *Ekel* und *Fröhlichkeit*.
 
 In weiterführenden Forschungen konnte Ekman die Erkenntnisse vertiefen und entwickelte zusammen mit einigen anderen Wissenschaftlern das *Facial Acting Coding System* (FACS), welche die menschlichen Emotionen in insgesamt sieben Basisemotionen einteilt, welche unabhängig vom gesellschaftlichen Einfluss vorhanden sind. Zusätzlich zu den vier zuvor abgeleiteten Emotionen beinhaltet das FACS noch die Emotionen *Überraschung*, *Verachtung* und *Angst*.
 
-Die Einteilung nach dem FACS bildet die Basis für die Klassifizierung von Emotionen in dieser Arbeit.
+Die Einteilung nach FACS bildet die Basis für die Klassifizierung von Emotionen in dieser Arbeit.
 
 ### Gesichtserkennung
 
@@ -196,19 +200,20 @@ Da sich das FACS auf Gesichtszüge bezieht und daher auch die Emotionserkennung 
 
 Um aus einem größeren Bildausschnitt automatisiert den relevanten Teil, also den Gesichtsausschnitt, zu extrahieren ist es notwendig innerhalb des Bildes das Gesicht und dessen Rahmen (engl. bounding box) zu erkennen.
 
-Die aktuell gängigste Methode zur Gesichtserkennung ist der sogenannte Viola-Jones Detektor[@Shen1997]. Diese Methode gibt nach Eingabe eines größeren Bildes, die genaue Position des Gesichtes in diesem wieder. Dieser Bereich kann dann ausgeschnitten und weiter verwendet werden. Viola und Jones nutzen in ihrem Algorithmus 3 unterschiedliche Techniken, die ihn besonders effizient machen. Im Folgenden sollen diese kurz beschrieben werden.
+Die aktuell gängigste Methode zur Gesichtserkennung ist der sogenannte Viola-Jones Detektor [@Shen1997]. Diese Methode gibt nach Eingabe eines größeren Bildes, die genaue Position des Gesichtes in diesem wieder. Dieser Bereich kann dann ausgeschnitten und weiter verwendet werden. Viola und Jones nutzen in ihrem Algorithmus drei unterschiedliche Techniken, die ihn besonders effizient machen. Im Folgenden sollen diese kurz beschrieben werden.
 
 #### Integral Image
 
-Zur weiteren einfachen Verarbeitung der Eingabebilder sollen nur bestimmte Merkmale der Bilder extrahiert werden. Anstelle eines pixelbasierten Ansatzes führten Viola und Jones hierzu den Begriff des *Integralbildes* (engl. integral image) ein. Die dazu extrahierten *Features* ähneln den Haar-Basis Merkmalen, wie sie zuvor auch in anderen Arbeiten verwendet wurden (vergleich [@Papageorgiou].
+Zur weiteren einfachen Verarbeitung der Eingabebilder sollen nur bestimmte Merkmale der Bilder extrahiert werden. Anstelle eines pixelbasierten Ansatzes führten Viola und Jones hierzu den Begriff des *Integralbildes* (engl. integral image) ein. Die dazu extrahierten *Features* ähneln den Haar-Basis Merkmalen, wie sie zuvor auch in anderen Arbeiten verwendet wurden (vergleich [@Papageorgiou]).
 
-Die Wertigkeit eines Pixels im *Integralbild* steht immer im Zusammenhang mit den Pixeln in der unmittelbaren Umgebung. Desto höher der Wert ist, desto heller ist der betreffende Bildausschnitt. Auf Basis dieser Informationen haben Viola und Jones drei aufgrund ihrer Ähnlichkeit sogenannte *Haar-like features* definiert, welche ein Geischt anhand der entsprechenden Helligkeitsunterschiede beschreiben.
+Die Wertigkeit eines Pixels im *Integralbild* steht immer im Zusammenhang mit den Pixeln in der unmittelbaren Umgebung. Desto höher der Wert ist, desto heller ist der betreffende Bildausschnitt. Auf Basis dieser Informationen haben Viola und Jones drei aufgrund ihrer Ähnlichkeit sogenannte *Haar-like features* definiert, welche ein Gesicht anhand der entsprechenden Helligkeitsunterschiede beschreiben.
 
 "Ein *two-rectangle feature* wird beschrieben durch die Differenz aus der Summe der Pixel zwischen zwei rechteckigen Bildausschnitten. Die Ausschnitte haben dieselbe Größe und Form, und Grenzen entweder horizontal oder vertikal aneinander an.
-Ein *three-rectangle feature* wird berechnet durch die Differenz, der Summe aus zwei äußeren Rechtecken und der Summe eines zentrierten Rechteckes.
+Ein *three-rectangle feature* wird durch die Differenz der Summe aus zwei äußeren Rechtecken und der Summe eines zentrierten Rechteckes berechnet.
 Ein *four-rectangle feature* wird letzten Endes durch die Differenz zwischen diagonalen Paaren von Rechtecken beschrieben." [@Shen1997]
 
 ![*Haar-like features*, *two-rectangle* (1, 2), *three-rectangle* (3), *four-rectangle* (4) -  Quelle: https://commons.wikimedia.org/wiki/File:VJ_featureTypes.svg \label{haar_features}](source/figures/HaarFeatures.pdf){ width=100% }
+<!-- TODO: BEschreibung ändern -->
 
 Zur Berechnung des *Integralbildes* wird das Ursprungsbild zunächst in ein Graustufen-Bild umgewandelt. Dies ist ein übliches Vorgehen in der automatisierten Bildverarbeitung, da ein solches in der Regel noch alle benötigten Informationen beinhaltet, aber massiv weniger Daten beinhaltet (z.B. 8 Bit pro Pixel statt 24 Bit pro Pixel). Ein Pixel des Integralbildes an der Stelle $(x, y)$ errechnet sich nun aus der Summe aller Pixelwerte eines Rechtecks des Graustufen-Bildes vom Ursprung $(0,0)$ des Bildes bis zum besagten Punkt $(x, y)$ [@Shen1997].
 Die Formel zur Berechnung des Pixelwertes an der Stelle $(x, y)$ *Integralbildes* $ii$ aus dem Ursprungs-Graustufenbild $i$ lautet also wie folgt.
@@ -228,15 +233,16 @@ Die Vorteile der Nutzung des *Integralbildes* sind die einfache und damit effizi
 #### Modifizierter AdaBoost Algorithmus
 
 In seiner ursprünglichen Form dient der *AdaBoost* Algorithmus dazu die Performance eines Klassifzierers im Bereich des maschinellen Lernens zu optimieren (engl. boost). 
-Der Netzwerkfehler eines so optimierten Algorithmus (engl. *boosted algirthm*) konvergiert mit der Anzahl der Trainingsdurchläufe exponentiell gegen Null. 
+Der Netzwerkfehler eines so optimierten Algorithmus (engl. *boosted algirthm*) konvergiert mit der Anzahl der Trainingsdurchläufe exponentiell gegen Null. <!--Bernhard TODO: Quelle -->
 
-In Viola und Jones´ Arbeit egaben sich aus jedem 24x24 Pixel Fenster über 180000 *rectangle-fatures*. Zwar kann jedes einzelne dieser Merkmale sehr effizient berechnet werden, allerdings wäre es ziemlich aufwendig die gesamte Menge an Merkmalen zu berechnen. Sie stellten die Vermutung auf, dass bereits eine geringe Anzahl dieser Merkmale für einen effektiven Klassifizierer genutzt werden können. Viola und Jones nutzen *AdaBoost* daher an 2 Stellen. Zum Einen zum Auswählen der zu nutzenden Merkmale und zum Anderen zum eigentlichen Trainieren des Klassifizierers. Dazu wurde der *weak classifier* so angepasst, dass er das Rechteck-Merkmal findet, welches die positiven Beispiel-Daten am besten von den negativen Beispiel-Daten separiert [@Shen1997]. In folgender Abbildung \ref{viola_jones_adaboost} ist der modifizierte *AdaBoost* Algorithmus nach Viola und Jones kurz skizziert.
+In Viola und Jones Arbeit egaben sich aus jedem 24x24 Pixel Fenster über 180.000 *rectangle-fatures*. Zwar kann jedes einzelne dieser Merkmale sehr effizient berechnet werden, allerdings wäre es ziemlich aufwendig die gesamte Menge an Merkmalen zu berechnen. Sie stellten die Vermutung auf, dass bereits eine geringe Anzahl dieser Merkmale für einen effektiven Klassifizierer genutzt werden können. Viola und Jones nutzen *AdaBoost* daher an zwei Stellen. Zum einen zum Auswählen der zu nutzenden Merkmale und zum anderen zum eigentlichen Trainieren des Klassifizierers. Dazu wurde der *weak classifier* so angepasst, dass er das Rechteck-Merkmal findet, welches die positiven Beispiel-Daten am besten von den negativen Beispiel-Daten separiert [@Shen1997]. In folgender Abbildung \ref{viola_jones_adaboost} ist der modifizierte *AdaBoost* Algorithmus nach Viola und Jones kurz skizziert. <!-- Bernhard TODO: sagen was x in dem Beispiel ist -->
 
-![modifizerter AdaBoost Algorithmus nach Viola und Jones. *Quelle: [@Shen1997]* \label{viola_jones_adaboost}](source/figures/viola_jones_adaboost.jpeg){ width=100% }
+![Modifizerter AdaBoost Algorithmus nach Viola und Jones. *Quelle: [@Shen1997]* \label{viola_jones_adaboost}](source/figures/viola_jones_adaboost.jpeg){ width=100% }
 
 #### Cascade of classifiers
 
 Die dritte von Viola und Jones eingeführte Technik zur Gesichtserkennung sind die kaskadierenden Klassifizierer. Die Idee hierbei besteht darin mehrere optimierte Klassifizierer für nur ein bestimmtes Merkmal hintereinander zu schalten. Die einzelnen Klassifizierer haben dabei eine Negativ-Erkennungs-Rate (engl. *false positive rate*) gegen 0. So können diese eine große Anzahl an nicht passenden Bildausschnitten aussortieren und nur die passenden an den enstprechenden nächsten Klassifizierer weitergeben. Da diese einfachen Klassifizierungen sehr effizient berechnet werden können, wird verhindert, dass für nicht passende Ausschnitte zu viel Rechenaufwand betrieben wird. Der Begriff Kaskade wurde gewählt, um zu veranschaulichen, dass jeder Klassifizierer nur anhand eines positiven Ergebnisses des vorgeschalteten Klassifizierers weiter arbeitet.
 
-![kaskadierende Klassifizierer C1 bis Cn - *Angelehnt an [@Shen1997]* \label{cascade_of_classifiers}](source/figures/cascade_of_classifiers.pdf){ width=90% }
+![Kaskadierende Klassifizierer C1 bis Cn - *Angelehnt an [@Shen1997]* \label{cascade_of_classifiers}](source/figures/cascade_of_classifiers.pdf){ width=90% }
 
+<!-- Bernhard TODO: change Bild. selbe Schriftart wie im Text + kein englisch/Deutsch gemischt>

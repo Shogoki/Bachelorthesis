@@ -1,12 +1,12 @@
 \clearpage
 
-# Evaluierung
+# Evaluierung  \label{chapter_evaluierung}
 
-Dieses Kapitel befasst sich mit der weiterführenden Evaluierung des erstellten KNN. Ein großteil der Evaluierung wurde bereits während der Implementierung vorgenommen um möglichst gute Hyperparameter für das Netzwerk zu finden. Ziel dieses Kapitels soll es sein aus dem gewählten Model noch weitere Erkenntnisse zu gewinnen und die Ergebnisse zu visualisieren.
+Dieses Kapitel befasst sich mit der weiterführenden Evaluierung des erstellten KNN. Ein Großteil der Evaluierung wurde bereits während der Implementierung vorgenommen um möglichst gute Hyperparameter für das Netzwerk zu finden. Ziel dieses Kapitels soll es sein aus dem gewählten Model noch weitere Erkenntnisse zu gewinnen und die Ergebnisse zu visualisieren.
 
-## abschließende Bewertung der Netzwerkleistung
+## Abschließende Bewertung der Netzwerkleistung
 
-Nach der finalen Implementierung des neuronalen Netzwerkes wurde ein Letzter Validierungslauf für den *Bridge*, das Entwicklungs sowie auch für den Test-Datensatz gestartet. Dabei wurden die Erkenntnisse aus Kapitel \ref{chapter_umsetzung} bestätigt, dass der Klassifizierer, beim behandeln von nicht gelernten Daten noch einige Optimierungsmöglichkeiten bietet . Tabelle 4.1 zeigt die Genauigkeit der einzelnen Datensätze während des Validierungslaufes. Wie zu erwarten schneidet der Test-Datensatz ähnlich ab wie der Entwicklungsdatensatz.
+Nach der finalen Implementierung des neuronalen Netzwerkes wurde ein letzter Validierungslauf für den *Bridge*, das Entwicklungs sowie für den Test-Datensatz gestartet. Dabei wurden die Erkenntnisse aus Kapitel \ref{chapter_umsetzung} bestätigt, dass der Klassifizierer, beim behandeln von nicht gelernten Daten einige Optimierungsmöglichkeiten bietet. Tabelle 4.1 zeigt die Genauigkeit der einzelnen Datensätze während des Validierungslaufes. Wie zu erwarten schneidet der Test-Datensatz ähnlich ab wie der Entwicklungsdatensatz.
 
 Datensatz | Genauigkeit |
 | ----- | ----: |
@@ -15,26 +15,28 @@ Datensatz | Genauigkeit |
 | Entwicklungs-Daten | 29,0% |
 | Test-Daten | 29,6% |
 
-Tabelle 4.1: Genauigkeit des Netzwerks für die verschiedenen Datensätze. \label{table_41} 
+Tabelle 4.1: Genauigkeit des Netzwerks für die vier verschiedenen Datensätze. \label{table_41} 
 
-Bei einem Mehrklassen-Klassifizierer, wie er in dieser Arbeit entwickelt wurde, bietet sich auch immer eine Darstellung einer Verwirrungs-Matrix an. Diese stellt dar, wie oft eine Klasse fälschlicherweise als eine andere klassifiziert wurde. in Abbildung \ref{conf_matrix_bridge} und \ref{conf_matrix_test} ist die Verwirrung-Matrix für den *Bridge* sowie den Test Datensatz auf dem erstellten Model zu sehen.
+Bei einem Mehrklassen-Klassifizierer, wie er in dieser Arbeit entwickelt wurde, bietet sich auch immer eine Darstellung einer Konfusions-Matrix an. Diese zeigt, wie oft eine Klasse fälschlicherweise als eine andere klassifiziert wurde. In Abbildung \ref{conf_matrix_bridge} und \ref{conf_matrix_test} ist die Konfusions-Matrix für den *Bridge* sowie den Test Datensatz auf dem erstellten Model zu sehen.
 
-![Verwirrungs-Matrix für den *Bridge* Datensatz. Auf der Y-Achse sind die tatsächlichen Emotionen zu sehen, auf der X-Achse die vom Netz vorhergesagten Emotionen.  \label{conf_matrix_bridge}](source/figures/conf_matrix_bridge.png){ width=80% }
+<!-- Bernhard TODO: Schrift und Farben anpassen.. -->
+![Konfusions-Matrix für den *Bridge* Datensatz. Auf der Y-Achse sind die tatsächlichen Emotionen zu sehen, auf der X-Achse die vom Netz vorhergesagten Emotionen.  \label{conf_matrix_bridge}](source/figures/conf_matrix_bridge.png){ width=80% }
 
-![Verwirrungs-Matrix für den Test Datensatz. \label{conf_matrix_test}](source/figures/conf_matrix_test.png){ width=80% }
+![Konfusions-Matrix für den Test Datensatz. \label{conf_matrix_test}](source/figures/conf_matrix_test.png){ width=80% }
 
-In den beiden Verwirrungs-Matrizen kann man sehen, dass die Emotionen *Verachtung*, *Ekel*, *Angst* und *Traurigkeit*, bis auf wenige kleine Ausnahmen immer falsch zugewiesen wurden. Die meisten falsch zugewiesenen Emotionen wurden fälschlicherweise als Wut klassifiziert.
+In den beiden Konfusions-Matrizen kann man sehen, dass die Emotionen *Verachtung*, *Ekel*, *Angst* und *Traurigkeit*, bis auf wenige kleine Ausnahmen immer falsch zugewiesen wurden. Die meisten falsch zugewiesenen Emotionen wurden fälschlicherweise als Wut klassifiziert.
 
 Dies deutet auf unklar definierte Trainingsdaten, oder einfach zu wenige Trainingdaten für diese Emotion hin. Eine zukünftige Verbesserung könnte durch eine genauere Prüfung der Trainingsdaten erreicht werden.
 
 ## Testen des Webservice mit Fremddaten
 
-Abschließend wurde der erstellte Webservice getestet. Dazu wurde ein Satz an Videos eines Probanden, der nicht im selbsterstellten Datensatz zu finden war an den Webservice gesendet und das Ergebnis manuell ausgewertet.
-Zur Aufnahme des Videos wurde derselbe Webservice verwendet, wie auch schon zur Beschaffung der Entwicklungs-/Test-Daten. Das Video wurde mithilfe der minimalsitischen Benutzerschnittstelle an den Webservice gesendet. Das Ergebnis eines Beispiel Videos (für die Emotion Freude) ist in Abbildung \ref{screenshot_testweb} zu sehen.
+Abschließend wurde der erstellte Webservice getestet. Dazu ist ein Satz an Videos eines Probanden, der nicht im selbsterstellten Datensatz zu finden war, an den Webservice gesendet und das Ergebnis manuell ausgewertet worden.
+Zur Aufnahme des Videos wurde derselbe Webservice verwendet, wie auch schon zur Beschaffung der Entwicklungs-/Test-Daten. Das Video ist mithilfe der minimalsitischen Benutzerschnittstelle an den Webservice gesendet worden. Das Ergebnis eines Beispiel-Videos (für die Emotion Freude) ist in Abbildung \ref{screenshot_testweb} zu sehen.
 
+<!-- Bernhard TODO: genauer beschreiben -->
 ![Screenshot der minimalistischen Benutzerschnittstelle beim Test eines Video für die Emotion Fröhlichkeit. \label{screenshot_testweb}](source/figures/screenshot_web_test.png){ width=80% }
 
-Die Auswertung der Ergebnisse bestätigte die bisher erlangten Erkenntnisse, welche auch aus der Verwirrungs-Matrix hervorgingen. So wurden die Emotion *Fröhlichkeit* und *Überraschung* als einzige vorwiegend richtig erkannt.
+Die Auswertung der Ergebnisse bestätigte die bisher erlangten Erkenntnisse, welche auch aus der Konfusions-Matrix hervorgingen. So wurden die Emotion *Fröhlichkeit* und *Überraschung* als einzige vorwiegend richtig erkannt.
 
 <!--
 ```JSON

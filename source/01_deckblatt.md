@@ -24,7 +24,7 @@ and add the centred logo
           D-64319 Pfungstadt   }
         
         \Large
-         Bachelor Thesis im Studiengang Informatik\\
+         Bachelorthesis im Studiengang Informatik\\
         \vspace{0.8cm}
         \vfill
         {\usekomafont{subtitle}Emotionserkennung anhand von Videodaten mithilfe von künstlichen neuronalen Netzen}
