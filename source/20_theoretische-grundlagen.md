@@ -84,7 +84,7 @@ Ein gerne verwendetes Beispiel für neuronale Netze ist die Erkennung von Tieren
 Anhand des Beispiels eines neuronalen Netzes zur Klassifizierung von Hundebildern soll im Folgenden die grundsätzliche Funktionsweise der einzelnen Schichten beschrieben werden.
 Zunächst nimmt die Eingabeschicht die benötigten Informationen von außen entgegen, zum Beispiel die numerisch dargestellten Pixel eines Hundebildes. Die Eingabedaten werden durch die versteckten Schichten geleitet und entsprechend verändert, bis sie zur Ausgabeschicht gelangen, welche nun ein Ergebnis anhand der Eingabewerte liefert. In unserem einfachen Beispiel zur Feststellung, ob sich auf einem Bild ein Hund befindet oder nicht handelt es sich um eine binäre Klassifikation. Das KNN würde eine Zahl zwischen 0 und 1 ausgeben, die der Wahrscheinlichkeit entspricht, dass das eingegebene Bild einen Hund darstellt.
 
-![Hunde-/Katzen-Klassifizierer - *Angelehnt an [@Kirste2018]* \label{hunde_klassifizierer}](source/figures/classifier.pdf){ width=100% }
+![Hunde-/Katzen-Klassifizierer - Quelle(Katze): publicdomainpictures.net - *Angelehnt an [@Kirste2018]* \label{hunde_klassifizierer}](source/figures/classifier.pdf){ width=100% }
 
 Bei einer Klassifizierung mit mehr als zwei Klassen (z.B. Hund, Katze oder keines von beidem) entspricht das Ergebnis einem Ausgabevektor aus Wahrscheinlichkeiten für jede Klasse. Die Summe der ausgegebenen Wahrscheinlichkeiten entspricht stets 1. Letzteres Beispiel ist in Abbildung \ref{hunde_klassifizierer} vereinfacht dargestellt.
  

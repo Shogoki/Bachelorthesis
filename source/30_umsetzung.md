@@ -327,7 +327,7 @@ Zunächst wurden die Netzwerke jeweils für eine geringere Anzahl an Epochen tra
 
 Für das einfache Faltungsnetzwerk wurden hier wenig befriedigende Ergebnisse erzielt (siehe Abbildung \ref{simple_cnn_training}). Die Genauigkeit der Trainingsdaten stagnierte hier bei einem Wert um $0,65$. Daher wurde sich im weiteren Verlauf auf die Optimierung des zweiten Netzes (siehe Kapitel \ref{transfer_learning_xception}) beschränkt.
 
-![Genauigkeit während des Trainingsverlaufs des einfachen Faltungs-Netzwerkes für 50 Epochen. Es ist ein *Bias* Problem zu erkennen, da das Netzwerk selbst den Trainingsdatensatz nicht ausreichend gut erlernen kann. \label{simple_cnn_training}](source/figures/training_simple_cnn.png){ width=80% }
+![Genauigkeit während des Trainingsverlaufs des einfachen Faltungs-Netzwerkes für 50 Epochen. Es ist ein *Bias* Problem zu erkennen, da das Netzwerk selbst den Trainingsdatensatz nicht ausreichend gut erlernen kann. \label{simple_cnn_training}](source/figures/training_simple_cnn.png){ width=100% }
 
 ### *Transfer Learning* Netzwerk \label{transfer_learning_xception}
 
